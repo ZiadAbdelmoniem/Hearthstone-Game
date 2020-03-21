@@ -23,7 +23,7 @@ public class Warlock extends Hero{
 	 public void buildDeck() throws Exception {
 		 String e="C:\\Users\\H.Maher\\Desktop\\GUC\\hmmm\\Milestone 1\\src\\neutral_minions.csv";
 		ArrayList<Minion> thenuetralminions= getNeutralMinions(getAllNeutralMinions(e),13);
-		ArrayList<Card>  z = getDeck();
+		ArrayList<Card>  z = super.getDeck();
 		int size =thenuetralminions.size();
 		for(int i=0;i<size;i++){
 			thenuetralminions.get(i).setListener(this);
@@ -46,36 +46,45 @@ public class Warlock extends Hero{
 		z.add(wilfred);
 		Collections.shuffle(z);
 }
-	 public void useHeroPower() throws NotEnoughManaException,
-	    HeroPowerAlreadyUsedException, NotYourTurnException, FullHandException,
-	    FullFieldException, CloneNotSupportedException{
+	 public void useHeroPower() throws NotEnoughManaException,HeroPowerAlreadyUsedException, NotYourTurnException, FullHandException,FullFieldException, CloneNotSupportedException{
 		super.useHeroPower();
+		if(this.getDeck().isEmpty())
+			super.drawCard();
 		this.drawCard();
 	    this.setCurrentHP(this.getCurrentHP()-2);
 	    }
-
 	 public Card drawCard() throws FullHandException, CloneNotSupportedException{
 		 boolean f =false;
-		 Card c = this.getDeck().get(0);
-		 for(int i=0;i<getField().size();i++) {
-			 if(getField().get(i).getName().equalsIgnoreCase("Wilfred Fizzlebang")) {
-				 f=true;
-				 break;
-			 }
-		 }
-		 if(f) {
-			 if(c!=null && this.getHand().size()<10) {
+		 boolean ch=false;
+		 if(!this.getDeck().isEmpty()) {
+			 Card c = this.getDeck().remove(0);
+			 if(getHand().size()==10) 
+	    			throw new FullHandException(c);
+	    	for(int i=0;i<this.getField().size();i++) {
+	    		Minion mi = this.getField().get(i);
+	    		if(mi.getName().equalsIgnoreCase("Wilfred Fizzlebang")) 
+	    			f=true;
+	    		if(mi.getName().equalsIgnoreCase("Chromaggus"))
+	    			ch=true;
+	    	}
+			 if(f && c instanceof Minion) {
 				 c.setManaCost(0);
-				 getHand().add(c);
-				 return c;
+				 this.getHand().add(0,c);
 			 }
-			if(getHand().size()==10)
-				throw new FullHandException(c);
+			 else {
+				 this.getHand().add(0,c);
+			 }
+			if(ch) {
+				if(getHand().size()==10)
+					throw new FullHandException(c);
+				this.getHand().add((Card)c.clone());
+			}
+			return c;
 		 }
 		super.drawCard();
-		return c;
-	 }
-	
+		return null;
+		 }
+		 
 	public void onMinionDeath(Minion m) {
 		super.onMinionDeath(m);
 		
