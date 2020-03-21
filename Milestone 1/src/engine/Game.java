@@ -90,6 +90,8 @@ public class Game implements ActionValidator,HeroListener{
 			throw new CannotAttackException();
 		if(!(currentHero.getField().contains(attacker)))
 			throw new NotSummonedException();
+		if(!(opponent.getField().contains(target)))
+			throw new NotSummonedException();
 		ArrayList<Minion> opf=opponent.getField();
 		boolean[] taunts=new boolean[opf.size()]; //array of taunt minions indecies
 		int index=opf.indexOf(target); //index of target

@@ -375,22 +375,21 @@ public abstract class Hero implements MinionListener  {
     }
   
     public Card drawCard() throws FullHandException, CloneNotSupportedException{
-    	Card c = deck.remove(0);
-    	if(c!=null) {
-    		if(hand.size()==10) {
+    	int k=this.deck.size();
+    	if(k>0){
+    		Card c=deck.remove(0);
+    		if(hand.size()==10)
     			throw new FullHandException(c);
-    		}
     		hand.add(c);
-    		if(deck.isEmpty()) {
+    		if(deck.isEmpty())
     			fatigueDamage=1;
-    			return c;
-    		}
+    		return c;
     	}
-    	setCurrentHP(getCurrentHP()-fatigueDamage);
+    	this.setCurrentHP(this.getCurrentHP()-fatigueDamage);
     	fatigueDamage++;
-    	
-		return c;
-    }
+		return null;
+    	}
+    
     public void onMinionDeath(Minion m) {
     	int x=this.getField().indexOf(m);
     	this.field.remove(x);
