@@ -20,12 +20,13 @@ public class Priest extends Hero{
 		super("Anduin Wrynn");
 		//setCurrentHP();
 	}
-	 void buildDeck() throws Exception {
-		String e="C:\\Users\\boudi\\Desktop\\Eclipse workspace\\Git\\s\\Milestone 1\\src\\neutral_minions.csv";
+	 public void buildDeck() throws Exception {
+		String e="C:\\Users\\boudi\\Desktop\\Eclipse workspace\\hmmm\\Milestone 1\\src\\neutral_minions.csv";
 		ArrayList<Minion> allneutralminions= getAllNeutralMinions(e);
 		ArrayList<Minion> thenuetralminions= getNeutralMinions(allneutralminions,13);
 		ArrayList<Card>  z = getDeck();
 		for(int i=0;i<thenuetralminions.size();i++){
+			thenuetralminions.get(i).setListener(this);
 			z.add((Card)(thenuetralminions.get(i)));
 		}
 		DivineSpirit spellone= new DivineSpirit();
@@ -35,7 +36,7 @@ public class Priest extends Hero{
 		ShadowWordDeath spellfive= new ShadowWordDeath();
 		ShadowWordDeath spellsix= new ShadowWordDeath();
 		Minion velen= new Minion("Prophet Velen",7, Rarity.LEGENDARY,7,7,false,false,false);
-
+		velen.setListener(this);
 		z.add(spellone);
 		z.add(spelltow);
 		z.add(spellthree);
@@ -46,74 +47,63 @@ public class Priest extends Hero{
 		Collections.shuffle(z);
 
 	}
-	 public void useHeroPower(Object o) throws NotEnoughManaException,
+	 public void useHeroPower(Minion mi ) throws NotEnoughManaException,
 	    HeroPowerAlreadyUsedException, NotYourTurnException, FullHandException,
 	    FullFieldException, CloneNotSupportedException{
-if(this.getCurrentManaCrystals()<2){
-	NotEnoughManaException x=new NotEnoughManaException();
-	throw x;
-}
-if(this.isHeroPowerUsed()){
-	HeroPowerAlreadyUsedException y=new HeroPowerAlreadyUsedException();
-	throw y;
-}
-boolean flag=false;
-for(int i=0;i<getField().size();i++){
-	Minion m=getField().get(i);
-	if(m.getName().equals("Prophet Velen")){
-		flag=true;
-	}
-}
-if(flag){
-	 if(o instanceof Hero){
-	    	Hero z=(Hero) o;
-	    	if(z.getCurrentHP()>24)
-	    		z.setCurrentHP(30);
-	    	else{
-	    		z.setCurrentHP(z.getCurrentHP()+8);
-	    	}
+		 super.useHeroPower();
+		 boolean flag=false;
+		 for(int i=0;i<getField().size();i++){
+			 Minion m=getField().get(i);
+			 if(m.getName().equals("Prophet Velen")){
+				 flag=true;
+			 }
+		 }
+		 if(flag){
+			int limit=mi.getMaxHP()-8;
+	    	if(mi.getCurrentHP()>limit)
+	    		mi.setCurrentHP(mi.getMaxHP());
+	    	else
+	    		mi.setCurrentHP(mi.getCurrentHP()+8);
 	    }
-	    else if(o instanceof Minion){
-	    	Minion z=(Minion) o;
-	    	int limit=z.getMaxHP()-8;
-	    	if(z.getCurrentHP()>limit)
-	    		z.setCurrentHP(z.getMaxHP());
-	    	else{
-	    		z.setCurrentHP(z.getCurrentHP()+8);
-	    	}
+		 else{
+	    	int limit=mi.getMaxHP()-2;
+	    	if(mi.getCurrentHP()>limit)
+	    		mi.setCurrentHP(mi.getMaxHP());
+	    	else
+	    		mi.setCurrentHP(mi.getCurrentHP()+2);
+	    	
 	    }
-	    setHeroPowerUsed(true);
-	    setCurrentManaCrystals(this.getCurrentManaCrystals()-2);
-	    }
-
-else{
-
-	    if(o instanceof Hero){
-	    	Hero z=(Hero) o;
+	}	 
+	 public void useHeroPower(Hero z) throws NotEnoughManaException,
+	    HeroPowerAlreadyUsedException, NotYourTurnException, FullHandException,
+	    FullFieldException, CloneNotSupportedException{
+		 super.useHeroPower();
+		 boolean flag=false;
+		 for(int i=0;i<getField().size();i++){
+			 Minion m=getField().get(i);
+			 if(m.getName().equals("Prophet Velen")){
+				 flag=true;
+			 }
+		 }
+		 if(flag){
+			 if(z.getCurrentHP()>24)
+				 z.setCurrentHP(30);
+			 else
+				 z.setCurrentHP(z.getCurrentHP()+8);
+				 
+			 }
+		 else {
 	    	if(z.getCurrentHP()>28)
 	    		z.setCurrentHP(30);
 	    	else{
 	    		z.setCurrentHP(z.getCurrentHP()+2);
 	    	}
 	    }
-	    else if(o instanceof Minion){
-	    	Minion z=(Minion) o;
-	    	int limit=z.getMaxHP()-2;
-	    	if(z.getCurrentHP()>limit)
-	    		z.setCurrentHP(z.getMaxHP());
-	    	else{
-	    		z.setCurrentHP(z.getCurrentHP()+2);
-	    	}
-	    }
-	    setHeroPowerUsed(true);
-	    setCurrentManaCrystals(this.getCurrentManaCrystals()-2);
-	    }
-
+		
 	 }
-	@Override
+	 
 	public void onMinionDeath(Minion m) {
-		// TODO Auto-generated method stub
+		super.onMinionDeath(m);
 		
 	}
-	
-	 }
+}

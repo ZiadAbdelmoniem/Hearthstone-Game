@@ -1,7 +1,6 @@
 package engine;
 import java.util.ArrayList;
 import java.util.Random;
-
 import exceptions.CannotAttackException;
 import exceptions.FullFieldException;
 import exceptions.FullHandException;
@@ -18,7 +17,7 @@ import model.heroes.HeroListener;
 import model.heroes.Mage;
 import model.heroes.Warlock;
 public class Game implements ActionValidator,HeroListener{
-//ba7ebak ya boody
+
 	private Hero firstHero;
 	private Hero secondHero;
 	private Hero currentHero;
@@ -39,7 +38,8 @@ public class Game implements ActionValidator,HeroListener{
 	
 	
 	public Game() {}
-	public Game(Hero p1, Hero p2) {
+	public Game(Hero p1, Hero p2) throws FullHandException, CloneNotSupportedException {
+	
 		firstHero=p1;
 		secondHero=p2;
 		Random ra= new Random();
@@ -52,8 +52,12 @@ public class Game implements ActionValidator,HeroListener{
 			currentHero=secondHero;
 			opponent=firstHero;
 		}
+		currentHero.drawCard();
+		opponent.drawCard();
 		currentHero.setCurrentManaCrystals(1);
 		currentHero.setTotalManaCrystals(1);
+		currentHero.setListener(this);
+		opponent.setListener(this);
 	}
 	public static boolean tauntexist(ArrayList<Minion> o){
 		boolean flag=false;
@@ -66,7 +70,7 @@ public class Game implements ActionValidator,HeroListener{
 	}
 	
 	public void validateTurn(Hero user) throws NotYourTurnException {
-		if(!currentHero.equals(user))
+		if(opponent.equals(user))
 			throw new NotYourTurnException();
 	}
 	
@@ -170,3 +174,4 @@ public class Game implements ActionValidator,HeroListener{
 		
 	}
 }
+

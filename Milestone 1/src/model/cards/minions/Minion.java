@@ -1,5 +1,6 @@
 package model.cards.minions;
 
+import engine.Game;
 import exceptions.InvalidTargetException;
 import model.cards.Card;
 import model.cards.Rarity;
@@ -14,7 +15,7 @@ public class Minion extends Card implements Cloneable {
 	private boolean divine;
 	private boolean sleeping;
 	private boolean attacked;
-	MinionListener listener;
+	private MinionListener listener;
 
 	public boolean isAttacked() {
 		return attacked;
@@ -59,6 +60,8 @@ public class Minion extends Card implements Cloneable {
 
 	public void setCurrentHP(int currentHP) {
 		this.currentHP = Math.min(Math.max(currentHP,0),maxHP);
+		if(this.currentHP==0)
+			listener.onMinionDeath(this);
 	}
 
 	public int getMaxHP() {
@@ -72,7 +75,7 @@ public class Minion extends Card implements Cloneable {
 	public void setAttack(int attack) {
 		if(attack<=0)
 			attack=0;
-		
+
 		this.attack = attack;
 	}
 	
@@ -85,7 +88,7 @@ public class Minion extends Card implements Cloneable {
 	}
 
 	public Minion(String name, int manaCost, Rarity rarity, int attack, int maxHP, boolean taunt, boolean divine,
-			boolean charge) {
+		boolean charge) {
 		super(name, manaCost, rarity);
 		this.attack = attack;
 		this.maxHP = maxHP;
@@ -100,20 +103,7 @@ public class Minion extends Card implements Cloneable {
 		
 		return getName()+" "+getManaCost()+" "+getRarity()+" "+getAttack()+" "+getMaxHP(); 
 	}
-	
-//	public Minion clone1() {
-//		String name=this.getName();
-//		int manac=this.getManaCost();
-//		Rarity  ra=this.getRarity();
-//		int att= this.getAttack();
-//		int maxhp=this.getMaxHP();
-//		boolean t= this.taunt;
-//		boolean dv=this.divine;
-//		boolean ch=!this.sleeping;
-//		return new Minion(name,manac,ra,att,maxhp,t,dv,ch);
-//	}
-	
-	public boolean equals(Object o) {
+	public boolean equals1(Object o) {
 		Minion m = (Minion)o;
 		if(this.getName().equals(m.getName()))
 			return true;
@@ -173,10 +163,7 @@ public class Minion extends Card implements Cloneable {
 				int q=this.getCurrentHP();
 			target.setCurrentHP(getCurrentHP() - attack);
 			this.setCurrentHP(getCurrentHP() - target.getAttack());
-			if(attack>t)
-				listener.onMinionDeath(target);
-			if(target.getAttack()>q)
-				listener.onMinionDeath(this);
+			
 			}
 		
 		}

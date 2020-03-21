@@ -18,14 +18,15 @@ import exceptions.NotYourTurnException;
 public class Warlock extends Hero{
 	public Warlock() throws Exception{
 		super("Gul'dan");
-		//setCurrentHP(30);
+
 	}
-	 void buildDeck() throws Exception {
-		String e="C:\\Users\\boudi\\Desktop\\Eclipse workspace\\Git\\s\\Milestone 1\\src\\neutral_minions.csv";
+	 public void buildDeck() throws Exception {
+		 String e="C:\\Users\\boudi\\Desktop\\Eclipse workspace\\hmmm\\Milestone 1\\src\\neutral_minions.csv";
 		ArrayList<Minion> thenuetralminions= getNeutralMinions(getAllNeutralMinions(e),13);
 		ArrayList<Card>  z = getDeck();
 		int size =thenuetralminions.size();
 		for(int i=0;i<size;i++){
+			thenuetralminions.get(i).setListener(this);
 			z.add((Card)(thenuetralminions.get(i)));
 		}
 		CurseOfWeakness spellone= new CurseOfWeakness();
@@ -34,8 +35,8 @@ public class Warlock extends Hero{
 		SiphonSoul   spellfour= new SiphonSoul();
 		TwistingNether spellfive= new TwistingNether();
 		TwistingNether spellsix= new TwistingNether();
-	Minion wilfred= new Minion("Wilfred Fizzlebang",6, Rarity.LEGENDARY,4,4,false,false,false);
-		
+		Minion wilfred= new Minion("Wilfred Fizzlebang",6, Rarity.LEGENDARY,4,4,false,false,false);
+		wilfred.setListener(this);
 		z.add(spellone);
 		z.add(spelltow);
 		z.add(spellthree);
@@ -48,18 +49,9 @@ public class Warlock extends Hero{
 	 public void useHeroPower() throws NotEnoughManaException,
 	    HeroPowerAlreadyUsedException, NotYourTurnException, FullHandException,
 	    FullFieldException, CloneNotSupportedException{
-if(this.getCurrentManaCrystals()<2){
-	NotEnoughManaException x=new NotEnoughManaException();
-	throw x;
-}
-if(this.isHeroPowerUsed()){
-	HeroPowerAlreadyUsedException y=new HeroPowerAlreadyUsedException();
-	throw y;
-}
-	    this.drawCard();
+		super.useHeroPower();
+		this.drawCard();
 	    this.setCurrentHP(this.getCurrentHP()-2);
-	    setHeroPowerUsed(true);
-	    setCurrentManaCrystals(this.getCurrentManaCrystals()-2);
 	    }
 
 	 public Card drawCard() throws FullHandException, CloneNotSupportedException{
@@ -83,8 +75,9 @@ if(this.isHeroPowerUsed()){
 		super.drawCard();
 		return c;
 	 }
-	@Override
+	
 	public void onMinionDeath(Minion m) {
+		super.onMinionDeath(m);
 		
 	}
 	

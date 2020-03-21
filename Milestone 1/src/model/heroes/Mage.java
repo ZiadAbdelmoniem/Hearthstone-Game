@@ -20,12 +20,13 @@ public class Mage extends Hero{
 		super("Jaina Proudmoore");
 		
 	}
-	 void buildDeck() throws Exception {
-		String e="C:\\Users\\boudi\\Desktop\\Eclipse workspace\\Git\\s\\Milestone 1\\src\\neutral_minions.csv";
+	 public void buildDeck() throws Exception {
+		String e="C:\\Users\\boudi\\Desktop\\Eclipse workspace\\hmmm\\Milestone 1\\src\\neutral_minions.csv";
 		ArrayList<Minion> allneutralminions= getAllNeutralMinions(e);
 		ArrayList<Minion> thenuetralminions= getNeutralMinions(allneutralminions,13);
 		ArrayList<Card>  z = getDeck();
 		for(int i=0;i<thenuetralminions.size();i++){
+			thenuetralminions.get(i).setListener(this);
 			z.add((Card)(thenuetralminions.get(i)));
 		}
 		Polymorph spellone= new Polymorph();
@@ -35,6 +36,7 @@ public class Mage extends Hero{
 		Pyroblast spellfive=new Pyroblast();
 		Pyroblast spellsix=new Pyroblast();
 		Minion kalycgos=new Minion("Kalycgos",10, Rarity.LEGENDARY,4,12,false,false,false);
+		kalycgos.setListener(this);
 		z.add(spellone);
 		z.add(spelltow);
 		z.add(spellthree);
@@ -45,28 +47,17 @@ public class Mage extends Hero{
 		Collections.shuffle(z);
 }
 
-	 public void useHeroPower(Object o) throws NotEnoughManaException,HeroPowerAlreadyUsedException, NotYourTurnException, FullHandException,FullFieldException, CloneNotSupportedException{
-		 if(this.getCurrentManaCrystals()<2){
-			 NotEnoughManaException x=new NotEnoughManaException();
-			 throw x;
+	 public void useHeroPower(Hero z) throws NotEnoughManaException,HeroPowerAlreadyUsedException, NotYourTurnException, FullHandException,FullFieldException, CloneNotSupportedException{
+		super.useHeroPower();
+		 	 z.setCurrentHP(z.getCurrentHP()-1);
 		 }
-		 if(this.isHeroPowerUsed()){
-			 HeroPowerAlreadyUsedException y=new HeroPowerAlreadyUsedException();
-			 throw y;
-		 }
-		 if(o instanceof Hero){
-			 Hero z=(Hero) o;
+	 public void useHeroPower(Minion z) throws NotEnoughManaException,HeroPowerAlreadyUsedException, NotYourTurnException, FullHandException,FullFieldException, CloneNotSupportedException{
+			super.useHeroPower();
 			 z.setCurrentHP(z.getCurrentHP()-1);
-		 }
-		 else if(o instanceof Minion){
-			 Minion z=(Minion) o;
-			 z.setCurrentHP(z.getCurrentHP()-1);
-		 }
-		 }
-		
+	 }
 	@Override
 	public void onMinionDeath(Minion m) {
-		// TODO Auto-generated method stub
+		super.onMinionDeath(m);
 		
 	}
 	

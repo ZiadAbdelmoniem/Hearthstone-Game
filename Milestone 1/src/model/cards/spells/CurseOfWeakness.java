@@ -32,7 +32,7 @@ public class CurseOfWeakness extends Spell implements AOESpell {
 		
 	}
 
-	@Override
+	
 	public void performAction(ArrayList<Minion> oppField,ArrayList<Minion> curField) {
 		for(int i=0;i<oppField.size();i++) {
 			Minion m = oppField.get(i);
