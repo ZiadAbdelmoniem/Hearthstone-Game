@@ -15,7 +15,7 @@ import model.cards.minions.Minion;
 import model.heroes.Hero;
 import model.heroes.HeroListener;
 public class Game implements ActionValidator,HeroListener{
-
+//ba7ebak ya boody
 	private Hero firstHero;
 	private Hero secondHero;
 	private Hero currentHero;
