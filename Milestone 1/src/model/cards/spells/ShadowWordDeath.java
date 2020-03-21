@@ -13,7 +13,7 @@ public class ShadowWordDeath extends Spell implements MinionTargetSpell {
 		return new ShadowWordDeath();
 	}
 	public void performAction(Minion m) throws InvalidTargetException {
-		if(m.getAttack()>=5){
+		if(m.getAttack()>5 || m.getAttack()==5){
 			if(m.isDivine()){
 			m.setDivine(false);
 			m.setCurrentHP(0);

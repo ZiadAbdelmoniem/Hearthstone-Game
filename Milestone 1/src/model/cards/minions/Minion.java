@@ -135,25 +135,49 @@ public class Minion extends Card implements Cloneable {
 
 	public void attack(Minion target){
 		if(this.divine && target.divine) {
-			if(target.getAttack()>0)
+			if(target.getAttack()>0){
 				this.divine = false;
-			target.divine=false;
+			}
+			if(attack>0){
+				target.divine=false;
+			}
 		}
 		else if(this.divine) {
 			//if(attack>=target.getCurrentHP()) should we do anything on death?
 			// remove from deck and?
-			target.setCurrentHP(target.getCurrentHP() - attack);
 			if(target.getAttack()>0)
 				this.divine=false;
+			if(attack>target.getCurrentHP()){
+				target.setCurrentHP(target.getCurrentHP() - attack);
+				listener.onMinionDeath(target);
+			}
+			else{
+				target.setCurrentHP(target.getCurrentHP() - attack);
+			}
 		}
 		else if(target.divine) {
-			this.setCurrentHP(getCurrentHP() - target.getAttack());
-			target.divine=false;
+			if(target.getAttack()>this.getCurrentHP()){
+				this.setCurrentHP(getCurrentHP() - target.getAttack());
+				listener.onMinionDeath(this);
+				if(attack>0)
+				target.divine=false;
+			}
+			else{
+				this.setCurrentHP(getCurrentHP() - target.getAttack());
+				if(attack>0)
+				target.divine=false;
+			}
 		}
 			else {
+				int t=target.getCurrentHP();
+				int q=this.getCurrentHP();
 			target.setCurrentHP(getCurrentHP() - attack);
 			this.setCurrentHP(getCurrentHP() - target.getAttack());
-		}
+			if(attack>t)
+				listener.onMinionDeath(target);
+			if(target.getAttack()>q)
+				listener.onMinionDeath(this);
+			}
 		
 		}
 	public void attack(Hero target) throws InvalidTargetException {

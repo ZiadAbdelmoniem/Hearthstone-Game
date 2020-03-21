@@ -14,7 +14,9 @@ public class Pyroblast extends Spell implements HeroTargetSpell, MinionTargetSpe
 		return new Pyroblast();
 	}
 	public void performAction(Minion m) throws InvalidTargetException {
-		//I want to check if the target is going to die
+		if(m.isDivine())
+			m.setDivine(false);
+		else
 		m.setCurrentHP(m.getCurrentHP()-10);
 	}
 

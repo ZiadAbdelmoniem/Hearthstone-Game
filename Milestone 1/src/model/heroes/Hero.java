@@ -166,19 +166,16 @@ public abstract class Hero implements MinionListener  {
     }
     public void useHeroPower() throws NotEnoughManaException,
     HeroPowerAlreadyUsedException, NotYourTurnException, FullHandException,
-    FullFieldException, CloneNotSupportedException{}
+    FullFieldException, CloneNotSupportedException{
+    	validator.validateTurn(this);
+    	validator.validateUsingHeroPower(this);
+    }
     
     public void playMinion(Minion m) throws NotYourTurnException,
     NotEnoughManaException, FullFieldException{
-    	if(this.getField().size()==7){
-    		FullFieldException t= new FullFieldException();
-    		throw t;
-    	}
-    	if(this.getCurrentManaCrystals()<m.getManaCost()){
-    		NotEnoughManaException b=new NotEnoughManaException();
-    		throw b;
-    	}
-    	
+    	validator.validateTurn(this);
+    	validator.validateManaCost(((Card)m));
+    	validator.validatePlayingMinion(m);
     	int i=hand.indexOf(m);
     	field.add(m);
     	hand.remove(i);
@@ -187,16 +184,21 @@ public abstract class Hero implements MinionListener  {
     public void attackWithMinion(Minion attacker, Minion target) throws
     CannotAttackException, NotYourTurnException, TauntBypassException,
     InvalidTargetException, NotSummonedException{
+    	validator.validateTurn(this);
+    	validator.validateAttack(attacker, target);
     	attacker.attack(target);
     } 
     public void attackWithMinion(Minion attacker, Hero target) throws
     CannotAttackException, NotYourTurnException, TauntBypassException,
     NotSummonedException, InvalidTargetException{
+    	validator.validateTurn(this);
+    	validator.validateAttack(attacker, target);
     	attacker.attack(target);
     }
     
     public void castSpell(FieldSpell s) throws NotYourTurnException,
     NotEnoughManaException{
+    	validator.validateTurn(this);
     	if(name.equals("Jaina Proudmoore")){
     	boolean flag=false;
     		for(int i=0;i<field.size();i++){
@@ -228,6 +230,7 @@ public abstract class Hero implements MinionListener  {
     
     public void castSpell(AOESpell s, ArrayList<Minion >oppField) throws
     NotYourTurnException, NotEnoughManaException{
+    	validator.validateTurn(this);
     	if(name.equals("Jaina Proudmoore")){
         	boolean flag=false;
         		for(int i=0;i<field.size();i++){
@@ -260,6 +263,7 @@ public abstract class Hero implements MinionListener  {
     
     public void castSpell(MinionTargetSpell s, Minion m) throws NotYourTurnException,
     NotEnoughManaException, InvalidTargetException{
+    	validator.validateTurn(this);
     	if(name.equals("Jaina Proudmoore")){
         	boolean flag=false;
         		for(int i=0;i<field.size();i++){
@@ -292,6 +296,7 @@ public abstract class Hero implements MinionListener  {
     
     public void castSpell(HeroTargetSpell s, Hero h) throws NotYourTurnException,
     NotEnoughManaException {
+    	validator.validateTurn(this);
     	if(name.equals("Jaina Proudmoore")){
         	boolean flag=false;
         		for(int i=0;i<field.size();i++){
@@ -324,6 +329,7 @@ public abstract class Hero implements MinionListener  {
     
     public void castSpell(LeechingSpell s, Minion m) throws NotYourTurnException,
     NotEnoughManaException{
+    	validator.validateTurn(this);
     	if(name.equals("Jaina Proudmoore")){
         	boolean flag=false;
         		for(int i=0;i<field.size();i++){

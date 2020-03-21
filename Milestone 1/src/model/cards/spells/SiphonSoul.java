@@ -13,14 +13,8 @@ public class SiphonSoul extends Spell implements LeechingSpell {
 
 	
 	public int performAction(Minion m) {
-	if(m.isDivine()){
 		m.setDivine(false);
 		m.setCurrentHP(0);
-	}
-	else{
-		m.setCurrentHP(0);
-	}
-	
 		return 3;
 	}
 }
