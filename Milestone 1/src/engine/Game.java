@@ -53,6 +53,11 @@ public class Game implements ActionValidator,HeroListener{
 			opponent=firstHero;
 		}
 		currentHero.drawCard();
+		currentHero.drawCard();
+		currentHero.drawCard();
+		opponent.drawCard();
+		opponent.drawCard();
+		opponent.drawCard();
 		opponent.drawCard();
 		currentHero.setCurrentManaCrystals(1);
 		currentHero.setTotalManaCrystals(1);
