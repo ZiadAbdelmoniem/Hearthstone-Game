@@ -21,7 +21,7 @@ public class Warlock extends Hero{
 
 	}
 	 public void buildDeck() throws Exception {
-		 String e="C:\\Users\\boudi\\Desktop\\Eclipse workspace\\hmmm\\Milestone 1\\src\\neutral_minions.csv";
+		 String e="C:\\Users\\H.Maher\\Desktop\\GUC\\hmmm\\Milestone 1\\src\\neutral_minions.csv";
 		ArrayList<Minion> thenuetralminions= getNeutralMinions(getAllNeutralMinions(e),13);
 		ArrayList<Card>  z = getDeck();
 		int size =thenuetralminions.size();
