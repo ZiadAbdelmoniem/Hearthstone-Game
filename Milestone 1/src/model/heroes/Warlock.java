@@ -23,7 +23,7 @@ public class Warlock extends Hero{
 	 public void buildDeck() throws Exception {
 		 String e="C:\\Users\\boudi\\Desktop\\Eclipse workspace\\hmmm\\Milestone 1\\src\\neutral_minions.csv";
 		ArrayList<Minion> thenuetralminions= getNeutralMinions(getAllNeutralMinions(e),13);
-		ArrayList<Card>  z = getDeck();
+		ArrayList<Card>  z = super.getDeck();
 		int size =thenuetralminions.size();
 		for(int i=0;i<size;i++){
 			thenuetralminions.get(i).setListener(this);
@@ -48,6 +48,8 @@ public class Warlock extends Hero{
 }
 	 public void useHeroPower() throws NotEnoughManaException,HeroPowerAlreadyUsedException, NotYourTurnException, FullHandException,FullFieldException, CloneNotSupportedException{
 		super.useHeroPower();
+		if(this.getDeck().isEmpty())
+			super.drawCard();
 		this.drawCard();
 	    this.setCurrentHP(this.getCurrentHP()-2);
 	    }
@@ -67,26 +69,22 @@ public class Warlock extends Hero{
 	    	}
 			 if(f && c instanceof Minion) {
 				 c.setManaCost(0);
-				 Card m=(Card) ((Card)c).clone();
-				 this.getHand().add(m);
+				 this.getHand().add(0,c);
 			 }
 			 else {
-				 Card m=(Card) ((Card)c).clone();
-				 this.getHand().add(0,m);
+				 this.getHand().add(0,c);
 			 }
 			if(ch) {
 				if(getHand().size()==10)
 					throw new FullHandException(c);
-				this.getHand().add(c);
+				this.getHand().add((Card)c.clone());
 			}
 			return c;
 		 }
-		 else {
-			 super.drawCard();
-			 return null;
+		super.drawCard();
+		return null;
 		 }
 		 
-	 }
 	public void onMinionDeath(Minion m) {
 		super.onMinionDeath(m);
 		
