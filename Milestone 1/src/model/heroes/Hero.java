@@ -391,6 +391,7 @@ public abstract class Hero implements MinionListener  {
     		}
     		
     		
+    		
     		if(deck.isEmpty()) {
     			fatigueDamage=1;
     		}
