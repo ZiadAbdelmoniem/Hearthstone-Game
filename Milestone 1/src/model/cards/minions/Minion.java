@@ -103,20 +103,7 @@ public class Minion extends Card implements Cloneable {
 		
 		return getName()+" "+getManaCost()+" "+getRarity()+" "+getAttack()+" "+getMaxHP(); 
 	}
-	
-//	public Minion clone1() {
-//		String name=this.getName();
-//		int manac=this.getManaCost();
-//		Rarity  ra=this.getRarity();
-//		int att= this.getAttack();
-//		int maxhp=this.getMaxHP();
-//		boolean t= this.taunt;
-//		boolean dv=this.divine;
-//		boolean ch=!this.sleeping;
-//		return new Minion(name,manac,ra,att,maxhp,t,dv,ch);
-//	}
-	
-	public boolean equals(Object o) {
+	public boolean equals1(Object o) {
 		Minion m = (Minion)o;
 		if(this.getName().equals(m.getName()))
 			return true;

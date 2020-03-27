@@ -12,14 +12,14 @@ public class TwistingNether extends Spell implements AOESpell{
 	public Object clone() throws CloneNotSupportedException{
 		return new TwistingNether();
 	}
-	@Override
+	
 	public void performAction(ArrayList<Minion> oppField,ArrayList<Minion> curField) {
-		for(int i=0;i<oppField.size();i++){
-			Minion m=oppField.get(i);
-			m.setCurrentHP(0);
+		while(!oppField.isEmpty()) {
+		Minion m=oppField.get(0);
+		m.setCurrentHP(0);
 		}
-		for(int j=0;j<curField.size();j++){
-			Minion m=curField.get(j);
+		while(!curField.isEmpty()){
+			Minion m=curField.get(0);
 			m.setCurrentHP(0);
 		}
 		

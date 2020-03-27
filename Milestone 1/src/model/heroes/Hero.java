@@ -393,7 +393,7 @@ public abstract class Hero implements MinionListener  {
     }
     public void onMinionDeath(Minion m) {
     	int x=this.getField().indexOf(m);
-    	this.getField().remove(x);
+    	this.field.remove(x);
 	}
 	
 }

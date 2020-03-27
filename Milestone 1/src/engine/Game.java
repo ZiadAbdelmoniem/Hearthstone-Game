@@ -96,7 +96,6 @@ public class Game implements ActionValidator,HeroListener{
 			throw new CannotAttackException();
 		if(attacker.isAttacked())
 			throw new CannotAttackException();
-		
 		if(target.equals(currentHero))
 			throw new InvalidTargetException();
 		if(attacker.isSleeping())
@@ -106,7 +105,7 @@ public class Game implements ActionValidator,HeroListener{
 			
 		boolean tauntex=false;
 		for(int i=0;i<opponent.getField().size();i++) {
-			if(opponent.getField().get(i).isDivine()) {
+			if(opponent.getField().get(i).isTaunt()) {
 				tauntex=true;
 				break;
 			}
@@ -139,6 +138,7 @@ public class Game implements ActionValidator,HeroListener{
 	public void damageOpponent(int amount) {
 		int a=(opponent.getCurrentHP())-amount;
 		opponent.setCurrentHP(a);
+		
 	}
 	
 	public void endTurn() throws FullHandException, CloneNotSupportedException {
@@ -165,3 +165,4 @@ public class Game implements ActionValidator,HeroListener{
 		
 	}
 }
+
