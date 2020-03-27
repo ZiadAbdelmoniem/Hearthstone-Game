@@ -75,7 +75,7 @@ public class Minion extends Card implements Cloneable {
 	public void setAttack(int attack) {
 		if(attack<=0)
 			attack=0;
-		
+
 		this.attack = attack;
 	}
 	
