@@ -52,6 +52,7 @@ public class Game implements ActionValidator,HeroListener{
 			currentHero=secondHero;
 			opponent=firstHero;
 		}
+
 		
 		i=0;
 		while(i<3) {
@@ -64,6 +65,15 @@ public class Game implements ActionValidator,HeroListener{
 		currentHero.setTotalManaCrystals(1);
 		currentHero.setListener(this);
 		opponent.setListener(this);
+	}
+	public static boolean tauntexist(ArrayList<Minion> o){
+		boolean flag=false;
+		for(int i=0;i<o.size();i++){
+			Minion m=o.get(i);
+			if(m.isTaunt())
+				return true;
+		}
+		return flag;
 	}
 	
 	public void validateTurn(Hero user) throws NotYourTurnException {
