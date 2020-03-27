@@ -31,7 +31,7 @@ public abstract class Card implements Cloneable   {
 	}
 	
 	public Object clone() throws CloneNotSupportedException{
-		return "";
+		return super.clone();
 	}
 	//public Card clone() throws CloneNotSupportedException{
 		

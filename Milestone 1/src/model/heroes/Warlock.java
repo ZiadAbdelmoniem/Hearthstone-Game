@@ -46,36 +46,47 @@ public class Warlock extends Hero{
 		z.add(wilfred);
 		Collections.shuffle(z);
 }
-	 public void useHeroPower() throws NotEnoughManaException,
-	    HeroPowerAlreadyUsedException, NotYourTurnException, FullHandException,
-	    FullFieldException, CloneNotSupportedException{
+	 public void useHeroPower() throws NotEnoughManaException,HeroPowerAlreadyUsedException, NotYourTurnException, FullHandException,FullFieldException, CloneNotSupportedException{
 		super.useHeroPower();
 		this.drawCard();
 	    this.setCurrentHP(this.getCurrentHP()-2);
 	    }
-
 	 public Card drawCard() throws FullHandException, CloneNotSupportedException{
 		 boolean f =false;
-		 Card c = this.getDeck().get(0);
-		 for(int i=0;i<getField().size();i++) {
-			 if(getField().get(i).getName().equalsIgnoreCase("Wilfred Fizzlebang")) {
-				 f=true;
-				 break;
-			 }
-		 }
-		 if(f) {
-			 if(c!=null && this.getHand().size()<10) {
+		 boolean ch=false;
+		 if(!this.getDeck().isEmpty()) {
+			 Card c = this.getDeck().remove(0);
+			 if(getHand().size()==10) 
+	    			throw new FullHandException(c);
+	    	for(int i=0;i<this.getField().size();i++) {
+	    		Minion mi = this.getField().get(i);
+	    		if(mi.getName().equalsIgnoreCase("Wilfred Fizzlebang")) 
+	    			f=true;
+	    		if(mi.getName().equalsIgnoreCase("Chromaggus"))
+	    			ch=true;
+	    	}
+			 if(f && c instanceof Minion) {
 				 c.setManaCost(0);
-				 getHand().add(c);
-				 return c;
+				 Card m=(Card) ((Card)c).clone();
+				 this.getHand().add(m);
 			 }
-			if(getHand().size()==10)
-				throw new FullHandException(c);
+			 else {
+				 Card m=(Card) ((Card)c).clone();
+				 this.getHand().add(0,m);
+			 }
+			if(ch) {
+				if(getHand().size()==10)
+					throw new FullHandException(c);
+				this.getHand().add(c);
+			}
+			return c;
 		 }
-		super.drawCard();
-		return c;
+		 else {
+			 super.drawCard();
+			 return null;
+		 }
+		 
 	 }
-	
 	public void onMinionDeath(Minion m) {
 		super.onMinionDeath(m);
 		

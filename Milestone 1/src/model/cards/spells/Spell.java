@@ -10,8 +10,9 @@ public abstract class Spell extends Card {
 		
 	}
 	public  Object clone() throws CloneNotSupportedException{
-		return "";
-	}
+		return super.clone();
+		}
+	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 

@@ -52,7 +52,13 @@ public class Game implements ActionValidator,HeroListener{
 			currentHero=secondHero;
 			opponent=firstHero;
 		}
-		currentHero.drawCard();
+		
+		i=0;
+		while(i<3) {
+			currentHero.drawCard();
+			opponent.drawCard();
+			i++;
+		}
 		opponent.drawCard();
 		currentHero.setCurrentManaCrystals(1);
 		currentHero.setTotalManaCrystals(1);
@@ -66,6 +72,8 @@ public class Game implements ActionValidator,HeroListener{
 	}
 	
 	public void validateAttack(Minion attacker, Minion target) throws CannotAttackException, NotSummonedException, TauntBypassException, InvalidTargetException {
+		if(!opponent.getField().contains(target))
+			throw new NotSummonedException();
 		if(attacker.getAttack()==0)
 			throw new CannotAttackException();
 		if(currentHero.getField().contains(target))
