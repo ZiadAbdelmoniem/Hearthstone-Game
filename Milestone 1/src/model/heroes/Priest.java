@@ -19,32 +19,22 @@ public class Priest extends Hero{
 	public Priest() throws Exception {
 		super("Anduin Wrynn");
 	}
-	 public void buildDeck() throws Exception {
-		String e="C:\\Users\\H.Maher\\Desktop\\GUC\\hmmm\\Milestone 1\\src\\neutral_minions.csv";
-		ArrayList<Minion> allneutralminions= getAllNeutralMinions(e);
-		ArrayList<Minion> thenuetralminions= getNeutralMinions(allneutralminions,13);
-		ArrayList<Card>  z = getDeck();
-		for(int i=0;i<thenuetralminions.size();i++){
-			z.add((Card)(thenuetralminions.get(i)));
-		}
-		DivineSpirit spellone= new DivineSpirit();
-		DivineSpirit spelltow= new DivineSpirit();
-		HolyNova spellthree= new HolyNova();
-		HolyNova   spellfour= new HolyNova();
-		ShadowWordDeath spellfive= new ShadowWordDeath();
-		ShadowWordDeath spellsix= new ShadowWordDeath();
-		Minion velen= new Minion("Prophet Velen",7, Rarity.LEGENDARY,7,7,false,false,false);
-		velen.setListener(this);
-		z.add(spellone);
-		z.add(spelltow);
-		z.add(spellthree);
-		z.add(spellfour);
-		z.add(spellfive);
-		z.add(spellsix);
-		z.add(velen);
-		Collections.shuffle(z);
+	 
+	 public void buildDeck() throws Exception{
+			ArrayList<Minion> neutrals= getNeutralMinions(getAllNeutralMinions("C:\\Users\\H.Maher\\Desktop\\GUC\\hmmm\\Milestone 1\\src\\neutral_minions.csv"),13);
+			getDeck().addAll(neutrals);
+			for(int i = 0 ; i < 2; i++)
+			{
+				getDeck().add(new DivineSpirit());
+				getDeck().add(new HolyNova());
+				getDeck().add(new ShadowWordDeath());
+			}
+			Minion velen=new Minion("Prophet Velen", 7, Rarity.LEGENDARY, 7, 7, false, false, false);
+			
+			getDeck().add((Card)velen);
+			Collections.shuffle(getDeck());
 
-	}
+		}
 	 public void useHeroPower(Minion mi ) throws NotEnoughManaException,
 	    HeroPowerAlreadyUsedException, NotYourTurnException, FullHandException,
 	    FullFieldException, CloneNotSupportedException{

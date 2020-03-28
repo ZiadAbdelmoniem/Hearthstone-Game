@@ -42,19 +42,15 @@ public class Game implements ActionValidator,HeroListener{
 	
 		firstHero=p1;
 		secondHero=p2;
-		Random ra= new Random();
-		int i= ra.nextInt(4);
-		if(i%2==0) {
-		currentHero=firstHero;
-		opponent=secondHero;
-		}
-		else {
-			currentHero=secondHero;
-			opponent=firstHero;
-		}
+		
+		int coin = (int) (Math.random()*2);
+		currentHero= coin==0?firstHero:secondHero;
+		opponent= currentHero==firstHero?secondHero:firstHero;
+		currentHero.setCurrentManaCrystals(1);
+		currentHero.setTotalManaCrystals(1);
 
 		
-		i=0;
+		int i=0;
 		while(i<3) {
 			currentHero.drawCard();
 			opponent.drawCard();

@@ -21,29 +21,21 @@ public class Hunter extends Hero {
 
 	public Hunter() throws Exception {
 		super("Rexxar");
-		//setCurrentHP(30);
 	}
 	public void buildDeck() throws Exception{
 		String e="C:\\Users\\H.Maher\\Desktop\\GUC\\hmmm\\Milestone 1\\src\\neutral_minions.csv";
-		ArrayList<Minion> allneutralminions= getAllNeutralMinions(e);
-		ArrayList<Minion> thenuetralminions= getNeutralMinions(allneutralminions,15);
-		ArrayList<Card>  z = getDeck();
-		for(int i=0;i<thenuetralminions.size();i++){
-			Minion m= thenuetralminions.get(i);
-			z.add((Card)m);
+		ArrayList<Minion> neutrals= getNeutralMinions(getAllNeutralMinions(e),15);
+		getDeck().addAll(neutrals);
+		for(int i = 0 ; i < 2; i++)
+		{
+			getDeck().add(new KillCommand());
+			getDeck().add(new MultiShot());
+			
 		}
-		KillCommand spellone=new KillCommand();
-		KillCommand spelltow=new KillCommand();
-		MultiShot   spellthree=new MultiShot();
-	    MultiShot   spellfour=new MultiShot();
-	    Minion kingkrush=new Minion("King Krush",9, Rarity.LEGENDARY,8,8,false,false,true);
-	    kingkrush.setListener(this);
-	    z.add(spellone);
-		z.add(spelltow);
-		z.add(spellthree);
-		z.add(spellfour);
-		z.add(kingkrush);
-		Collections.shuffle(z);
+		Minion krush=(new Minion("King Krush", 9, Rarity.LEGENDARY, 8, 8, false, false, true));
+		krush.setListener(this);
+		getDeck().add(krush);
+		Collections.shuffle(getDeck());
 }
 	 
 	    public void useHeroPower(Hero target) throws NotEnoughManaException, HeroPowerAlreadyUsedException, NotYourTurnException, FullHandException,

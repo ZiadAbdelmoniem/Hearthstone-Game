@@ -37,10 +37,10 @@ public class Paladin extends Hero{
 		Card spellthree= new LevelUp();
 		Card  spellfour= new LevelUp();
 		
-		Minion t = new Minion("Tirion Fordring",4, Rarity.LEGENDARY,6,6,true,true,false);
-		t.setListener(this);
+		Minion tirion = new Minion("Tirion Fordring",4, Rarity.LEGENDARY,6,6,true,true,false);
+		tirion.setListener(this);
 		
-		z.add(t);
+		z.add(tirion);
 		z.add(spellone);
 		z.add(spelltow);
 		z.add(spellthree);

@@ -98,82 +98,76 @@ public abstract class Hero implements MinionListener  {
     
     
     public void buildDeck() throws Exception{}
-	public static final ArrayList<Minion> getAllNeutralMinions(String filePath) throws IOException{
-        ArrayList<Minion> li=new ArrayList<Minion>();
-        BufferedReader br= new BufferedReader(new FileReader(filePath));
-        String row="";
-        while((row=br.readLine())!=null) {
-            String[] data= row.split(",");
-            String name = data[0];
-            if(name.equalsIgnoreCase("Icehowl")) {
-            	Icehowl mi = new Icehowl();
-            	li.add(mi);
-            }
-            else {
-            int manacost =Integer.parseInt(data[1]);
-            char ra = data[2].charAt(0);
-            Rarity r=null;
-            switch(ra) {
-                case 'l':r=Rarity.LEGENDARY;break;
-                case 'b':r=Rarity.BASIC;break;
-                case 'e': r=Rarity.EPIC; break;
-                case 'r': r=Rarity.RARE; break;
-                case 'c': r=Rarity.COMMON; break;
-                default : break;
-            }
-            int att=Integer.parseInt(data[3]);
-            int mxhp=Integer.parseInt(data[4]);
-            boolean ta=false;
-            if(data[5].equalsIgnoreCase("TRUE"))
-                ta=true;
-            boolean dv=false;
-            if(data[6].equalsIgnoreCase("TRUE"))
-                dv=true;
-            boolean ch=false;
-            if(data[7].equalsIgnoreCase("TRUE"))
-                ch=true;
-            Minion mi=new Minion(name,manacost,r,att,mxhp,ta,dv,ch);
-            li.add(mi);
-            }
-        }
-        br.close();
-        return li;
-    }
-    public static final ArrayList<Minion> getNeutralMinions(ArrayList<Minion> allminions,int count) throws IOException, CloneNotSupportedException{
-    	ArrayList<Minion> pls=new ArrayList<Minion>();
-    	int size1=allminions.size();
-    	while(pls.size()<count){
-    	for(int j=0; j<count;j++) {
-    		Random ra=new Random();
-    		int i= ra.nextInt(size1);
-    		Minion x=allminions.get(i);
-    		int rep=0;
-    		boolean flag=true;
-    		for(int k=0;k<pls.size();k++) {
-    			Minion m=pls.get(k);
-    			if(x.equals(m)&&x.getRarity().equals(Rarity.LEGENDARY)) {
-    			    flag=false;
-    			    break;
-    			}
-    			else if(x.equals(m)&& !(x.getRarity().equals(Rarity.LEGENDARY))) {
-    				rep++;
-    				if(rep>1) {
-    					flag=false;
-    					break;
-    				}
-    			}
-    		}
-    		if(flag) {
-    			Minion x1=(Minion)x.clone();
-    			pls.add(x1);
-    		}
-    		if(pls.size()==count)
-    			break;
-    		}
-     }
-		return pls;
-    }
-    public void useHeroPower() throws NotEnoughManaException,
+    public static final ArrayList<Minion> getAllNeutralMinions(String filePath) throws IOException {
+		BufferedReader br = new BufferedReader(new FileReader(filePath));
+		ArrayList<Minion> minions = new ArrayList<Minion>();
+		String current = br.readLine();
+		while (current != null) {
+			String[] line = current.split(",");
+			Minion minion = null;
+			String n = line[0];
+			int m = Integer.parseInt(line[1]);
+			Rarity r = null;
+			switch (
+				(line[2])
+			) {
+			case "b":
+				r = Rarity.BASIC;
+				break;
+			case "c":
+				r = Rarity.COMMON;
+				break;
+			case "r":
+				r = Rarity.RARE;
+				break;
+			case "e":
+				r = Rarity.EPIC;
+				break;
+			case "l":
+				r = Rarity.LEGENDARY;
+				break;
+			}
+			int a = Integer.parseInt(line[3]);
+			int p = Integer.parseInt(line[4]);
+			boolean t = line[5].equals("TRUE") ? true : false;
+			boolean d = line[6].equals("TRUE") ? true : false;
+			boolean c = line[7].equals("TRUE") ? true : false;
+			if (!n.equals("Icehowl"))
+				minion = new Minion(n, m, r, a, p, t, d, c);
+			else
+				minion = new Icehowl();
+			minions.add(minion);
+			current = br.readLine();
+		}
+		br.close();
+		return minions;
+	}
+
+	public static final ArrayList<Minion> getNeutralMinions(ArrayList<Minion> minions, int count) throws CloneNotSupportedException {
+		ArrayList<Minion> res = new ArrayList<Minion>();
+		int i = 0;
+		while (i < count) {
+			
+			int index = (int) (Math.random() * minions.size());
+			Minion minion = minions.get(index);
+			int occ = 0;
+			for (int j = 0; j < res.size(); j++) {
+				if (res.get(j).getName().equals(minion.getName()))
+					occ++;
+			}
+			if (occ == 0)
+			{
+				res.add(minion);
+				i++;
+			}
+			else if(occ==1 && minion.getRarity()!=Rarity.LEGENDARY)
+			{
+				res.add((Minion) minion.clone());
+				i++;
+			}
+		}
+		return res;
+	}    public void useHeroPower() throws NotEnoughManaException,
     HeroPowerAlreadyUsedException, NotYourTurnException, FullHandException,
     FullFieldException, CloneNotSupportedException{
     	validator.validateTurn(this);

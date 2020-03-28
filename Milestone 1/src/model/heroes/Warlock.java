@@ -34,7 +34,7 @@ public class Warlock extends Hero{
 		SiphonSoul   spellfour= new SiphonSoul();
 		TwistingNether spellfive= new TwistingNether();
 		TwistingNether spellsix= new TwistingNether();
-		Minion wilfred= new Minion("Wilfred Fizzlebang",6, Rarity.LEGENDARY,4,4,false,false,false);
+		Minion wilfred= new Minion("Wilfred Fizzlebang", 6, Rarity.LEGENDARY, 4, 4, false, false,false);
 		wilfred.setListener(this);
 		z.add(spellone);
 		z.add(spelltow);
