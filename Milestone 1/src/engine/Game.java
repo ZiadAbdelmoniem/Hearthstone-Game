@@ -82,12 +82,12 @@ public class Game implements ActionValidator,HeroListener{
 	}
 	
 	public void validateAttack(Minion attacker, Minion target) throws CannotAttackException, NotSummonedException, TauntBypassException, InvalidTargetException {
+		if(currentHero.getField().contains(target) && currentHero.getField().contains(attacker))
+			throw new InvalidTargetException();
 		if(!opponent.getField().contains(target))
 			throw new NotSummonedException();
 		if(attacker.getAttack()==0)
 			throw new CannotAttackException();
-		if(currentHero.getField().contains(target))
-			throw new InvalidTargetException();
 		if(attacker.isAttacked())
 			throw new CannotAttackException();
 		if(attacker.isSleeping())
@@ -122,7 +122,7 @@ public class Game implements ActionValidator,HeroListener{
 			throw new CannotAttackException();
 		if(!(currentHero.getField().contains(attacker)))
 			throw new NotSummonedException();
-			
+				
 		boolean tauntex=false;
 		for(int i=0;i<opponent.getField().size();i++) {
 			if(opponent.getField().get(i).isTaunt()) {
@@ -155,10 +155,9 @@ public class Game implements ActionValidator,HeroListener{
 		listener.onGameOver();
 	}
 	
-	public void damageOpponent(int amount) {
-		int a=(opponent.getCurrentHP())-amount;
-		opponent.setCurrentHP(a);
-		
+	public void damageOpponent(int amount) throws Exception
+	{
+		opponent.setCurrentHP(opponent.getCurrentHP()-amount);
 	}
 	
 	public void endTurn() throws FullHandException, CloneNotSupportedException {

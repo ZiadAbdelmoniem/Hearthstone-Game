@@ -21,12 +21,11 @@ public class Mage extends Hero{
 		
 	}
 	 public void buildDeck() throws Exception {
-		String e="C:\\Users\\boudi\\Desktop\\Eclipse workspace\\hmmm\\Milestone 1\\src\\neutral_minions.csv";
+		String e="C:\\Users\\H.Maher\\Desktop\\GUC\\hmmm\\Milestone 1\\src\\neutral_minions.csv";
 		ArrayList<Minion> allneutralminions= getAllNeutralMinions(e);
 		ArrayList<Minion> thenuetralminions= getNeutralMinions(allneutralminions,13);
 		ArrayList<Card>  z = getDeck();
 		for(int i=0;i<thenuetralminions.size();i++){
-			thenuetralminions.get(i).setListener(this);
 			z.add((Card)(thenuetralminions.get(i)));
 		}
 		Polymorph spellone= new Polymorph();
@@ -53,7 +52,11 @@ public class Mage extends Hero{
 		 }
 	 public void useHeroPower(Minion z) throws NotEnoughManaException,HeroPowerAlreadyUsedException, NotYourTurnException, FullHandException,FullFieldException, CloneNotSupportedException{
 			super.useHeroPower();
+			if(z.isDivine())
+				z.setDivine(false);
+			else{
 			 z.setCurrentHP(z.getCurrentHP()-1);
+	 }
 	 }
 	@Override
 	public void onMinionDeath(Minion m) {

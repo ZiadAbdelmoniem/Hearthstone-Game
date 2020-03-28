@@ -26,8 +26,7 @@ public class Warlock extends Hero{
 		ArrayList<Card>  z = super.getDeck();
 		int size =thenuetralminions.size();
 		for(int i=0;i<size;i++){
-			thenuetralminions.get(i).setListener(this);
-			z.add((Card)(thenuetralminions.get(i)));
+		z.add((Card)(thenuetralminions.get(i)));
 		}
 		CurseOfWeakness spellone= new CurseOfWeakness();
 		CurseOfWeakness spelltow= new CurseOfWeakness();

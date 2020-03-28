@@ -34,7 +34,13 @@ public abstract class Hero implements MinionListener  {
         hand = new ArrayList<Card>();
     	this.name=name;
         this.buildDeck();
-        setCurrentHP(30);
+        currentHP=30;
+        for(int i=0;i<this.deck.size();i++){
+        	if(this.deck.get(i) instanceof Minion){
+        		Minion x=(Minion) this.deck.get(i);
+        		x.setListener(this);
+        	}
+        }
     }
 
     
@@ -52,6 +58,7 @@ public abstract class Hero implements MinionListener  {
 		return heroPowerUsed;
 	}
 	public void setCurrentHP(int currentHP) {
+		this.currentHP=currentHP;
 		this.currentHP = Math.min(Math.max(0,currentHP),30);
 		if(getCurrentHP()==0)
 			listener.onHeroDeath();
@@ -203,30 +210,29 @@ public abstract class Hero implements MinionListener  {
     
     public void castSpell(FieldSpell s) throws NotYourTurnException,NotEnoughManaException{
     	validator.validateTurn(this);
-    	validator.validateManaCost((Card)s);
-    	if(name.equals("Jaina Proudmoore")){
+    	if(this instanceof Mage){
     	boolean flag=false;
     		for(int i=0;i<field.size();i++){
     		Minion m=field.get(i);
-    		if(m.getName().equals("Kalycgos"))
+    		if(m.getName().equalsIgnoreCase("Kalycgos"))
     			flag=true;
     	}
     		if(flag){
+    			((Card) s).setManaCost(((Card) s).getManaCost()-4);
+    			validator.validateManaCost((Card) s);
     			s.performAction(field);
     	    	hand.remove(s);
-    	    	if(((Card)s).getManaCost()<4)
-    	    		this.currentManaCrystals=this.currentManaCrystals-0;
-    	    	else{
-    	    	this.currentManaCrystals=this.currentManaCrystals-((Card) s).getManaCost()+4;
-    	    	}
+    	    	this.currentManaCrystals=this.currentManaCrystals-((Card) s).getManaCost();
     	    	}
     		else{
+    			validator.validateManaCost((Card) s);
     			s.performAction(field);
     	    	hand.remove(s);
     	    	this.currentManaCrystals=this.currentManaCrystals-((Card) s).getManaCost();
     		}
     	}
     	else{
+    	validator.validateManaCost((Card) s);
     	s.performAction(field);
     	hand.remove(s);
     	this.currentManaCrystals=this.currentManaCrystals-((Card) s).getManaCost();
@@ -235,8 +241,7 @@ public abstract class Hero implements MinionListener  {
     
     public void castSpell(AOESpell s, ArrayList<Minion >oppField) throws NotYourTurnException, NotEnoughManaException{
     	validator.validateTurn(this);
-    	validator.validateManaCost((Card)s);
-    	if(name.equals("Jaina Proudmoore")){
+    	if(this instanceof Mage){
         	boolean flag=false;
         		for(int i=0;i<field.size();i++){
         		Minion m=field.get(i);
@@ -246,21 +251,21 @@ public abstract class Hero implements MinionListener  {
         		}
         	}
         		if(flag){
+        			((Card) s).setManaCost(((Card) s).getManaCost()-4);
+        			validator.validateManaCost((Card)s);
         			s.performAction(oppField,field);
         	    	hand.remove(s);
-        	    	if(((Card)s).getManaCost()<4)
-        	    		this.currentManaCrystals=this.currentManaCrystals-0;
-        	    	else{
-        	    	this.currentManaCrystals=this.currentManaCrystals-((Card) s).getManaCost()+4;
-        	    	}
+        	    	this.currentManaCrystals=this.currentManaCrystals-((Card) s).getManaCost();
         	    	}
         		else{
+        			validator.validateManaCost((Card)s);
         			s.performAction(oppField,field);
         	    	hand.remove(s);
         	    	this.currentManaCrystals=this.currentManaCrystals-((Card) s).getManaCost();
         		}
         	}
         	else{
+        	validator.validateManaCost((Card)s);
         	s.performAction(oppField,field);
         	hand.remove(s);
         	this.currentManaCrystals=this.currentManaCrystals-((Card) s).getManaCost();
@@ -269,34 +274,30 @@ public abstract class Hero implements MinionListener  {
     }
     
     public void castSpell(MinionTargetSpell s, Minion m) throws NotYourTurnException,NotEnoughManaException,InvalidTargetException{
-    	
-    	if(this.field.contains(m))
-    		throw new InvalidTargetException();
     	validator.validateTurn(this);
-    	validator.validateManaCost((Card)s);
-    	if(name.equals("Jaina Proudmoore")){
+    	if(this instanceof Mage){
         	boolean flag=false;
         	for(int i=0;i<field.size();i++){
         		Minion z=field.get(i);
-        		if(z.getName().equals("Kalycgos"))
+        		if(z.getName().equalsIgnoreCase("Kalycgos"))
         			flag=true;
         		}
         		if(flag){
+        			((Card) s).setManaCost(((Card) s).getManaCost()-4);
+        			validator.validateManaCost((Card) s);
         			s.performAction(m);
         	    	hand.remove((Card)s);
-        	    	if(((Card)s).getManaCost()<4)
-        	    		this.currentManaCrystals=this.currentManaCrystals-0;
-        	    	else{
-        	    	this.currentManaCrystals=this.currentManaCrystals-((Card) s).getManaCost()+4;
+        	    	this.currentManaCrystals=this.currentManaCrystals-((Card) s).getManaCost();
         	    		}
-        		}
         		else{
+        			validator.validateManaCost((Card) s);
         			s.performAction(m);
         	    	hand.remove((Card)s);
         	    	this.currentManaCrystals=this.currentManaCrystals-((Card) s).getManaCost();
         		}
         	}
         	else{
+        	validator.validateManaCost((Card) s);
         	s.performAction(m);
         	hand.remove((Card)s);
         	this.currentManaCrystals=this.currentManaCrystals-((Card) s).getManaCost();
@@ -305,31 +306,31 @@ public abstract class Hero implements MinionListener  {
     }
     
     public void castSpell(HeroTargetSpell s, Hero h) throws NotYourTurnException,NotEnoughManaException {
-    	validator.validateManaCost((Card)s);
     	validator.validateTurn(this);
-    	if(name.equals("Jaina Proudmoore")){
+    	//should we check if hero is attacking himself?
+    	if(this instanceof Mage){
         	boolean flag=false;
         		for(int i=0;i<field.size();i++){
         		Minion m=field.get(i);
-        		if(m.getName().equals("Kalycgos"))
+        		if(m.getName().equalsIgnoreCase("Kalycgos"))
         			flag=true;
         	}
         		if(flag){
+        			((Card) s).setManaCost(((Card) s).getManaCost()-4);
+        			validator.validateManaCost((Card) s);
+        			hand.remove(s);
         			s.performAction(h);
-        	    	hand.remove(s);
-        	    	if(((Card)s).getManaCost()<4)
-        	    		this.currentManaCrystals=this.currentManaCrystals-0;
-        	    	else{
-        	    	this.currentManaCrystals=this.currentManaCrystals-((Card) s).getManaCost()+4;
-        	    	}
+        	    	this.currentManaCrystals=this.currentManaCrystals-((Card) s).getManaCost();
         	    	}
         		else{
+        			validator.validateManaCost((Card) s);
         			s.performAction(h);
         	    	hand.remove(s);
         	    	this.currentManaCrystals=this.currentManaCrystals-((Card) s).getManaCost();
         		}
         	}
         	else{
+        	validator.validateManaCost((Card) s);
         	s.performAction(h);
         	hand.remove(s);
         	this.currentManaCrystals=this.currentManaCrystals-((Card) s).getManaCost();
@@ -339,8 +340,7 @@ public abstract class Hero implements MinionListener  {
     
     public void castSpell(LeechingSpell s, Minion m) throws NotYourTurnException, NotEnoughManaException{
     	validator.validateTurn(this);
-    	validator.validateManaCost((Card)s);
-    	if(name.equals("Jaina Proudmoore")){
+    	if(this instanceof Mage){
         	boolean flag=false;
         		for(int i=0;i<field.size();i++){
         		Minion z=field.get(i);
@@ -348,22 +348,25 @@ public abstract class Hero implements MinionListener  {
         			flag=true;
         	}
         		if(flag){
-        			s.performAction(m);
+        			((Card) s).setManaCost(((Card) s).getManaCost()-4);
+        			validator.validateManaCost((Card) s);
+        			int k=s.performAction(m);
+        			this.setCurrentHP(getCurrentHP()+k);
         	    	hand.remove(s);
-        	    	if(((Card)s).getManaCost()<4)
-        	    		this.currentManaCrystals=this.currentManaCrystals-0;
-        	    	else{
-        	    	this.currentManaCrystals=this.currentManaCrystals-((Card) s).getManaCost()+4;
-        	    	}
+        	    	this.currentManaCrystals=this.currentManaCrystals-((Card) s).getManaCost();
         	    	}
         		else{
-        			s.performAction(m);
+        			validator.validateManaCost((Card) s);
+        			int k=s.performAction(m);
+        			this.setCurrentHP(getCurrentHP()+k);
         	    	hand.remove(s);
         	    	this.currentManaCrystals=this.currentManaCrystals-((Card) s).getManaCost();
         		}
         	}
         	else{
-        	s.performAction(m);
+        		validator.validateManaCost((Card) s);
+        	int k=s.performAction(m);
+        	this.setCurrentHP(getCurrentHP()+k);
         	hand.remove(s);
         	this.currentManaCrystals=this.currentManaCrystals-((Card) s).getManaCost();
         	}
@@ -375,7 +378,36 @@ public abstract class Hero implements MinionListener  {
     }
   
     public Card drawCard() throws FullHandException, CloneNotSupportedException{
-    }
+    	if(!this.getDeck().isEmpty()) {
+    		boolean f =false;
+    		for(int i=0;i<getField().size();i++) {
+    			if(getField().get(i).getName().equalsIgnoreCase("Chromaggus")) {
+    				f=true;
+    				break;
+    			}
+    		}
+    		Card c = this.getDeck().remove(0);
+    		if(hand.size()==10)
+    			throw new FullHandException(c);
+    		this.getHand().add(c);
+    		if(f&&hand.size()!=10) {
+    			this.hand.add((Card)c.clone());
+    		}
+    		
+    		
+    		
+    		if(deck.isEmpty()) {
+    			fatigueDamage=1;
+    		}
+    		
+    		return c;
+    		
+    	}
+    	this.setCurrentHP(this.getCurrentHP()-fatigueDamage);
+    	fatigueDamage++;
+		return null;
+    	}
+    
     public void onMinionDeath(Minion m) {
     	int x=this.getField().indexOf(m);
     	this.field.remove(x);

@@ -18,15 +18,13 @@ import exceptions.NotYourTurnException;
 public class Priest extends Hero{
 	public Priest() throws Exception {
 		super("Anduin Wrynn");
-		//setCurrentHP();
 	}
 	 public void buildDeck() throws Exception {
-		String e="C:\\Users\\boudi\\Desktop\\Eclipse workspace\\hmmm\\Milestone 1\\src\\neutral_minions.csv";
+		String e="C:\\Users\\H.Maher\\Desktop\\GUC\\hmmm\\Milestone 1\\src\\neutral_minions.csv";
 		ArrayList<Minion> allneutralminions= getAllNeutralMinions(e);
 		ArrayList<Minion> thenuetralminions= getNeutralMinions(allneutralminions,13);
 		ArrayList<Card>  z = getDeck();
 		for(int i=0;i<thenuetralminions.size();i++){
-			thenuetralminions.get(i).setListener(this);
 			z.add((Card)(thenuetralminions.get(i)));
 		}
 		DivineSpirit spellone= new DivineSpirit();
@@ -54,53 +52,39 @@ public class Priest extends Hero{
 		 boolean flag=false;
 		 for(int i=0;i<getField().size();i++){
 			 Minion m=getField().get(i);
-			 if(m.getName().equals("Prophet Velen")){
+			 if(m.getName().equalsIgnoreCase("Prophet Velen")){
 				 flag=true;
 			 }
 		 }
 		 if(flag){
-			int limit=mi.getMaxHP()-8;
-	    	if(mi.getCurrentHP()>limit)
-	    		mi.setCurrentHP(mi.getMaxHP());
-	    	else
 	    		mi.setCurrentHP(mi.getCurrentHP()+8);
 	    }
 		 else{
-	    	int limit=mi.getMaxHP()-2;
-	    	if(mi.getCurrentHP()>limit)
-	    		mi.setCurrentHP(mi.getMaxHP());
-	    	else
 	    		mi.setCurrentHP(mi.getCurrentHP()+2);
-	    	
 	    }
 	}	 
-	 public void useHeroPower(Hero z) throws NotEnoughManaException,
+	 
+	 public void useHeroPower(Hero mi) throws NotEnoughManaException,
 	    HeroPowerAlreadyUsedException, NotYourTurnException, FullHandException,
 	    FullFieldException, CloneNotSupportedException{
 		 super.useHeroPower();
-		 boolean flag=false;
-		 for(int i=0;i<getField().size();i++){
-			 Minion m=getField().get(i);
+		 boolean flag1=false;
+		 for(int i=0;i<this.getField().size();i++){
+			 Minion m=this.getField().get(i);
 			 if(m.getName().equals("Prophet Velen")){
-				 flag=true;
+				 flag1=true;
+				 break;
 			 }
 		 }
-		 if(flag){
-			 if(z.getCurrentHP()>24)
-				 z.setCurrentHP(30);
-			 else
-				 z.setCurrentHP(z.getCurrentHP()+8);
-				 
-			 }
-		 else {
-	    	if(z.getCurrentHP()>28)
-	    		z.setCurrentHP(30);
-	    	else{
-	    		z.setCurrentHP(z.getCurrentHP()+2);
-	    	}
+
+		 if(flag1==true){
+	    		mi.setCurrentHP(mi.getCurrentHP()+8);
 	    }
-		
-	 }
+		 else{
+	    		mi.setCurrentHP(mi.getCurrentHP()+2);
+	    }
+	}	 
+	 
 	 
 	public void onMinionDeath(Minion m) {
 		super.onMinionDeath(m);

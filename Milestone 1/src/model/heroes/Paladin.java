@@ -23,14 +23,13 @@ public class Paladin extends Hero{
 	}
 
 	public void buildDeck() throws Exception {
-		String e="C:\\Users\\boudi\\Desktop\\Eclipse workspace\\hmmm\\Milestone 1\\src\\neutral_minions.csv";
+		String e="C:\\Users\\H.Maher\\Desktop\\GUC\\hmmm\\Milestone 1\\src\\neutral_minions.csv";
 		ArrayList<Minion> allneutralminions= getAllNeutralMinions(e);
 		ArrayList<Minion> thenuetralminions= getNeutralMinions(allneutralminions,15);
 		ArrayList<Card> z=getDeck();
 		int size=thenuetralminions.size();
 		for(int i=0;i<size;i++){
 			Minion m= thenuetralminions.get(i);
-			m.setListener(this);
 			z.add((Card)m);
 	}
 		Card spellone= new SealOfChampions();

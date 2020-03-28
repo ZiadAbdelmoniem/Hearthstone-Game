@@ -24,13 +24,12 @@ public class Hunter extends Hero {
 		//setCurrentHP(30);
 	}
 	public void buildDeck() throws Exception{
-		String e="C:\\Users\\boudi\\Desktop\\Eclipse workspace\\hmmm\\Milestone 1\\src\\neutral_minions.csv";
+		String e="C:\\Users\\H.Maher\\Desktop\\GUC\\hmmm\\Milestone 1\\src\\neutral_minions.csv";
 		ArrayList<Minion> allneutralminions= getAllNeutralMinions(e);
 		ArrayList<Minion> thenuetralminions= getNeutralMinions(allneutralminions,15);
 		ArrayList<Card>  z = getDeck();
 		for(int i=0;i<thenuetralminions.size();i++){
 			Minion m= thenuetralminions.get(i);
-			m.setListener(this);
 			z.add((Card)m);
 		}
 		KillCommand spellone=new KillCommand();
