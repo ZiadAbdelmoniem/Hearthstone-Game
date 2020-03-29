@@ -92,6 +92,7 @@ public class Game implements ActionValidator,HeroListener{
 			throw new NotSummonedException();
 		if(!(opponent.getField().contains(target)))
 			throw new NotSummonedException();
+		
 		ArrayList<Minion> opf=opponent.getField();
 		boolean[] taunts=new boolean[opf.size()]; //array of taunt minions indecies
 		int index=opf.indexOf(target); //index of target
@@ -102,9 +103,8 @@ public class Game implements ActionValidator,HeroListener{
 				ex=true;
 			}
 		}
-		if(ex&&(!taunts[index]))
+		if(ex&&(taunts[index]==false))
 			throw new TauntBypassException();
-			
 	}
 	
 	public void validateAttack(Minion attacker, Hero target) throws CannotAttackException, NotSummonedException, TauntBypassException, InvalidTargetException {
