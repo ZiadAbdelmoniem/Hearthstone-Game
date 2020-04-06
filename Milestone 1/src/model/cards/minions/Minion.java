@@ -174,7 +174,7 @@ public class Minion extends Card implements Cloneable {
 		}
 		else {
 			try {
-				target.getListener().damageOpponent(attack);
+				((Hero)target.getListener()).getListener().damageOpponent(attack);
 			} 
 			catch (Exception e) {
 				// TODO Auto-generated catch block
