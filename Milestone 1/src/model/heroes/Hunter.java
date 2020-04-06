@@ -38,13 +38,14 @@ public class Hunter extends Hero {
 		Collections.shuffle(getDeck());
 }
 	 
-	    public void useHeroPower() throws NotEnoughManaException, HeroPowerAlreadyUsedException, NotYourTurnException, FullHandException,
+	    public void useHeroPower(Hero target) throws NotEnoughManaException, HeroPowerAlreadyUsedException, NotYourTurnException, FullHandException,
 	    FullFieldException, CloneNotSupportedException{
 	    super.useHeroPower();
 	    try {
 			getListener().damageOpponent(2);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
+			target.setCurrentHP(target.getCurrentHP()-2);
 			e.printStackTrace();
 		}
 	    
