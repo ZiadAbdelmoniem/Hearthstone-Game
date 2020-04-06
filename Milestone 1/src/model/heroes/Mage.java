@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 
+import engine.Game;
 import exceptions.FullFieldException;
 import exceptions.FullHandException;
 import exceptions.HeroPowerAlreadyUsedException;
@@ -48,7 +49,8 @@ public class Mage extends Hero{
 
 	 public void useHeroPower(Hero z) throws NotEnoughManaException,HeroPowerAlreadyUsedException, NotYourTurnException, FullHandException,FullFieldException, CloneNotSupportedException{
 		super.useHeroPower();
-		 	 z.setCurrentHP(z.getCurrentHP()-1);
+		Game g=(Game)this.getListener();
+		g.damageOpponent(1);
 		 }
 	 public void useHeroPower(Minion z) throws NotEnoughManaException,HeroPowerAlreadyUsedException, NotYourTurnException, FullHandException,FullFieldException, CloneNotSupportedException{
 			super.useHeroPower();

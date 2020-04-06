@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 
+import engine.Game;
 import exceptions.FullFieldException;
 import exceptions.FullHandException;
 import exceptions.HeroPowerAlreadyUsedException;
@@ -38,17 +39,13 @@ public class Hunter extends Hero {
 		Collections.shuffle(getDeck());
 }
 	 
-	    public void useHeroPower(Hero target) throws NotEnoughManaException, HeroPowerAlreadyUsedException, NotYourTurnException, FullHandException,
+	    public void useHeroPower() throws NotEnoughManaException, HeroPowerAlreadyUsedException, NotYourTurnException, FullHandException,
 	    FullFieldException, CloneNotSupportedException{
 	    super.useHeroPower();
-	    try {
-			getListener().damageOpponent(2);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			target.setCurrentHP(target.getCurrentHP()-2);
-			e.printStackTrace();
-		}
-	    
+	 
+			Game g=(Game)this.getListener();
+			g.damageOpponent(2);
+		
 	    }
 		
 		public void onMinionDeath(Minion m) {
