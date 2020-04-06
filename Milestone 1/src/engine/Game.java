@@ -151,7 +151,7 @@ public class Game implements ActionValidator,HeroListener{
 		listener.onGameOver();
 	}
 	
-	public void damageOpponent(int amount) throws Exception
+	public void damageOpponent(int amount)
 	{
 		opponent.setCurrentHP(opponent.getCurrentHP()-amount);
 	}

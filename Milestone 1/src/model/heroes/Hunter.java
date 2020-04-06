@@ -41,7 +41,13 @@ public class Hunter extends Hero {
 	    public void useHeroPower(Hero target) throws NotEnoughManaException, HeroPowerAlreadyUsedException, NotYourTurnException, FullHandException,
 	    FullFieldException, CloneNotSupportedException{
 	    super.useHeroPower();
-	    target.setCurrentHP(target.getCurrentHP()-2);
+	    try {
+			getListener().damageOpponent(2);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	    
 	    }
 		
 		public void onMinionDeath(Minion m) {
