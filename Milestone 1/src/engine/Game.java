@@ -153,7 +153,7 @@ public class Game implements ActionValidator,HeroListener{
 	
 	public void damageOpponent(int amount)
 	{
-		opponent.setCurrentHP(opponent.getCurrentHP()-amount);
+		opponent.setCurrentHP((opponent.getCurrentHP()-amount));
 	}
 	
 	public void endTurn() throws FullHandException, CloneNotSupportedException {
