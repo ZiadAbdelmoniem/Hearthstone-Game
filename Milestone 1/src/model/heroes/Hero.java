@@ -199,6 +199,7 @@ public abstract class Hero implements MinionListener  {
     	validator.validateTurn(this);
     	validator.validateAttack(attacker, target);
     	attacker.attack(target);
+    	attacker.setAttacked(true);
     	
     }
     
