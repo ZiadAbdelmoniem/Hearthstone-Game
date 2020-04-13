@@ -179,5 +179,6 @@ public class Game implements ActionValidator,HeroListener{
 		System.out.println(g.getOpponent().getCurrentHP());
 		
 	}
+	
 }
 
