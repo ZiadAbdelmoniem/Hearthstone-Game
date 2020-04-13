@@ -1,18 +1,20 @@
 package exceptions;
 
 import model.cards.Card;
-//I love booouuuddy
 
-public class FullHandException extends HearthstoneException{
-	private Card burned;
-	public FullHandException(Card b) {
-		super();
-		burned=b;
-		
-	}
-	public FullHandException(String s, Card b) {
-		super(s);
-		burned=b;
-	}
-	
+public class FullHandException extends HearthstoneException {
+    private Card burned;
+
+    public FullHandException(Card b){
+    	this.burned=b;
+    }
+
+    public FullHandException(String message, Card b) {
+        super(message);
+        this.burned = b;
+    }
+
+    public Card getBurned() {
+        return this.burned;
+    }
 }

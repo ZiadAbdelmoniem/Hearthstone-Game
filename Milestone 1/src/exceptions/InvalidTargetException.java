@@ -1,10 +1,10 @@
 package exceptions;
 
 public class InvalidTargetException extends HearthstoneException {
-	public InvalidTargetException() {
-		super();
-	}
-	public InvalidTargetException(String s) {
-		super(s);
-	}
+    public InvalidTargetException() {
+    }
+
+    public InvalidTargetException(String message) {
+        super(message);
+    }
 }

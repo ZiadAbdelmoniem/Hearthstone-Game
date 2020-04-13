@@ -1,11 +1,10 @@
 package exceptions;
 
-public class CannotAttackException extends HearthstoneException{
-	public CannotAttackException() {
-		super();
-	}
-	public CannotAttackException(String s) {
-		super(s);
-	}
+public class CannotAttackException extends HearthstoneException {
+    public CannotAttackException() {
+    }
 
+    public CannotAttackException(String message) {
+        super(message);
+    }
 }

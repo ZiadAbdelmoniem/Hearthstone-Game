@@ -1,11 +1,10 @@
 package exceptions;
 
-public class NotEnoughManaException extends  HearthstoneException {
-	public NotEnoughManaException(){
-		super();
-	}
-	public NotEnoughManaException(String s){
-		super(s);
-	}
+public class NotEnoughManaException extends HearthstoneException {
+    public NotEnoughManaException() {
+    }
 
+    public NotEnoughManaException(String message) {
+        super(message);
+    }
 }
