@@ -13,10 +13,7 @@ public class CurseOfWeakness extends Spell implements AOESpell {
 		
 	}
 	
-	public Object clone() throws CloneNotSupportedException{
-		return new CurseOfWeakness();
-	}
-
+	
 	public static void main (String [] args)   {
 		CurseOfWeakness s = new CurseOfWeakness();
 		//System.out.println(s.getManaCost());

@@ -9,27 +9,26 @@ public class HolyNova extends Spell implements AOESpell{
 	public HolyNova() {
 		super("Holy Nova",5,Rarity.BASIC);
 	}
-	public Object clone() throws CloneNotSupportedException{
-		return new HolyNova();
-	}
 	
-	public void performAction(ArrayList<Minion> oppField,ArrayList<Minion> curField) {
-		int k=0;
-		while(k<oppField.size()) {
-			if(oppField.size()==0)
-				break;
-			Minion m = oppField.get(k);
-			int n=m.getCurrentHP()-2;
-			m.setCurrentHP(n);
-			if(n>0) {
-				k++;
-			}
-		}
-		for(int j=0;j<curField.size();j++) {
-			if(curField.size()==0)
-				break;
-			Minion m = curField.get(j);
-			m.setCurrentHP((m.getCurrentHP()+2));
-		}
-	}
+
+    public void performAction(ArrayList<Minion> oppField, ArrayList<Minion> curField) {
+        int i;
+        Minion m;
+        for(i = 0; i < oppField.size(); ++i) {
+            m = (Minion)oppField.get(i);
+            if (m.isDivine()) {
+                m.setDivine(false);
+            } else {
+                m.setCurrentHP(m.getCurrentHP() - 2);
+                if (m.getCurrentHP() == 0) {
+                    --i;
+                }
+            }
+        }
+
+        for(i = 0; i < curField.size(); ++i) {
+            m = (Minion)curField.get(i);
+            m.setCurrentHP(m.getCurrentHP() + 2);
+        }
+}
 }

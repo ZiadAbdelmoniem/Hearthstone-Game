@@ -10,9 +10,7 @@ public class MultiShot extends Spell implements AOESpell{
 	public MultiShot() {
 		super("Multi-Shot",4,Rarity.BASIC);
 	}
-	public Object clone() throws CloneNotSupportedException{
-		return new MultiShot();
-	}
+	
 	
 	public void performAction(ArrayList<Minion> oppField,ArrayList<Minion> curField) {
 		int k=oppField.size();

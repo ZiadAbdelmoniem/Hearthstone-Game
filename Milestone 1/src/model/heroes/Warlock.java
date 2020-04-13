@@ -1,93 +1,51 @@
 package model.heroes;
 
-import model.cards.Card;
-import model.cards.Rarity;
-import model.cards.minions.Minion;
-import model.cards.spells.*;
-
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collections;
-
 import exceptions.FullFieldException;
 import exceptions.FullHandException;
 import exceptions.HeroPowerAlreadyUsedException;
 import exceptions.NotEnoughManaException;
 import exceptions.NotYourTurnException;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
+import model.cards.Card;
+import model.cards.Rarity;
+import model.cards.minions.Minion;
+import model.cards.spells.CurseOfWeakness;
+import model.cards.spells.SiphonSoul;
+import model.cards.spells.TwistingNether;
 
-public class Warlock extends Hero{
-	public Warlock() throws Exception{
-		super("Gul'dan");
+public class Warlock extends Hero {
+    public Warlock() throws IOException, CloneNotSupportedException {
+        super("Gul'dan");
+    }
 
-	}
-	 public void buildDeck() throws Exception {
-		 String e="C:\\Users\\H.Maher\\Desktop\\GUC\\hmmm\\Milestone 1\\src\\neutral_minions.csv";
-		ArrayList<Minion> thenuetralminions= getNeutralMinions(getAllNeutralMinions(e),13);
-		ArrayList<Card>  z = super.getDeck();
-		int size =thenuetralminions.size();
-		for(int i=0;i<size;i++){
-		z.add((Card)(thenuetralminions.get(i)));
-		}
-		CurseOfWeakness spellone= new CurseOfWeakness();
-		CurseOfWeakness spelltow= new CurseOfWeakness();
-		SiphonSoul spellthree= new SiphonSoul();
-		SiphonSoul   spellfour= new SiphonSoul();
-		TwistingNether spellfive= new TwistingNether();
-		TwistingNether spellsix= new TwistingNether();
-		Minion wilfred= new Minion("Wilfred Fizzlebang", 6, Rarity.LEGENDARY, 4, 4, false, false,false);
-		wilfred.setListener(this);
-		z.add(spellone);
-		z.add(spelltow);
-		z.add(spellthree);
-		z.add(spellfour);
-		z.add(spellfive);
-		z.add(spellsix);
-		z.add(wilfred);
-		Collections.shuffle(z);
-}
-	 public void useHeroPower() throws NotEnoughManaException,HeroPowerAlreadyUsedException, NotYourTurnException, FullHandException,FullFieldException, CloneNotSupportedException{
-		super.useHeroPower();
-		if(this.getDeck().isEmpty())
-			super.drawCard();
-		this.drawCard();
-	    this.setCurrentHP(this.getCurrentHP()-2);
-	    }
-	 public Card drawCard() throws FullHandException, CloneNotSupportedException{
-		 boolean f =false;
-		 boolean ch=false;
-		 if(!this.getDeck().isEmpty()) {
-			 Card c = this.getDeck().remove(0);
-			 if(getHand().size()==10) 
-	    			throw new FullHandException(c);
-	    	for(int i=0;i<this.getField().size();i++) {
-	    		Minion mi = this.getField().get(i);
-	    		if(mi.getName().equalsIgnoreCase("Wilfred Fizzlebang")) 
-	    			f=true;
-	    		if(mi.getName().equalsIgnoreCase("Chromaggus"))
-	    			ch=true;
-	    	}
-			 if(f && c instanceof Minion) {
-				 c.setManaCost(0);
-				 this.getHand().add(0,c);
-			 }
-			 else {
-				 this.getHand().add(0,c);
-			 }
-			if(ch) {
-				if(getHand().size()==10)
-					throw new FullHandException(c);
-				this.getHand().add((Card)c.clone());
-			}
-			return c;
-		 }
-		super.drawCard();
-		return null;
-		 }
-		 
-	public void onMinionDeath(Minion m) {
-		super.onMinionDeath(m);
-		
-	}
-	
+    public void buildDeck() throws IOException, CloneNotSupportedException {
+        ArrayList<Minion> neutrals = getNeutralMinions(getAllNeutralMinions("C:\\Users\\H.Maher\\Desktop\\GUC\\hmmm\\Milestone 1\\src\\neutral_minions.csv"), 13);
+        this.getDeck().addAll(neutrals);
 
+        for(int i = 0; i < 2; ++i) {
+            this.getDeck().add(new CurseOfWeakness());
+            this.getDeck().add(new SiphonSoul());
+            this.getDeck().add(new TwistingNether());
+        }
+
+        Minion wilfred = new Minion("Wilfred Fizzlebang", 6, Rarity.LEGENDARY, 4, 4, false, false, false);
+        this.getDeck().add(wilfred);
+        this.listenToMinions();
+        Collections.shuffle(this.getDeck());
+    }
+
+    public void useHeroPower() throws NotEnoughManaException, HeroPowerAlreadyUsedException, NotYourTurnException, FullHandException, CloneNotSupportedException, FullFieldException {
+        super.useHeroPower();
+        this.setCurrentHP(this.getCurrentHP() - 2);
+        Card c = this.drawCard();
+        if (this.fieldContains("Wilfred Fizzlebang") && c instanceof Minion) {
+            c.setManaCost(0);
+            if (this.fieldContains("Chromaggus")) {
+                ((Card)this.getHand().get(this.getHand().size() - 1)).setManaCost(0);
+            }
+        }
+
+    }
 }

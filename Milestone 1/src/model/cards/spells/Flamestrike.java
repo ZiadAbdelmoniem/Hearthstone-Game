@@ -9,9 +9,7 @@ public class Flamestrike extends Spell implements AOESpell {
 	public Flamestrike() {
 		super("Flamestrike",7,Rarity.BASIC);
 	}
-	public Object clone() throws CloneNotSupportedException{
-		return new Flamestrike();
-	}
+	
 	
 	public void performAction(ArrayList<Minion> oppField,ArrayList<Minion> curField) {
 		int j=0;

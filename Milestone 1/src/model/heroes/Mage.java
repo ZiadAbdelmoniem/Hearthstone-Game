@@ -1,69 +1,93 @@
 package model.heroes;
 
-import model.cards.Card;
-import model.cards.Rarity;
-import model.cards.minions.Minion;
-import model.cards.spells.*;
-
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collections;
-
-import engine.Game;
 import exceptions.FullFieldException;
 import exceptions.FullHandException;
 import exceptions.HeroPowerAlreadyUsedException;
+import exceptions.InvalidTargetException;
 import exceptions.NotEnoughManaException;
 import exceptions.NotYourTurnException;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
+import model.cards.Rarity;
+import model.cards.minions.Minion;
+import model.cards.spells.AOESpell;
+import model.cards.spells.Flamestrike;
+import model.cards.spells.HeroTargetSpell;
+import model.cards.spells.MinionTargetSpell;
+import model.cards.spells.Polymorph;
+import model.cards.spells.Pyroblast;
+import model.cards.spells.Spell;
 
-public class Mage extends Hero{
-	public Mage() throws Exception{
-		super("Jaina Proudmoore");
-		
-	}
-	 public void buildDeck() throws Exception {
-		String e="C:\\Users\\H.Maher\\Desktop\\GUC\\hmmm\\Milestone 1\\src\\neutral_minions.csv";
-		ArrayList<Minion> allneutralminions= getAllNeutralMinions(e);
-		ArrayList<Minion> thenuetralminions= getNeutralMinions(allneutralminions,13);
-		ArrayList<Card>  z = getDeck();
-		for(int i=0;i<thenuetralminions.size();i++){
-			z.add((Card)(thenuetralminions.get(i)));
-		}
-		Polymorph spellone= new Polymorph();
-		Polymorph spelltow= new Polymorph();
-		Flamestrike spellthree= new Flamestrike();
-		Flamestrike   spellfour= new Flamestrike();
-		Pyroblast spellfive=new Pyroblast();
-		Pyroblast spellsix=new Pyroblast();
-		Minion kalycgos=new Minion("Kalycgos",10, Rarity.LEGENDARY,4,12,false,false,false);
-		kalycgos.setListener(this);
-		z.add(spellone);
-		z.add(spelltow);
-		z.add(spellthree);
-		z.add(spellfour);
-		z.add(spellfive);
-		z.add(spellsix);
-		z.add(kalycgos);
-		Collections.shuffle(z);
-}
+public class Mage extends Hero {
+    public Mage() throws IOException, CloneNotSupportedException {
+        super("Jaina Proudmoore");
+    }
 
-	 public void useHeroPower(Hero z) throws NotEnoughManaException,HeroPowerAlreadyUsedException, NotYourTurnException, FullHandException,FullFieldException, CloneNotSupportedException{
-		super.useHeroPower();
-		Game g=(Game)this.getListener();
-		g.damageOpponent(1);
-		 }
-	 public void useHeroPower(Minion z) throws NotEnoughManaException,HeroPowerAlreadyUsedException, NotYourTurnException, FullHandException,FullFieldException, CloneNotSupportedException{
-			super.useHeroPower();
-			if(z.isDivine())
-				z.setDivine(false);
-			else{
-			 z.setCurrentHP(z.getCurrentHP()-1);
-	 }
-	 }
-	@Override
-	public void onMinionDeath(Minion m) {
-		super.onMinionDeath(m);
-		
-	}
-	
+    public void buildDeck() throws IOException, CloneNotSupportedException {
+        ArrayList<Minion> neutrals = getNeutralMinions(getAllNeutralMinions("C:\\Users\\H.Maher\\Desktop\\GUC\\hmmm\\Milestone 1\\src\\neutral_minions.csv"), 13);
+        this.getDeck().addAll(neutrals);
+
+        for(int i = 0; i < 2; ++i) {
+            this.getDeck().add(new Polymorph());
+            this.getDeck().add(new Flamestrike());
+            this.getDeck().add(new Pyroblast());
+        }
+
+        Minion kalycgos = new Minion("Kalycgos", 10, Rarity.LEGENDARY, 4, 12, false, false, false);
+        this.getDeck().add(kalycgos);
+        this.listenToMinions();
+        Collections.shuffle(this.getDeck());
+    }
+
+    public void useHeroPower(Minion m) throws NotEnoughManaException, HeroPowerAlreadyUsedException, NotYourTurnException, FullHandException, CloneNotSupportedException, FullFieldException {
+        super.useHeroPower();
+        if (m.isDivine()) {
+            m.setDivine(false);
+        } else {
+            m.setCurrentHP(m.getCurrentHP() - 1);
+        }
+
+    }
+
+    public void useHeroPower(Hero h) throws NotEnoughManaException, HeroPowerAlreadyUsedException, NotYourTurnException, FullHandException, CloneNotSupportedException, FullFieldException {
+        super.useHeroPower();
+        h.setCurrentHP(h.getCurrentHP() - 1);
+    }
+
+    public void castSpell(AOESpell s, ArrayList<Minion> oppField) throws NotYourTurnException, NotEnoughManaException {
+        if (this.fieldContains("Kalycgos")) {
+            if (((Spell)s).getManaCost() - 4 > this.getCurrentManaCrystals()) {
+                throw new NotEnoughManaException("I don't have enough Mana");
+            }
+
+            ((Spell)s).setManaCost(((Spell)s).getManaCost() - 4);
+        }
+
+        super.castSpell(s, oppField);
+    }
+
+    public void castSpell(MinionTargetSpell s, Minion m) throws NotYourTurnException, NotEnoughManaException, InvalidTargetException {
+        if (this.fieldContains("Kalycgos")) {
+            if (((Spell)s).getManaCost() - 4 > this.getCurrentManaCrystals()) {
+                throw new NotEnoughManaException("I don't have enough Mana");
+            }
+
+            ((Spell)s).setManaCost(((Spell)s).getManaCost() - 4);
+        }
+
+        super.castSpell(s, m);
+    }
+
+    public void castSpell(HeroTargetSpell s, Hero h) throws NotYourTurnException, NotEnoughManaException {
+        if (this.fieldContains("Kalycgos")) {
+            if (((Spell)s).getManaCost() - 4 > this.getCurrentManaCrystals()) {
+                throw new NotEnoughManaException("I don't have enough Mana");
+            }
+
+            ((Spell)s).setManaCost(((Spell)s).getManaCost() - 4);
+        }
+
+        super.castSpell(s, h);
+    }
 }

@@ -9,9 +9,7 @@ public class LevelUp extends Spell implements FieldSpell {
     public LevelUp(){
         super("Level Up!",6, Rarity.EPIC);
     }
-    public Object clone() throws CloneNotSupportedException{
-		return new LevelUp();
-	}
+   
 	
 	public void performAction(ArrayList<Minion> field) {
 		for(int x =0;x<field.size();x++) {

@@ -1,75 +1,46 @@
 package model.heroes;
 
-import model.cards.Card;
-import model.cards.Rarity;
-import model.cards.minions.Minion;
-import model.cards.spells.*;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collections;
-
 import exceptions.FullFieldException;
 import exceptions.FullHandException;
 import exceptions.HeroPowerAlreadyUsedException;
 import exceptions.NotEnoughManaException;
 import exceptions.NotYourTurnException;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
+import model.cards.Rarity;
+import model.cards.minions.Minion;
+import model.cards.spells.LevelUp;
+import model.cards.spells.SealOfChampions;
 
-public class Paladin extends Hero{
-	
-	public Paladin() throws Exception {
-		super("Uther Lightbringer");
-		
-	   // buildDeck();
-	}
+public class Paladin extends Hero {
+    public Paladin() throws IOException, CloneNotSupportedException {
+        super("Uther Lightbringer");
+    }
 
-	public void buildDeck() throws Exception {
-		String e="C:\\Users\\H.Maher\\Desktop\\GUC\\hmmm\\Milestone 1\\src\\neutral_minions.csv";
-		ArrayList<Minion> allneutralminions= getAllNeutralMinions(e);
-		ArrayList<Minion> thenuetralminions= getNeutralMinions(allneutralminions,15);
-		ArrayList<Card> z=getDeck();
-		int size=thenuetralminions.size();
-		for(int i=0;i<size;i++){
-			Minion m= thenuetralminions.get(i);
-			z.add((Card)m);
-	}
-		Card spellone= new SealOfChampions();
-		Card spelltow= new SealOfChampions();
-		Card spellthree= new LevelUp();
-		Card  spellfour= new LevelUp();
-		
-		Minion tirion = new Minion("Tirion Fordring",4, Rarity.LEGENDARY,6,6,true,true,false);
-		tirion.setListener(this);
-		
-		z.add(tirion);
-		z.add(spellone);
-		z.add(spelltow);
-		z.add(spellthree);
-		z.add(spellfour);
-		//z.add(Tirion);
-		Collections.shuffle(z);
-}
-	 
-	public void useHeroPower() throws NotEnoughManaException,
-    HeroPowerAlreadyUsedException, NotYourTurnException, FullHandException,
-    FullFieldException, CloneNotSupportedException{
-    	super.useHeroPower();
-    	if(this.getField().size()==7)
-    		throw new FullFieldException();
-		Minion r=new Minion("Silver Hand Recruit",1,Rarity.BASIC,1,1,false,false,false);
-    	this.getField().add(r);
-			
-}
-	 
-	 
-		public static void main(String []args) { 			
-			
-}
+    public void useHeroPower() throws NotEnoughManaException, HeroPowerAlreadyUsedException, NotYourTurnException, FullHandException, CloneNotSupportedException, FullFieldException {
+        if (this.getField().size() < 7) {
+            super.useHeroPower();
+            Minion silverHand = new Minion("Silver Hand Recruit", 1, Rarity.BASIC, 1, 1, false, false, false);
+            silverHand.setListener(this);
+            this.getField().add(silverHand);
+        } else {
+            throw new FullFieldException("There is no place for this minion");
+        }
+    }
 
-		@Override
-		public void onMinionDeath(Minion m) {
-			super.onMinionDeath(m);
-			
-		}
+    public void buildDeck() throws IOException, CloneNotSupportedException {
+        ArrayList<Minion> neutrals = getNeutralMinions(getAllNeutralMinions("C:\\Users\\H.Maher\\Desktop\\GUC\\hmmm\\Milestone 1\\src\\neutral_minions.csv"), 15);
+        this.getDeck().addAll(neutrals);
 
-	
+        for(int i = 0; i < 2; ++i) {
+            this.getDeck().add(new SealOfChampions());
+            this.getDeck().add(new LevelUp());
+        }
+
+        Minion tirion = new Minion("Tirion Fordring", 4, Rarity.LEGENDARY, 6, 6, true, true, false);
+        this.getDeck().add(tirion);
+        this.listenToMinions();
+        Collections.shuffle(this.getDeck());
+    }
 }

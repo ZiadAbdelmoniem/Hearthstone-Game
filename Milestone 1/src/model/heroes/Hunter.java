@@ -1,56 +1,40 @@
 package model.heroes;
 
-import model.cards.Card;
-import model.cards.Rarity;
-import model.cards.minions.Minion;
-import model.cards.spells.KillCommand;
-import model.cards.spells.MultiShot;
-
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collections;
-
-import engine.Game;
 import exceptions.FullFieldException;
 import exceptions.FullHandException;
 import exceptions.HeroPowerAlreadyUsedException;
 import exceptions.NotEnoughManaException;
 import exceptions.NotYourTurnException;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
+import model.cards.Rarity;
+import model.cards.minions.Minion;
+import model.cards.spells.KillCommand;
+import model.cards.spells.MultiShot;
 
 public class Hunter extends Hero {
+    public Hunter() throws IOException, CloneNotSupportedException {
+        super("Rexxar");
+    }
 
+    public void buildDeck() throws IOException, CloneNotSupportedException {
+        ArrayList<Minion> neutrals = getNeutralMinions(getAllNeutralMinions("C:\\Users\\H.Maher\\Desktop\\GUC\\hmmm\\Milestone 1\\src\\neutral_minions.csv"), 15);
+        this.getDeck().addAll(neutrals);
 
-	public Hunter() throws Exception {
-		super("Rexxar");
-	}
-	public void buildDeck() throws Exception{
-		String e="C:\\Users\\H.Maher\\Desktop\\GUC\\hmmm\\Milestone 1\\src\\neutral_minions.csv";
-		ArrayList<Minion> neutrals= getNeutralMinions(getAllNeutralMinions(e),15);
-		getDeck().addAll(neutrals);
-		for(int i = 0 ; i < 2; i++)
-		{
-			getDeck().add(new KillCommand());
-			getDeck().add(new MultiShot());
-			
-		}
-		Minion krush=(new Minion("King Krush", 9, Rarity.LEGENDARY, 8, 8, false, false, true));
-		krush.setListener(this);
-		getDeck().add(krush);
-		Collections.shuffle(getDeck());
-}
-	 
-	    public void useHeroPower() throws NotEnoughManaException, HeroPowerAlreadyUsedException, NotYourTurnException, FullHandException,
-	    FullFieldException, CloneNotSupportedException{
-	    super.useHeroPower();
-	 
-			Game g=(Game)this.getListener();
-			g.damageOpponent(2);
-		
-	    }
-		
-		public void onMinionDeath(Minion m) {
-			super.onMinionDeath(m);
-			
-		}
-		
+        for(int i = 0; i < 2; ++i) {
+            this.getDeck().add(new KillCommand());
+            this.getDeck().add(new MultiShot());
+        }
+
+        Minion krush = new Minion("King Krush", 9, Rarity.LEGENDARY, 8, 8, false, false, true);
+        this.getDeck().add(krush);
+        this.listenToMinions();
+        Collections.shuffle(this.getDeck());
+    }
+
+    public void useHeroPower() throws NotEnoughManaException, HeroPowerAlreadyUsedException, NotYourTurnException, FullHandException, CloneNotSupportedException, FullFieldException {
+        super.useHeroPower();
+        this.getListener().damageOpponent(2);
+    }
 }

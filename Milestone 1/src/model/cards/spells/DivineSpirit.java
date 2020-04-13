@@ -9,9 +9,7 @@ public class DivineSpirit extends Spell implements MinionTargetSpell {
         super("Divine Spirit",3, Rarity.BASIC);
     }
 
-    public Object clone() throws CloneNotSupportedException{
-		return new DivineSpirit();
-	}
+   
 	public void performAction(Minion m) throws InvalidTargetException {
 		int cp=m.getCurrentHP()*2;
 		int mp=m.getMaxHP()*2;

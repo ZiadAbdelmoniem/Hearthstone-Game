@@ -10,10 +10,7 @@ public class Pyroblast extends Spell implements HeroTargetSpell, MinionTargetSpe
         super("Pyroblast",10, Rarity.EPIC);
     }
 
-    public Object clone() throws CloneNotSupportedException{
-		return new Pyroblast();
-	}
-	public void performAction(Minion m) throws InvalidTargetException {
+    	public void performAction(Minion m) throws InvalidTargetException {
 		if(m.isDivine())
 			m.setDivine(false);
 		else

@@ -9,9 +9,7 @@ public class Polymorph extends Spell implements MinionTargetSpell {
         super("Polymorph",4, Rarity.BASIC);
     }
 
-    public Object clone() throws CloneNotSupportedException{
-		return new Polymorph();
-	}
+    
 	public void performAction(Minion m) throws InvalidTargetException {
 		m.setName("Sheep");
 		m.setCurrentHP(1);

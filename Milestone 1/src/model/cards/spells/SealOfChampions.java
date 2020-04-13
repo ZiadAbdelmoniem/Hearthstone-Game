@@ -9,9 +9,7 @@ public class SealOfChampions extends Spell implements MinionTargetSpell {
         super("Seal of Champions",3, Rarity.COMMON);
     }
 
-    public Object clone() throws CloneNotSupportedException{
-		return new SealOfChampions();
-	}
+    
 	public void performAction(Minion m) throws InvalidTargetException {
 		m.setAttack(m.getAttack()+3);
 		m.setDivine(true);

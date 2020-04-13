@@ -9,9 +9,7 @@ public class TwistingNether extends Spell implements AOESpell{
 	
 		super("Twisting Nether",8,Rarity.EPIC);
 	}
-	public Object clone() throws CloneNotSupportedException{
-		return new TwistingNether();
-	}
+	
 	
 	public void performAction(ArrayList<Minion> oppField,ArrayList<Minion> curField) {
 		while(!oppField.isEmpty()) {

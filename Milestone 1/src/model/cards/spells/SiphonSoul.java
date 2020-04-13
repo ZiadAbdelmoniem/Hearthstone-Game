@@ -7,9 +7,7 @@ public class SiphonSoul extends Spell implements LeechingSpell {
     public SiphonSoul(){
         super("Siphon Soul",6, Rarity.RARE);
     }
-    public Object clone() throws CloneNotSupportedException{
-		return new SiphonSoul();
-	}
+    
 
 	
 	public int performAction(Minion m) {

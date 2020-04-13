@@ -6,7 +6,5 @@ public class Icehowl extends Minion {
     public Icehowl(){
         super("Icehowl",9,Rarity.LEGENDARY,10,10,false,false,true);
     }
-    public Object clone() throws CloneNotSupportedException{
-		return new Icehowl();
-	}
+    
 }
