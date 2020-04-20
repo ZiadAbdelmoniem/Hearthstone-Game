@@ -21,13 +21,6 @@ public class GameController implements ActionListener,GameListener {
 			
 			//model=new Game(firstplayer,secplayer);
 	}
-		
-	
-	public static void main (String[] args){
-	
-		
-		
-	}
 
 
 	@Override
@@ -54,5 +47,8 @@ public class GameController implements ActionListener,GameListener {
 		}*/
 	}
 	
-
+	public static void main (String [] args){
+		GameController c=new GameController();
+	
+	}
 }

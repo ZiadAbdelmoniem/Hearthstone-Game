@@ -130,9 +130,6 @@ public class GameView extends JFrame implements GameListener {
 	public void onGameOver() {
 		// TODO Auto-generated method stub
 	}
-		public static void main (String [] args){
-			GameController c=new GameController();
-			GameView v = new GameView(c);
-		}
+		
 	
 }
