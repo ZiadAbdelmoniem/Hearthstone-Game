@@ -9,7 +9,7 @@ public class GameView extends JFrame implements GameListener {
 	private JLabel theplayer;
 	private JPanel player1;
 	private JTextArea text1;
-	public GameView(){
+	public GameView(GameController c){
 		super();
 		this.setBounds(400, 400, 400, 400);
 		this.setVisible(true);
@@ -29,7 +29,9 @@ public class GameView extends JFrame implements GameListener {
 		title.setPreferredSize(new Dimension(100,100));
 	    title.setLayout(new GridLayout(1,5));
 		JButton mage= new JButton("Mage");
+		mage.addActionListener(c);
 		mage.setBounds(100, 100, 100, 100);
+		mage.setActionCommand("chose mage 1");
 		JButton priest= new JButton("Priest");
 		priest.setBounds(100, 100, 100, 100);
 		JButton hunter= new JButton("Hunter");
@@ -51,6 +53,38 @@ public class GameView extends JFrame implements GameListener {
 		// this mainly says en awel ma el le3ba hetefta7 di awel 7aga heyshofoha 
 	}
 	
+	public JPanel gettitle() {
+		return title;
+	}
+
+	public void setTitle(JPanel title) {
+		this.title = title;
+	}
+
+	public JLabel getTheplayer() {
+		return theplayer;
+	}
+
+	public void setTheplayer(JLabel theplayer) {
+		this.theplayer = theplayer;
+	}
+
+	public JPanel getPlayer1() {
+		return player1;
+	}
+
+	public void setPlayer1(JPanel player1) {
+		this.player1 = player1;
+	}
+
+	public JTextArea getText1() {
+		return text1;
+	}
+
+	public void setText1(JTextArea text1) {
+		this.text1 = text1;
+	}
+
 	@Override
 	public void onGameOver() {
 		// TODO Auto-generated method stub
