@@ -90,7 +90,7 @@ public class GameView extends JFrame implements GameListener {
 		// TODO Auto-generated method stub
 	}
 		public static void main (String [] args){
-			GameView v = new GameView();
+			//GameView v = new GameView();
 		}
 	
 }
