@@ -4,11 +4,12 @@ import javax.swing.*;
 import javax.swing.border.LineBorder;
 
 @SuppressWarnings("serial")
-public class View extends JFrame implements GameListener {
+public class GameView extends JFrame implements GameListener {
 	private JPanel title;
 	private JLabel theplayer;
 	private JPanel player1;
-	public View(){
+	private JTextArea text1;
+	public GameView(){
 		super();
 		this.setBounds(400, 400, 400, 400);
 		this.setVisible(true);
@@ -43,6 +44,8 @@ public class View extends JFrame implements GameListener {
 		title.add(paladin);
 		title.add(warlock);
 		this.add(BorderLayout.SOUTH,title);
+		this.revalidate();
+		this.repaint();
 		//this.getContentPane().add(BorderLayout.CENTER,mage)
 		//maybe use this to control heteb2a feen el buttons
 		// this mainly says en awel ma el le3ba hetefta7 di awel 7aga heyshofoha 
@@ -53,7 +56,7 @@ public class View extends JFrame implements GameListener {
 		// TODO Auto-generated method stub
 	}
 		public static void main (String [] args){
-			View v = new View();
+			GameView v = new GameView();
 		}
 	
 }
