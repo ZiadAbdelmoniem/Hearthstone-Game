@@ -14,14 +14,14 @@ import javax.swing.border.LineBorder;
 // this mainly says en awel ma el le3ba hetefta7 di awel 7aga heyshofoha 
 
 @SuppressWarnings("serial")
-public class GameView extends JFrame implements GameListener {
+public class preGameView extends JFrame implements GameListener {
 	private JPanel main;
 	private JPanel title1;
 	private JPanel title2;
 	private JLabel theplayer1;
 	private JLabel theplayer2;
 	//private JTextArea text1;
-	public GameView(GameController c){
+	public preGameView(GameController c){
 		super();
 		main=new JPanel();
 		main.setLayout(new GridLayout(5,1));

@@ -2,6 +2,7 @@ package engine;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -11,13 +12,13 @@ import model.heroes.Mage;
 
 public class GameController implements ActionListener,GameListener {
 	private Game model;
-	private GameView view;
+	private preGameView view;
 	private Hero firstplayer;
 	private Hero secplayer;
 	
 	
 	public GameController(){
-			view=new GameView(this);
+		view=new preGameView(this);
 			
 			//model=new Game(firstplayer,secplayer);
 	}
@@ -42,8 +43,14 @@ public class GameController implements ActionListener,GameListener {
 		}
 		if(e.getActionCommand().equals("chose mage 1")){
 			
-			//firstplayer=(Hero) m;
-			
+			try {
+				Mage m=new Mage();
+				firstplayer=m;
+			} catch (IOException | CloneNotSupportedException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		
 		}
 	}
 	
