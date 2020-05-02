@@ -14,6 +14,7 @@ import model.heroes.*;
 public class GameController implements ActionListener,GameListener {
 	private static Game model;
 	private preGameView view;
+	private static GameView gameview;
 	private static Hero firstplayer;
 	private static Hero secplayer;
 	
@@ -46,7 +47,9 @@ public class GameController implements ActionListener,GameListener {
 			try {
 				g = new Game(firstplayer, secplayer);
 				model=g;
-				GameView r=new GameView(this,g);
+				gameview =new GameView(this,model);
+				view.removeAll();
+				view.dispose();
 			} catch (FullHandException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -188,7 +191,6 @@ public class GameController implements ActionListener,GameListener {
 	
 	public static void main (String [] args){
 		GameController c=new GameController();
-	
 	
 	}
 }

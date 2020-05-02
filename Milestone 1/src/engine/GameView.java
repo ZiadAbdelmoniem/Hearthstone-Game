@@ -12,14 +12,18 @@ public class GameView extends JFrame implements GameListener{
 public GameView(GameController c, Game g){
 	super();
 	main=new JPanel();
-	main.setLayout(new GridLayout(5,1));
+	main.setLayout(new GridLayout(6,1));
 	this.setBounds(600, 600, 600, 600);
 	this.setVisible(true);
-	JLabel n=new JLabel(g.getCurrentHero().getName());
-	JLabel m=new JLabel(g.getOpponent().getName());
-		main.add(n);
-		main.add(m);
+	this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+	currentPanel r=new currentPanel(c,g);
+	main.add(r);
+	//JLabel n=new JLabel(g.getCurrentHero().getName());
+	//JLabel m=new JLabel(g.getOpponent().getName());
+	
 		this.add(main);
+		this.revalidate();
+		this.repaint();
 	}	
 	
 	
