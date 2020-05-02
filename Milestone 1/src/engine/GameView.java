@@ -16,10 +16,11 @@ public GameView(GameController c, Game g){
 	this.setBounds(600, 600, 600, 600);
 	this.setVisible(true);
 	this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+	
+	opponentPanel e=new opponentPanel(c,g);
 	currentPanel r=new currentPanel(c,g);
+	main.add(e);
 	main.add(r);
-	//JLabel n=new JLabel(g.getCurrentHero().getName());
-	//JLabel m=new JLabel(g.getOpponent().getName());
 	
 		this.add(main);
 		this.revalidate();

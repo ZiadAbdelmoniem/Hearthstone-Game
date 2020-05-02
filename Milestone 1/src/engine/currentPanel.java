@@ -38,6 +38,54 @@ public currentPanel(GameController c,Game g){
 	
 	
 
+}
+
+public JLabel getHp() {
+	return hp;
+}
+
+public void setHp(JLabel hp) {
+	this.hp = hp;
+}
+
+public JButton getHeropower() {
+	return heropower;
+}
+
+public void setHeropower(JButton heropower) {
+	this.heropower = heropower;
+}
+
+public JLabel getNameofhero() {
+	return nameofhero;
+}
+
+public void setNameofhero(JLabel nameofhero) {
+	this.nameofhero = nameofhero;
+}
+
+public JLabel getManano() {
+	return manano;
+}
+
+public void setManano(JLabel manano) {
+	this.manano = manano;
+}
+
+public JLabel getDeck() {
+	return deck;
+}
+
+public void setDeck(JLabel deck) {
+	this.deck = deck;
+}
+
+public JButton getEndturn() {
+	return endturn;
+}
+
+public void setEndturn(JButton endturn) {
+	this.endturn = endturn;
 }	
 
 }
