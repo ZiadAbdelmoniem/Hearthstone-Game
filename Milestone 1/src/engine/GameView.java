@@ -17,10 +17,15 @@ public GameView(GameController c, Game g){
 	this.setVisible(true);
 	this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 	
-	opponentPanel e=new opponentPanel(c,g);
-	currentPanel r=new currentPanel(c,g);
-	main.add(e);
-	main.add(r);
+	opponentPanel oppPanel=new opponentPanel(c,g);
+	oppHand opponentHand=new oppHand(c,g);
+	
+	currentPanel currPanel=new currentPanel(c,g);
+	main.add(oppPanel);
+	main.add(opponentHand);
+	
+	
+	main.add(currPanel);
 	
 		this.add(main);
 		this.revalidate();
