@@ -25,7 +25,7 @@ public class Mage extends Hero {
     }
 
     public void buildDeck() throws IOException, CloneNotSupportedException {
-        ArrayList<Minion> neutrals = getNeutralMinions(getAllNeutralMinions("C:\\Users\\H.Maher\\Desktop\\GUC\\hmmm\\Milestone 1\\src\\neutral_minions.csv"), 13);
+        ArrayList<Minion> neutrals = getNeutralMinions(getAllNeutralMinions("C:\\Users\\H.Maher\\Desktop\\GUC\\Hearthstone Game\\Milestone 1\\src\\neutral_minions.csv"), 13);
         this.getDeck().addAll(neutrals);
 
         for(int i = 0; i < 2; ++i) {
