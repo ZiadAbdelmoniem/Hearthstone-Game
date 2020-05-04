@@ -7,7 +7,11 @@ import java.io.IOException;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
+import exceptions.FullFieldException;
 import exceptions.FullHandException;
+import exceptions.HeroPowerAlreadyUsedException;
+import exceptions.NotEnoughManaException;
+import exceptions.NotYourTurnException;
 
 
 import model.cards.minions.*;
@@ -185,16 +189,684 @@ public class GameController implements ActionListener,GameListener {
 		
 		}
 		
+		
+		if(e.getActionCommand().equals("current hero used herpower")){
+			if(model.getCurrentHero() instanceof Mage){}
+			if(model.getCurrentHero() instanceof Hunter){
+				try {
+					model.getCurrentHero().useHeroPower();
+					gameview.refresh(this, model);
+				} catch (NotEnoughManaException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (HeroPowerAlreadyUsedException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (NotYourTurnException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (FullHandException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (FullFieldException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (CloneNotSupportedException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+			if(model.getCurrentHero() instanceof Paladin){
+				try {
+					model.getCurrentHero().useHeroPower();
+					gameview.refresh(this, model);
+				} catch (NotEnoughManaException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (HeroPowerAlreadyUsedException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (NotYourTurnException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (FullHandException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (FullFieldException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (CloneNotSupportedException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+			if(model.getCurrentHero() instanceof Priest){}
+			if(model.getCurrentHero() instanceof Warlock){
+				try {
+					model.getCurrentHero().useHeroPower();
+					gameview.refresh(this, model);
+				} catch (NotEnoughManaException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (HeroPowerAlreadyUsedException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (NotYourTurnException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (FullHandException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (FullFieldException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (CloneNotSupportedException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		}
+		
+		
+		
+		
+		
 		if(e.getActionCommand().equals("0card in hand")){
 			Card card1=model.getCurrentHero().getHand().get(0);
 			if(card1 instanceof Minion){
-				model.getCurrentHero().getField().add((Minion) card1);
-				model.getCurrentHero().getHand().remove(0);
+				try {
+					model.getCurrentHero().playMinion((Minion) card1);
+					gameview.refresh(this,model);
+				} catch (NotYourTurnException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (NotEnoughManaException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (FullFieldException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 				gameview.refresh(this,model);
 				
 			}
+			else {
+				if(card1 instanceof AOESpell){
+					try {
+						model.getCurrentHero().castSpell((AOESpell)card1, model.getOpponent().getField());
+						gameview.refresh(this, model);
+					} catch (NotYourTurnException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					} catch (NotEnoughManaException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				}
+				if(card1 instanceof FieldSpell){
+					try {
+						model.getCurrentHero().castSpell((FieldSpell) card1);
+						gameview.refresh(this, model);
+					} catch (NotYourTurnException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					} catch (NotEnoughManaException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				}
+				if(card1 instanceof HeroTargetSpell){
+					//model.getCurrentHero().castSpell(card1,h);
+				}
+				if(card1 instanceof LeechingSpell){
+					//model.getCurrentHero().castSpell(card1,m);
+				}
+				if(card1 instanceof MinionTargetSpell){
+					//model.getCurrentHero().castSpell(card1,m);
+				}
 			
 		}
+			
+			
+			}
+		
+		
+		if(e.getActionCommand().equals("1card in hand")){
+			Card card1=model.getCurrentHero().getHand().get(1);
+			if(card1 instanceof Minion){
+				try {
+					model.getCurrentHero().playMinion((Minion) card1);
+					gameview.refresh(this,model);
+				} catch (NotYourTurnException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (NotEnoughManaException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (FullFieldException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				gameview.refresh(this,model);
+				
+			}
+			else {
+				if(card1 instanceof AOESpell){
+					try {
+						model.getCurrentHero().castSpell((AOESpell)card1, model.getOpponent().getField());
+						gameview.refresh(this, model);
+					} catch (NotYourTurnException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					} catch (NotEnoughManaException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				}
+				if(card1 instanceof FieldSpell){
+					try {
+						model.getCurrentHero().castSpell((FieldSpell) card1);
+						gameview.refresh(this, model);
+					} catch (NotYourTurnException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					} catch (NotEnoughManaException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				}
+				if(card1 instanceof HeroTargetSpell){
+					//model.getCurrentHero().castSpell(card1,h);
+				}
+				if(card1 instanceof LeechingSpell){
+					//model.getCurrentHero().castSpell(card1,m);
+				}
+				if(card1 instanceof MinionTargetSpell){
+					//model.getCurrentHero().castSpell(card1,m);
+				}
+			
+		}
+			
+			
+			}
+		
+		if(e.getActionCommand().equals("2card in hand")){
+			Card card1=model.getCurrentHero().getHand().get(2);
+			if(card1 instanceof Minion){
+				try {
+					model.getCurrentHero().playMinion((Minion) card1);
+					gameview.refresh(this,model);
+				} catch (NotYourTurnException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (NotEnoughManaException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (FullFieldException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				gameview.refresh(this,model);
+				
+			}
+			else {
+				if(card1 instanceof AOESpell){
+					try {
+						model.getCurrentHero().castSpell((AOESpell)card1, model.getOpponent().getField());
+						gameview.refresh(this, model);
+					} catch (NotYourTurnException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					} catch (NotEnoughManaException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				}
+				if(card1 instanceof FieldSpell){
+					try {
+						model.getCurrentHero().castSpell((FieldSpell) card1);
+						gameview.refresh(this, model);
+					} catch (NotYourTurnException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					} catch (NotEnoughManaException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				}
+				if(card1 instanceof HeroTargetSpell){
+					//model.getCurrentHero().castSpell(card1,h);
+				}
+				if(card1 instanceof LeechingSpell){
+					//model.getCurrentHero().castSpell(card1,m);
+				}
+				if(card1 instanceof MinionTargetSpell){
+					//model.getCurrentHero().castSpell(card1,m);
+				}
+			
+		}
+			
+			
+			}
+		
+		if(e.getActionCommand().equals("3card in hand")){
+			Card card1=model.getCurrentHero().getHand().get(3);
+			if(card1 instanceof Minion){
+				try {
+					model.getCurrentHero().playMinion((Minion) card1);
+					gameview.refresh(this,model);
+				} catch (NotYourTurnException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (NotEnoughManaException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (FullFieldException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				gameview.refresh(this,model);
+				
+			}
+			else {
+				if(card1 instanceof AOESpell){
+					try {
+						model.getCurrentHero().castSpell((AOESpell)card1, model.getOpponent().getField());
+						gameview.refresh(this, model);
+					} catch (NotYourTurnException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					} catch (NotEnoughManaException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				}
+				if(card1 instanceof FieldSpell){
+					try {
+						model.getCurrentHero().castSpell((FieldSpell) card1);
+						gameview.refresh(this, model);
+					} catch (NotYourTurnException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					} catch (NotEnoughManaException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				}
+				if(card1 instanceof HeroTargetSpell){
+					//model.getCurrentHero().castSpell(card1,h);
+				}
+				if(card1 instanceof LeechingSpell){
+					//model.getCurrentHero().castSpell(card1,m);
+				}
+				if(card1 instanceof MinionTargetSpell){
+					//model.getCurrentHero().castSpell(card1,m);
+				}
+			
+		}
+			
+			
+			}
+		
+		if(e.getActionCommand().equals("4card in hand")){
+			Card card1=model.getCurrentHero().getHand().get(4);
+			if(card1 instanceof Minion){
+				try {
+					model.getCurrentHero().playMinion((Minion) card1);
+					gameview.refresh(this,model);
+				} catch (NotYourTurnException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (NotEnoughManaException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (FullFieldException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				gameview.refresh(this,model);
+				
+			}
+			else {
+				if(card1 instanceof AOESpell){
+					try {
+						model.getCurrentHero().castSpell((AOESpell)card1, model.getOpponent().getField());
+						gameview.refresh(this, model);
+					} catch (NotYourTurnException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					} catch (NotEnoughManaException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				}
+				if(card1 instanceof FieldSpell){
+					try {
+						model.getCurrentHero().castSpell((FieldSpell) card1);
+						gameview.refresh(this, model);
+					} catch (NotYourTurnException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					} catch (NotEnoughManaException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				}
+				if(card1 instanceof HeroTargetSpell){
+					//model.getCurrentHero().castSpell(card1,h);
+				}
+				if(card1 instanceof LeechingSpell){
+					//model.getCurrentHero().castSpell(card1,m);
+				}
+				if(card1 instanceof MinionTargetSpell){
+					//model.getCurrentHero().castSpell(card1,m);
+				}
+			
+		}
+			
+			
+			}
+		
+		if(e.getActionCommand().equals("5card in hand")){
+			Card card1=model.getCurrentHero().getHand().get(5);
+			if(card1 instanceof Minion){
+				try {
+					model.getCurrentHero().playMinion((Minion) card1);
+					gameview.refresh(this,model);
+				} catch (NotYourTurnException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (NotEnoughManaException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (FullFieldException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				gameview.refresh(this,model);
+				
+			}
+			else {
+				if(card1 instanceof AOESpell){
+					try {
+						model.getCurrentHero().castSpell((AOESpell)card1, model.getOpponent().getField());
+						gameview.refresh(this, model);
+					} catch (NotYourTurnException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					} catch (NotEnoughManaException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				}
+				if(card1 instanceof FieldSpell){
+					try {
+						model.getCurrentHero().castSpell((FieldSpell) card1);
+						gameview.refresh(this, model);
+					} catch (NotYourTurnException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					} catch (NotEnoughManaException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				}
+				if(card1 instanceof HeroTargetSpell){
+					//model.getCurrentHero().castSpell(card1,h);
+				}
+				if(card1 instanceof LeechingSpell){
+					//model.getCurrentHero().castSpell(card1,m);
+				}
+				if(card1 instanceof MinionTargetSpell){
+					//model.getCurrentHero().castSpell(card1,m);
+				}
+			
+		}
+			
+			
+			}
+		
+		
+		if(e.getActionCommand().equals("6card in hand")){
+			Card card1=model.getCurrentHero().getHand().get(6);
+			if(card1 instanceof Minion){
+				try {
+					model.getCurrentHero().playMinion((Minion) card1);
+					gameview.refresh(this,model);
+				} catch (NotYourTurnException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (NotEnoughManaException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (FullFieldException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				gameview.refresh(this,model);
+				
+			}
+			else {
+				if(card1 instanceof AOESpell){
+					try {
+						model.getCurrentHero().castSpell((AOESpell)card1, model.getOpponent().getField());
+						gameview.refresh(this, model);
+					} catch (NotYourTurnException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					} catch (NotEnoughManaException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				}
+				if(card1 instanceof FieldSpell){
+					try {
+						model.getCurrentHero().castSpell((FieldSpell) card1);
+						gameview.refresh(this, model);
+					} catch (NotYourTurnException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					} catch (NotEnoughManaException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				}
+				if(card1 instanceof HeroTargetSpell){
+					//model.getCurrentHero().castSpell(card1,h);
+				}
+				if(card1 instanceof LeechingSpell){
+					//model.getCurrentHero().castSpell(card1,m);
+				}
+				if(card1 instanceof MinionTargetSpell){
+					//model.getCurrentHero().castSpell(card1,m);
+				}
+			
+		}
+			
+			
+			}
+		
+		if(e.getActionCommand().equals("7card in hand")){
+			Card card1=model.getCurrentHero().getHand().get(7);
+			if(card1 instanceof Minion){
+				try {
+					model.getCurrentHero().playMinion((Minion) card1);
+					gameview.refresh(this,model);
+				} catch (NotYourTurnException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (NotEnoughManaException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (FullFieldException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				gameview.refresh(this,model);
+				
+			}
+			else {
+				if(card1 instanceof AOESpell){
+					try {
+						model.getCurrentHero().castSpell((AOESpell)card1, model.getOpponent().getField());
+						gameview.refresh(this, model);
+					} catch (NotYourTurnException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					} catch (NotEnoughManaException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				}
+				if(card1 instanceof FieldSpell){
+					try {
+						model.getCurrentHero().castSpell((FieldSpell) card1);
+						gameview.refresh(this, model);
+					} catch (NotYourTurnException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					} catch (NotEnoughManaException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				}
+				if(card1 instanceof HeroTargetSpell){
+					//model.getCurrentHero().castSpell(card1,h);
+				}
+				if(card1 instanceof LeechingSpell){
+					//model.getCurrentHero().castSpell(card1,m);
+				}
+				if(card1 instanceof MinionTargetSpell){
+					//model.getCurrentHero().castSpell(card1,m);
+				}
+			
+		}
+			
+			
+			}
+		
+		if(e.getActionCommand().equals("8card in hand")){
+			Card card1=model.getCurrentHero().getHand().get(8);
+			if(card1 instanceof Minion){
+				try {
+					model.getCurrentHero().playMinion((Minion) card1);
+					gameview.refresh(this,model);
+				} catch (NotYourTurnException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (NotEnoughManaException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (FullFieldException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				gameview.refresh(this,model);
+				
+			}
+			else {
+				if(card1 instanceof AOESpell){
+					try {
+						model.getCurrentHero().castSpell((AOESpell)card1, model.getOpponent().getField());
+						gameview.refresh(this, model);
+					} catch (NotYourTurnException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					} catch (NotEnoughManaException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				}
+				if(card1 instanceof FieldSpell){
+					try {
+						model.getCurrentHero().castSpell((FieldSpell) card1);
+						gameview.refresh(this, model);
+					} catch (NotYourTurnException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					} catch (NotEnoughManaException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				}
+				if(card1 instanceof HeroTargetSpell){
+					//model.getCurrentHero().castSpell(card1,h);
+				}
+				if(card1 instanceof LeechingSpell){
+					//model.getCurrentHero().castSpell(card1,m);
+				}
+				if(card1 instanceof MinionTargetSpell){
+					//model.getCurrentHero().castSpell(card1,m);
+				}
+			
+		}
+			
+			
+			}
+		
+		if(e.getActionCommand().equals("9card in hand")){
+			Card card1=model.getCurrentHero().getHand().get(9);
+			if(card1 instanceof Minion){
+				try {
+					model.getCurrentHero().playMinion((Minion) card1);
+					gameview.refresh(this,model);
+				} catch (NotYourTurnException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (NotEnoughManaException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (FullFieldException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				gameview.refresh(this,model);
+				
+			}
+			else {
+				if(card1 instanceof AOESpell){
+					try {
+						model.getCurrentHero().castSpell((AOESpell)card1, model.getOpponent().getField());
+						gameview.refresh(this, model);
+					} catch (NotYourTurnException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					} catch (NotEnoughManaException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				}
+				if(card1 instanceof FieldSpell){
+					try {
+						model.getCurrentHero().castSpell((FieldSpell) card1);
+						gameview.refresh(this, model);
+					} catch (NotYourTurnException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					} catch (NotEnoughManaException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				}
+				if(card1 instanceof HeroTargetSpell){
+					//model.getCurrentHero().castSpell(card1,h);
+				}
+				if(card1 instanceof LeechingSpell){
+					//model.getCurrentHero().castSpell(card1,m);
+				}
+				if(card1 instanceof MinionTargetSpell){
+					//model.getCurrentHero().castSpell(card1,m);
+				}
+			
+		}
+			
+			
+			}
+		
+		
+		
+		
+		
 		
 		
 		
