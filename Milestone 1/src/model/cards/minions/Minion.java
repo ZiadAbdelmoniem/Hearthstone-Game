@@ -103,6 +103,24 @@ public class Minion extends Card implements Cloneable {
 
     }
 
+    public String tostring(){
+    	String s="Name: " +this.getName() +"Mana Cost "+this.getManaCost()+"Rarity: "+this.getRarity()+"Attack: "+this.getAttack()+"Current Hp "+this.getCurrentHP();
+    	if(this.isTaunt())
+    		s=s+" ,taunt minion";
+    	else
+    		s=s+" ,non-taunt minion";
+    	if(this.isDivine())
+    		s=s+" ,Divine minion";
+    	else
+    		s=s+" ,non Divine minion";
+    	if(this.isSleeping())
+    		s=s+" ,cannot attack immeadiately";
+    	else
+    		s=s+" ,can attack immeadiately";
+    		
+    	
+    	return s;
+    }
     public void setTaunt(boolean isTaunt) {
         this.taunt = isTaunt;
     }
