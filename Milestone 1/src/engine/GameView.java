@@ -13,8 +13,6 @@ public class GameView extends JFrame implements GameListener{
 	
 public GameView(GameController c, Game g){
 	super();
-	//f=c;
-	//h=g;
 	main=new Mains(c,g);
 	this.setBounds(600, 600, 600, 600);
 	this.setVisible(true);
@@ -33,20 +31,7 @@ public void refresh(GameController f,Game h){
 	this.revalidate();
 	this.repaint();
 	
-}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+}	
 	
 	
 	@Override
