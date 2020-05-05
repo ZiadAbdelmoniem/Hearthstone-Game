@@ -34,6 +34,8 @@ public void refresh(GameController f,Game h){
 }	
 public void removeMain(){
 	this.remove(main);
+	//JLabel text=new JLabel("the game ends");
+	//this.add(text);
 	this.revalidate();
 	this.repaint();
 }

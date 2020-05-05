@@ -12,19 +12,21 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.border.Border;
 
+import exceptions.CannotAttackException;
 import exceptions.FullFieldException;
 import exceptions.FullHandException;
 import exceptions.HeroPowerAlreadyUsedException;
 import exceptions.InvalidTargetException;
 import exceptions.NotEnoughManaException;
+import exceptions.NotSummonedException;
 import exceptions.NotYourTurnException;
+import exceptions.TauntBypassException;
 
 
 import model.cards.minions.*;
 import model.cards.spells.*;
 import model.cards.*;
 import model.heroes.*;
-import model.heroes.Hero;
 
 public class GameController implements ActionListener,GameListener {
 	private static Game model;
@@ -258,7 +260,9 @@ public class GameController implements ActionListener,GameListener {
 					e1.printStackTrace();
 				}
 			}
-			if(model.getCurrentHero() instanceof Priest){}
+			if(model.getCurrentHero() instanceof Priest){
+				gameview.removeMain();
+			}
 			if(model.getCurrentHero() instanceof Warlock){
 				try {
 					model.getCurrentHero().useHeroPower();
@@ -944,9 +948,21 @@ public class GameController implements ActionListener,GameListener {
 		if(e.getActionCommand().equals("hero to be attacked")){
 			if(spelltobeused==null && herotousepower==null && minionInAttack!=null){
 				try {
-					minionInAttack.attack(model.getOpponent());
+					model.getCurrentHero().attackWithMinion(minionInAttack, model.getOpponent());
 					minionInAttack=null;
 					gameview.refresh(this, model);
+				} catch (CannotAttackException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (NotYourTurnException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (TauntBypassException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (NotSummonedException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
 				} catch (InvalidTargetException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -1007,55 +1023,287 @@ public class GameController implements ActionListener,GameListener {
 		
 		if(e.getActionCommand().equals("wants to attack the minion number 0")){
 			if(herotousepower==null && spelltobeused==null && minionInAttack!=null){
-			minionInAttack.attack(model.getOpponent().getField().get(0));
-			gameview.refresh(this, model);
-			minionInAttack=null;
+				try {
+					model.getCurrentHero().attackWithMinion(minionInAttack,(model.getOpponent().getField().get(0)));
+					gameview.refresh(this, model);
+					minionInAttack=null;
+				} catch (CannotAttackException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (NotYourTurnException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (TauntBypassException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (InvalidTargetException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (NotSummonedException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 		}
+			else if(herotousepower==null && minionInAttack==null && spelltobeused!=null && spelltobeused instanceof MinionTargetSpell){
+			try {
+				model.getCurrentHero().castSpell((MinionTargetSpell) spelltobeused, model.getOpponent().getField().get(0));
+				gameview.refresh(this, model);
+				spelltobeused=null;
+			} catch (NotYourTurnException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (NotEnoughManaException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (InvalidTargetException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}	
 	}
 		if(e.getActionCommand().equals("wants to attack the minion number 1")){
 			if(herotousepower==null && spelltobeused==null && minionInAttack!=null){
-			minionInAttack.attack(model.getOpponent().getField().get(1));
-			gameview.refresh(this, model);
-			minionInAttack=null;
+				try {
+					model.getCurrentHero().attackWithMinion(minionInAttack,(model.getOpponent().getField().get(1)));
+					gameview.refresh(this, model);
+					minionInAttack=null;
+				} catch (CannotAttackException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (NotYourTurnException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (TauntBypassException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (InvalidTargetException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (NotSummonedException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 		}
+			else if(herotousepower==null && minionInAttack==null && spelltobeused!=null && spelltobeused instanceof MinionTargetSpell){
+				try {
+					model.getCurrentHero().castSpell((MinionTargetSpell) spelltobeused, model.getOpponent().getField().get(1));
+					gameview.refresh(this, model);
+					spelltobeused=null;
+				} catch (NotYourTurnException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (NotEnoughManaException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (InvalidTargetException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}	
 	}
 		if(e.getActionCommand().equals("wants to attack the minion number 2")){
 			if(herotousepower==null && spelltobeused==null && minionInAttack!=null){
-			minionInAttack.attack(model.getOpponent().getField().get(2));
-			gameview.refresh(this, model);
-			minionInAttack=null;
+			try {
+				model.getCurrentHero().attackWithMinion(minionInAttack,(model.getOpponent().getField().get(2)));
+				gameview.refresh(this, model);
+				minionInAttack=null;
+			} catch (CannotAttackException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (NotYourTurnException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (TauntBypassException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (InvalidTargetException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (NotSummonedException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 		}
-	}
+	
+			else if(herotousepower==null && minionInAttack==null && spelltobeused!=null && spelltobeused instanceof MinionTargetSpell){
+				try {
+					model.getCurrentHero().castSpell((MinionTargetSpell) spelltobeused, model.getOpponent().getField().get(2));
+					gameview.refresh(this, model);
+					spelltobeused=null;
+				} catch (NotYourTurnException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (NotEnoughManaException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (InvalidTargetException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}	
+		}
 		if(e.getActionCommand().equals("wants to attack the minion number 3")){
 			if(herotousepower==null && spelltobeused==null && minionInAttack!=null){
-			minionInAttack.attack(model.getOpponent().getField().get(3));
-			gameview.refresh(this, model);
-			minionInAttack=null;
+				try {
+					model.getCurrentHero().attackWithMinion(minionInAttack,(model.getOpponent().getField().get(3)));
+					gameview.refresh(this, model);
+					minionInAttack=null;
+				} catch (CannotAttackException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (NotYourTurnException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (TauntBypassException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (InvalidTargetException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (NotSummonedException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 		}
+			else if(herotousepower==null && minionInAttack==null && spelltobeused!=null && spelltobeused instanceof MinionTargetSpell){
+				try {
+					model.getCurrentHero().castSpell((MinionTargetSpell) spelltobeused, model.getOpponent().getField().get(3));
+					gameview.refresh(this, model);
+					spelltobeused=null;
+				} catch (NotYourTurnException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (NotEnoughManaException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (InvalidTargetException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}	
 	}
 		if(e.getActionCommand().equals("wants to attack the minion number 4")){
 			if(herotousepower==null && spelltobeused==null && minionInAttack!=null){
-			minionInAttack.attack(model.getOpponent().getField().get(4));
-			gameview.refresh(this, model);
-			minionInAttack=null;
-			
+				try {
+					model.getCurrentHero().attackWithMinion(minionInAttack,(model.getOpponent().getField().get(4)));
+					gameview.refresh(this, model);
+					minionInAttack=null;
+				} catch (CannotAttackException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (NotYourTurnException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (TauntBypassException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (InvalidTargetException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (NotSummonedException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 		}
+		
+			else if(herotousepower==null && minionInAttack==null && spelltobeused!=null && spelltobeused instanceof MinionTargetSpell){
+				try {
+					model.getCurrentHero().castSpell((MinionTargetSpell) spelltobeused, model.getOpponent().getField().get(4));
+					gameview.refresh(this, model);
+					spelltobeused=null;
+				} catch (NotYourTurnException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (NotEnoughManaException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (InvalidTargetException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}		
 		}
 		
 		if(e.getActionCommand().equals("wants to attack the minion number 5")){
 			if(herotousepower==null && spelltobeused==null && minionInAttack!=null){
-			minionInAttack.attack(model.getOpponent().getField().get(5));
-			gameview.refresh(this, model);
-			minionInAttack=null;
+				try {
+					model.getCurrentHero().attackWithMinion(minionInAttack,(model.getOpponent().getField().get(5)));
+					gameview.refresh(this, model);
+					minionInAttack=null;
+				} catch (CannotAttackException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (NotYourTurnException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (TauntBypassException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (InvalidTargetException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (NotSummonedException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
+			else if(herotousepower==null && minionInAttack==null && spelltobeused!=null && spelltobeused instanceof MinionTargetSpell){
+				try {
+					model.getCurrentHero().castSpell((MinionTargetSpell) spelltobeused, model.getOpponent().getField().get(5));
+					gameview.refresh(this, model);
+					spelltobeused=null;
+				} catch (NotYourTurnException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (NotEnoughManaException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (InvalidTargetException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}	
 		}
 		
 		if(e.getActionCommand().equals("wants to attack the minion number 6")){
 			if(herotousepower==null && spelltobeused==null && minionInAttack!=null){
-			minionInAttack.attack(model.getOpponent().getField().get(6));
-			gameview.refresh(this, model);
-			minionInAttack=null;
+				try {
+					model.getCurrentHero().attackWithMinion(minionInAttack,(model.getOpponent().getField().get(6)));
+					gameview.refresh(this, model);
+					minionInAttack=null;
+				} catch (CannotAttackException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (NotYourTurnException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (TauntBypassException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (InvalidTargetException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (NotSummonedException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 		}
+			else if(herotousepower==null && minionInAttack==null && spelltobeused!=null && spelltobeused instanceof MinionTargetSpell){
+				try {
+					model.getCurrentHero().castSpell((MinionTargetSpell) spelltobeused, model.getOpponent().getField().get(6));
+					gameview.refresh(this, model);
+					spelltobeused=null;
+				} catch (NotYourTurnException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (NotEnoughManaException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (InvalidTargetException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}	
 	}
 		if(e.getActionCommand().equals("turn ended")){
 			try {
