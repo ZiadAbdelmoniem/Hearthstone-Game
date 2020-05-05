@@ -19,12 +19,15 @@ public Mains(GameController c,Game g){
 		this.setVisible(true);
 		oppPanel=new opponentPanel(c,g);
 		opponentHand=new oppHand(c,g);
-		
+		//oppfield1=
+		//currfield1=
+		//currhand1=
 		currPanel=new currentPanel(c,g);
 		this.add(oppPanel);
 		this.add(opponentHand);
-		
-		
+		//this.add(oppfield1);
+		//this.add(currfield1);
+		//this.add(currhand1);
 		this.add(currPanel);
 		
 		
