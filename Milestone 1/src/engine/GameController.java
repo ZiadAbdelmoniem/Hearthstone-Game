@@ -15,6 +15,7 @@ import javax.swing.border.Border;
 import exceptions.FullFieldException;
 import exceptions.FullHandException;
 import exceptions.HeroPowerAlreadyUsedException;
+import exceptions.InvalidTargetException;
 import exceptions.NotEnoughManaException;
 import exceptions.NotYourTurnException;
 
@@ -23,6 +24,7 @@ import model.cards.minions.*;
 import model.cards.spells.*;
 import model.cards.*;
 import model.heroes.*;
+import model.heroes.Hero;
 
 public class GameController implements ActionListener,GameListener {
 	private static Game model;
@@ -332,13 +334,19 @@ public class GameController implements ActionListener,GameListener {
 					}
 				}
 				if(card1 instanceof HeroTargetSpell){
-					//model.getCurrentHero().castSpell(card1,h);
+					spelltobeused=(Spell) model.getCurrentHero().getHand().get(0);
+					herotousepower=null;
+					minionInAttack=null;
 				}
 				if(card1 instanceof LeechingSpell){
-					//model.getCurrentHero().castSpell(card1,m);
+					spelltobeused=(Spell) model.getCurrentHero().getHand().get(0);
+					herotousepower=null;
+					minionInAttack=null;
 				}
 				if(card1 instanceof MinionTargetSpell){
-					//model.getCurrentHero().castSpell(card1,m);
+					spelltobeused=(Spell) model.getCurrentHero().getHand().get(0);
+					herotousepower=null;
+					minionInAttack=null;
 				}
 			
 		}
@@ -392,13 +400,19 @@ public class GameController implements ActionListener,GameListener {
 					}
 				}
 				if(card1 instanceof HeroTargetSpell){
-					//model.getCurrentHero().castSpell(card1,h);
+					spelltobeused=(Spell) model.getCurrentHero().getHand().get(1);
+					herotousepower=null;
+					minionInAttack=null;
 				}
 				if(card1 instanceof LeechingSpell){
-					//model.getCurrentHero().castSpell(card1,m);
+					spelltobeused=(Spell) model.getCurrentHero().getHand().get(1);
+					herotousepower=null;
+					minionInAttack=null;
 				}
 				if(card1 instanceof MinionTargetSpell){
-					//model.getCurrentHero().castSpell(card1,m);
+					spelltobeused=(Spell) model.getCurrentHero().getHand().get(1);
+					herotousepower=null;
+					minionInAttack=null;
 				}
 			
 		}
@@ -451,13 +465,19 @@ public class GameController implements ActionListener,GameListener {
 					}
 				}
 				if(card1 instanceof HeroTargetSpell){
-					//model.getCurrentHero().castSpell(card1,h);
+					spelltobeused=(Spell) model.getCurrentHero().getHand().get(2);
+					herotousepower=null;
+					minionInAttack=null;
 				}
 				if(card1 instanceof LeechingSpell){
-					//model.getCurrentHero().castSpell(card1,m);
+					spelltobeused=(Spell) model.getCurrentHero().getHand().get(2);
+					herotousepower=null;
+					minionInAttack=null;
 				}
 				if(card1 instanceof MinionTargetSpell){
-					//model.getCurrentHero().castSpell(card1,m);
+					spelltobeused=(Spell) model.getCurrentHero().getHand().get(2);
+					herotousepower=null;
+					minionInAttack=null;
 				}
 			
 		}
@@ -510,13 +530,19 @@ public class GameController implements ActionListener,GameListener {
 					}
 				}
 				if(card1 instanceof HeroTargetSpell){
-					//model.getCurrentHero().castSpell(card1,h);
+					spelltobeused=(Spell) model.getCurrentHero().getHand().get(3);
+					herotousepower=null;
+					minionInAttack=null;
 				}
 				if(card1 instanceof LeechingSpell){
-					//model.getCurrentHero().castSpell(card1,m);
+					spelltobeused=(Spell) model.getCurrentHero().getHand().get(3);
+					herotousepower=null;
+					minionInAttack=null;
 				}
 				if(card1 instanceof MinionTargetSpell){
-					//model.getCurrentHero().castSpell(card1,m);
+					spelltobeused=(Spell) model.getCurrentHero().getHand().get(3);
+					herotousepower=null;
+					minionInAttack=null;
 				}
 			
 		}
@@ -569,13 +595,19 @@ public class GameController implements ActionListener,GameListener {
 					}
 				}
 				if(card1 instanceof HeroTargetSpell){
-					//model.getCurrentHero().castSpell(card1,h);
+					spelltobeused=(Spell) model.getCurrentHero().getHand().get(4);
+					herotousepower=null;
+					minionInAttack=null;
 				}
 				if(card1 instanceof LeechingSpell){
-					//model.getCurrentHero().castSpell(card1,m);
+					spelltobeused=(Spell) model.getCurrentHero().getHand().get(4);
+					herotousepower=null;
+					minionInAttack=null;
 				}
 				if(card1 instanceof MinionTargetSpell){
-					//model.getCurrentHero().castSpell(card1,m);
+					spelltobeused=(Spell) model.getCurrentHero().getHand().get(4);
+					herotousepower=null;
+					minionInAttack=null;
 				}
 			
 		}
@@ -628,13 +660,19 @@ public class GameController implements ActionListener,GameListener {
 					}
 				}
 				if(card1 instanceof HeroTargetSpell){
-					//model.getCurrentHero().castSpell(card1,h);
+					spelltobeused=(Spell) model.getCurrentHero().getHand().get(5);
+					herotousepower=null;
+					minionInAttack=null;
 				}
 				if(card1 instanceof LeechingSpell){
-					//model.getCurrentHero().castSpell(card1,m);
+					spelltobeused=(Spell) model.getCurrentHero().getHand().get(5);
+					herotousepower=null;
+					minionInAttack=null;
 				}
 				if(card1 instanceof MinionTargetSpell){
-					//model.getCurrentHero().castSpell(card1,m);
+					spelltobeused=(Spell) model.getCurrentHero().getHand().get(5);
+					herotousepower=null;
+					minionInAttack=null;
 				}
 			
 		}
@@ -688,13 +726,19 @@ public class GameController implements ActionListener,GameListener {
 					}
 				}
 				if(card1 instanceof HeroTargetSpell){
-					//model.getCurrentHero().castSpell(card1,h);
+					spelltobeused=(Spell) model.getCurrentHero().getHand().get(6);
+					herotousepower=null;
+					minionInAttack=null;
 				}
 				if(card1 instanceof LeechingSpell){
-					//model.getCurrentHero().castSpell(card1,m);
+					spelltobeused=(Spell) model.getCurrentHero().getHand().get(6);
+					herotousepower=null;
+					minionInAttack=null;
 				}
 				if(card1 instanceof MinionTargetSpell){
-					//model.getCurrentHero().castSpell(card1,m);
+					spelltobeused=(Spell) model.getCurrentHero().getHand().get(6);
+					herotousepower=null;
+					minionInAttack=null;
 				}
 			
 		}
@@ -747,13 +791,19 @@ public class GameController implements ActionListener,GameListener {
 					}
 				}
 				if(card1 instanceof HeroTargetSpell){
-					//model.getCurrentHero().castSpell(card1,h);
+					spelltobeused=(Spell) model.getCurrentHero().getHand().get(7);
+					herotousepower=null;
+					minionInAttack=null;
 				}
 				if(card1 instanceof LeechingSpell){
-					//model.getCurrentHero().castSpell(card1,m);
+					spelltobeused=(Spell) model.getCurrentHero().getHand().get(7);
+					herotousepower=null;
+					minionInAttack=null;
 				}
 				if(card1 instanceof MinionTargetSpell){
-					//model.getCurrentHero().castSpell(card1,m);
+					spelltobeused=(Spell) model.getCurrentHero().getHand().get(7);
+					herotousepower=null;
+					minionInAttack=null;
 				}
 			
 		}
@@ -806,13 +856,19 @@ public class GameController implements ActionListener,GameListener {
 					}
 				}
 				if(card1 instanceof HeroTargetSpell){
-					//model.getCurrentHero().castSpell(card1,h);
+					spelltobeused=(Spell) model.getCurrentHero().getHand().get(8);
+					herotousepower=null;
+					minionInAttack=null;
 				}
 				if(card1 instanceof LeechingSpell){
-					//model.getCurrentHero().castSpell(card1,m);
+					spelltobeused=(Spell) model.getCurrentHero().getHand().get(8);
+					herotousepower=null;
+					minionInAttack=null;
 				}
 				if(card1 instanceof MinionTargetSpell){
-					//model.getCurrentHero().castSpell(card1,m);
+					spelltobeused=(Spell) model.getCurrentHero().getHand().get(8);
+					herotousepower=null;
+					minionInAttack=null;
 				}
 			
 		}
@@ -865,13 +921,19 @@ public class GameController implements ActionListener,GameListener {
 					}
 				}
 				if(card1 instanceof HeroTargetSpell){
-					//model.getCurrentHero().castSpell(card1,h);
+					spelltobeused=(Spell) model.getCurrentHero().getHand().get(9);
+					herotousepower=null;
+					minionInAttack=null;
 				}
 				if(card1 instanceof LeechingSpell){
-					//model.getCurrentHero().castSpell(card1,m);
+					spelltobeused=(Spell) model.getCurrentHero().getHand().get(9);
+					herotousepower=null;
+					minionInAttack=null;
 				}
 				if(card1 instanceof MinionTargetSpell){
-					//model.getCurrentHero().castSpell(card1,m);
+					spelltobeused=(Spell) model.getCurrentHero().getHand().get(9);
+					herotousepower=null;
+					minionInAttack=null;
 				}
 			
 		}
@@ -879,45 +941,131 @@ public class GameController implements ActionListener,GameListener {
 			
 			}
 		
+		if(e.getActionCommand().equals("hero to be attacked")){
+			if(spelltobeused==null && herotousepower==null && minionInAttack!=null){
+				try {
+					minionInAttack.attack(model.getOpponent());
+					minionInAttack=null;
+					gameview.refresh(this, model);
+				} catch (InvalidTargetException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+			else if(spelltobeused!=null && herotousepower==null && minionInAttack!=null && spelltobeused instanceof HeroTargetSpell){
+		try {
+			model.getCurrentHero().castSpell((HeroTargetSpell)spelltobeused, model.getOpponent());
+			gameview.refresh(this,model);
+		} catch (NotYourTurnException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (NotEnoughManaException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+			}
+		}
+		
+		if(e.getActionCommand().equals("Minion on field to attack number0")){
+			minionInAttack=model.getCurrentHero().getField().get(0);
+			spelltobeused=null;
+			herotousepower=null;
+		}
+		if(e.getActionCommand().equals("Minion on field to attack number1")){
+			minionInAttack=model.getCurrentHero().getField().get(1);
+			spelltobeused=null;
+			herotousepower=null;
+		}
+		if(e.getActionCommand().equals("Minion on field to attack number2")){
+			minionInAttack=model.getCurrentHero().getField().get(2);
+			spelltobeused=null;
+			herotousepower=null;
+		}
+		if(e.getActionCommand().equals("Minion on field to attack number3")){
+			minionInAttack=model.getCurrentHero().getField().get(3);
+			spelltobeused=null;
+			herotousepower=null;
+		}
+		if(e.getActionCommand().equals("Minion on field to attack number4")){
+			minionInAttack=model.getCurrentHero().getField().get(4);
+			spelltobeused=null;
+			herotousepower=null;
+		}
+		if(e.getActionCommand().equals("Minion on field to attack number5")){
+			minionInAttack=model.getCurrentHero().getField().get(5);
+			spelltobeused=null;
+			herotousepower=null;
+		}
+		if(e.getActionCommand().equals("Minion on field to attack number6")){
+			minionInAttack=model.getCurrentHero().getField().get(6);
+			spelltobeused=null;
+			herotousepower=null;
+		}
+		
+		
+		
 		if(e.getActionCommand().equals("wants to attack the minion number 0")){
-			if(herotousepower==null && spelltobeused==null && minionInAttack!=null)
+			if(herotousepower==null && spelltobeused==null && minionInAttack!=null){
 			minionInAttack.attack(model.getOpponent().getField().get(0));
+			gameview.refresh(this, model);
+			minionInAttack=null;
 		}
-		
+	}
 		if(e.getActionCommand().equals("wants to attack the minion number 1")){
-			if(herotousepower==null && spelltobeused==null && minionInAttack!=null)
+			if(herotousepower==null && spelltobeused==null && minionInAttack!=null){
 			minionInAttack.attack(model.getOpponent().getField().get(1));
+			gameview.refresh(this, model);
+			minionInAttack=null;
 		}
-		
+	}
 		if(e.getActionCommand().equals("wants to attack the minion number 2")){
-			if(herotousepower==null && spelltobeused==null && minionInAttack!=null)
+			if(herotousepower==null && spelltobeused==null && minionInAttack!=null){
 			minionInAttack.attack(model.getOpponent().getField().get(2));
+			gameview.refresh(this, model);
+			minionInAttack=null;
 		}
-		
+	}
 		if(e.getActionCommand().equals("wants to attack the minion number 3")){
-			if(herotousepower==null && spelltobeused==null && minionInAttack!=null)
+			if(herotousepower==null && spelltobeused==null && minionInAttack!=null){
 			minionInAttack.attack(model.getOpponent().getField().get(3));
+			gameview.refresh(this, model);
+			minionInAttack=null;
 		}
-		
+	}
 		if(e.getActionCommand().equals("wants to attack the minion number 4")){
-			if(herotousepower==null && spelltobeused==null && minionInAttack!=null)
+			if(herotousepower==null && spelltobeused==null && minionInAttack!=null){
 			minionInAttack.attack(model.getOpponent().getField().get(4));
+			gameview.refresh(this, model);
+			minionInAttack=null;
+			
+		}
 		}
 		
 		if(e.getActionCommand().equals("wants to attack the minion number 5")){
-			if(herotousepower==null && spelltobeused==null && minionInAttack!=null)
+			if(herotousepower==null && spelltobeused==null && minionInAttack!=null){
 			minionInAttack.attack(model.getOpponent().getField().get(5));
+			gameview.refresh(this, model);
+			minionInAttack=null;
+			}
 		}
 		
 		if(e.getActionCommand().equals("wants to attack the minion number 6")){
-			if(herotousepower==null && spelltobeused==null && minionInAttack!=null)
+			if(herotousepower==null && spelltobeused==null && minionInAttack!=null){
 			minionInAttack.attack(model.getOpponent().getField().get(6));
+			gameview.refresh(this, model);
+			minionInAttack=null;
 		}
-		
+	}
 		if(e.getActionCommand().equals("turn ended")){
 			try {
 				model.endTurn();
 				gameview.refresh(this, model);
+				minionInAttack=null;
+				herotobeattacked=null;
+				spelltobeused=null;
+				herotousepower=null;
+				
 			} catch (FullHandException | CloneNotSupportedException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
