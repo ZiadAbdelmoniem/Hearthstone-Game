@@ -11,9 +11,11 @@ public class Mains extends JPanel {
 	private currentField currfield1;
 	private currentHand currhand1;
 	private currentPanel currPanel;
+	private Game r;
 	
 public Mains(GameController c,Game g){
 		super();
+		r=g;
 		this.setLayout(new GridLayout(6,1));
 		this.setVisible(true);
 		oppPanel=new opponentPanel(c,g);
@@ -33,5 +35,8 @@ public Mains(GameController c,Game g){
 			this.revalidate();
 			this.repaint();
 	}
+public Game getGame(){
+	return r;
+}
 
 }

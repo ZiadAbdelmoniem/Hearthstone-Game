@@ -32,12 +32,17 @@ public void refresh(GameController f,Game h){
 	this.repaint();
 	
 }	
+public void removeMain(){
+	this.remove(main);
+	this.revalidate();
+	this.repaint();
+}
 	
 	
 	@Override
 	public void onGameOver() {
-		// TODO Auto-generated method stub
-		
+	
 	}
+
 
 }

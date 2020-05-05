@@ -1,11 +1,16 @@
 package engine;
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 
+import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextArea;
+import javax.swing.border.Border;
 
 import exceptions.FullFieldException;
 import exceptions.FullHandException;
@@ -25,32 +30,43 @@ public class GameController implements ActionListener,GameListener {
 	private static GameView gameview;
 	private static Hero firstplayer;
 	private static Hero secplayer;
+	private static Minion minionInAttack;
+	private static Hero herotobeattacked;
+	private static Spell spelltobeused;
+	private static Hero herotousepower;
 	
 	
 	public GameController(){
+		minionInAttack=null;
+		herotobeattacked=null;
+		spelltobeused=null;
+		herotousepower=null;
 		view=new preGameView(this);
-			
-			//model=new Game(firstplayer,secplayer);
 	}
 
 
 	@Override
 	public void onGameOver() {
-		// TODO Auto-generated method stub
-		
+		if(firstplayer.getCurrentHP()==0){
+			gameview.removeMain();
+			JLabel player2=new JLabel("THE 2ND PLAYER WINSS!!!");
+			gameview.add(player2);
+			gameview.revalidate();
+			gameview.repaint();
+		}
+		else if(secplayer.getCurrentHP()==0){
+			gameview.removeMain();
+			JLabel player1=new JLabel("THE 1st PLAYER WINSS!!!");
+			gameview.add(player1);
+			gameview.revalidate();
+			gameview.repaint();
+		}
 	}
 
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getActionCommand().equals("chosen the heros lets play")){
-			//JFrame game=new JFrame();
-			//game.setBounds(600, 600, 600, 600);
-			//JLabel text1= new JLabel(firstplayer.getName());
-			//game.add(text1);
-			//JLabel text2= new JLabel(secplayer.getName());
-			//game.add(text2);
-			//game.setVisible(true);
 			Game g;
 			try {
 				g = new Game(firstplayer, secplayer);
@@ -863,13 +879,40 @@ public class GameController implements ActionListener,GameListener {
 			
 			}
 		
+		if(e.getActionCommand().equals("wants to attack the minion number 0")){
+			if(herotousepower==null && spelltobeused==null && minionInAttack!=null)
+			minionInAttack.attack(model.getOpponent().getField().get(0));
+		}
 		
+		if(e.getActionCommand().equals("wants to attack the minion number 1")){
+			if(herotousepower==null && spelltobeused==null && minionInAttack!=null)
+			minionInAttack.attack(model.getOpponent().getField().get(1));
+		}
 		
+		if(e.getActionCommand().equals("wants to attack the minion number 2")){
+			if(herotousepower==null && spelltobeused==null && minionInAttack!=null)
+			minionInAttack.attack(model.getOpponent().getField().get(2));
+		}
 		
+		if(e.getActionCommand().equals("wants to attack the minion number 3")){
+			if(herotousepower==null && spelltobeused==null && minionInAttack!=null)
+			minionInAttack.attack(model.getOpponent().getField().get(3));
+		}
 		
+		if(e.getActionCommand().equals("wants to attack the minion number 4")){
+			if(herotousepower==null && spelltobeused==null && minionInAttack!=null)
+			minionInAttack.attack(model.getOpponent().getField().get(4));
+		}
 		
+		if(e.getActionCommand().equals("wants to attack the minion number 5")){
+			if(herotousepower==null && spelltobeused==null && minionInAttack!=null)
+			minionInAttack.attack(model.getOpponent().getField().get(5));
+		}
 		
-		
+		if(e.getActionCommand().equals("wants to attack the minion number 6")){
+			if(herotousepower==null && spelltobeused==null && minionInAttack!=null)
+			minionInAttack.attack(model.getOpponent().getField().get(6));
+		}
 		
 		if(e.getActionCommand().equals("turn ended")){
 			try {
@@ -890,6 +933,10 @@ public class GameController implements ActionListener,GameListener {
 	
 	public static void main (String [] args){
 		GameController c=new GameController();
+		//JTextArea nignog=new JTextArea("niggaa is the biggest   farstcvo invjsvs pcsndv bsdubvsbiv ios ndbhs b dchsu cbiushc iush cuh s uhi cbhsb cbdb bd bu ebvibbf efi ygd yc vv");
+		//nignog.setLineWrap(true);
+		//nn.add(nignog);
+		//nignog.setVisible(true);
 	
 	}
 }
