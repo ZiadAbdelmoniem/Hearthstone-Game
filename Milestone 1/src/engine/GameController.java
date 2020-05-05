@@ -9,6 +9,10 @@ import javax.swing.JLabel;
 
 import exceptions.FullHandException;
 
+
+import model.cards.minions.*;
+import model.cards.spells.*;
+import model.cards.*;
 import model.heroes.*;
 
 public class GameController implements ActionListener,GameListener {
@@ -181,6 +185,29 @@ public class GameController implements ActionListener,GameListener {
 		
 		}
 		
+		if(e.getActionCommand().equals("0card in hand")){
+			Card card1=model.getCurrentHero().getHand().get(0);
+			if(card1 instanceof Minion){
+				model.getCurrentHero().getField().add((Minion) card1);
+				model.getCurrentHero().getHand().remove(0);
+				gameview.refresh(this,model);
+				
+			}
+			
+		}
+		
+		
+		
+		
+		if(e.getActionCommand().equals("turn ended")){
+			try {
+				model.endTurn();
+				gameview.refresh(this, model);
+			} catch (FullHandException | CloneNotSupportedException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}
 		
 		
 	}

@@ -79,7 +79,7 @@ public class Minion extends Card implements Cloneable {
     public void setCurrentHP(int currentHP) {
         this.currentHP = currentHP;
         if (this.currentHP > this.maxHP) {
-            currentHP = this.maxHP;
+            this.currentHP = this.maxHP;
         } else if (this.currentHP <= 0) {
             this.currentHP = 0;
             this.listener.onMinionDeath(this);
@@ -104,19 +104,19 @@ public class Minion extends Card implements Cloneable {
     }
 
     public String tostring(){
-    	String s="Name: " +this.getName() +"Mana Cost "+this.getManaCost()+"Rarity: "+this.getRarity()+"Attack: "+this.getAttack()+"Current Hp "+this.getCurrentHP();
+    	String s= this.getName() +" "+this.getManaCost()+" "+this.getRarity()+"Attack: "+this.getAttack()+"Hp "+this.getCurrentHP();
     	if(this.isTaunt())
-    		s=s+" ,taunt minion";
+    		s=s+" ,taunt";
     	else
-    		s=s+" ,non-taunt minion";
+    		s=s +" ,non-taunt";
     	if(this.isDivine())
-    		s=s+" ,Divine minion";
+    		s=s+" ,Divine";
     	else
-    		s=s+" ,non Divine minion";
+    		s=s+" ,non-Divine";
     	if(this.isSleeping())
-    		s=s+" ,cannot attack immeadiately";
+    		s=s+" ,Sleeping";
     	else
-    		s=s+" ,can attack immeadiately";
+    		s=s+" ,Charge!";
     		
     	
     	return s;
