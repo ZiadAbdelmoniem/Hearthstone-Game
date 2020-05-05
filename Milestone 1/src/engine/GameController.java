@@ -1059,7 +1059,72 @@ public class GameController implements ActionListener,GameListener {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
-		}	
+		}
+			else if(herotousepower==null && minionInAttack==null && spelltobeused!=null && spelltobeused instanceof LeechingSpell){
+				try {
+					model.getCurrentHero().castSpell((LeechingSpell)spelltobeused, model.getOpponent().getField().get(0));
+					spelltobeused=null;
+					gameview.refresh(this, model);
+				} catch (NotYourTurnException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (NotEnoughManaException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+			else if(herotousepower!=null && minionInAttack==null && spelltobeused==null && (herotousepower instanceof Mage || herotousepower instanceof Priest)){
+				if(herotousepower instanceof Mage){
+				try {
+					((Mage)herotousepower).useHeroPower((Minion)model.getOpponent().getField().get(0));
+					herotousepower=null;
+					gameview.refresh(this, model);
+				} catch (NotEnoughManaException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (HeroPowerAlreadyUsedException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (NotYourTurnException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (FullHandException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (FullFieldException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (CloneNotSupportedException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				}
+				else if(herotousepower instanceof Priest){
+					try {
+						((Priest)herotousepower).useHeroPower((Minion)model.getOpponent().getField().get(0));
+						herotousepower=null;
+						gameview.refresh(this, model);
+					} catch (NotEnoughManaException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					} catch (HeroPowerAlreadyUsedException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					} catch (NotYourTurnException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					} catch (FullHandException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					} catch (FullFieldException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					} catch (CloneNotSupportedException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					}
+				}
 	}
 		if(e.getActionCommand().equals("wants to attack the minion number 1")){
 			if(herotousepower==null && spelltobeused==null && minionInAttack!=null){
