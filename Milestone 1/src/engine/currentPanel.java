@@ -12,7 +12,7 @@ import javax.swing.border.Border;
 public class currentPanel extends JPanel{
 	private JLabel hp;
 	private JButton heropower;
-	private JLabel nameofhero;
+	private JButton nameofhero;
 	private JLabel manano;
 	private JLabel deck;
 	private JButton endturn;
@@ -30,7 +30,9 @@ public currentPanel(GameController c,Game g){
 	heropower.addActionListener(c);
 	heropower.setBorder(blackline);
 	this.add(heropower);
-	nameofhero=new JLabel(g.getCurrentHero().getName());
+	nameofhero=new JButton(g.getCurrentHero().getName());
+	nameofhero.setActionCommand("hero0");
+	nameofhero.addActionListener(c);
 	nameofhero.setBorder(blackline);
 	this.add(nameofhero);
 	manano=new JLabel("mana:"+Integer.toString(g.getCurrentHero().getCurrentManaCrystals()));
@@ -45,14 +47,14 @@ public currentPanel(GameController c,Game g){
 	this.add(endturn);
 	this.revalidate();
 	this.repaint();
-	if(g.getCurrentHero().getCurrentHP()==0){
-		c.onGameOver();
+	//if(g.getCurrentHero().getCurrentHP()==0){
+		//c.onGameOver();
 		
 	}
-	
+
 	
 
-}
+
 
 public JLabel getHp() {
 	return hp;
@@ -70,11 +72,11 @@ public void setHeropower(JButton heropower) {
 	this.heropower = heropower;
 }
 
-public JLabel getNameofhero() {
+public JButton getNameofhero() {
 	return nameofhero;
 }
 
-public void setNameofhero(JLabel nameofhero) {
+public void setNameofhero(JButton nameofhero) {
 	this.nameofhero = nameofhero;
 }
 

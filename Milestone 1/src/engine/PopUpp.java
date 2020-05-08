@@ -21,5 +21,22 @@ public class PopUpp extends JFrame{
 		this.revalidate();
 		this.repaint();
 	}
+	
+	public PopUpp(String s,int x){
+		super();
+		if(x==1){
+		JLabel b=new JLabel(s);
+		b.setBounds(300, 300, 300, 300);
+		b.setFont(new Font("Serif", Font.PLAIN, 22));
+		this.setBounds(400,400,400,400);
+		this.getContentPane().setBackground(Color.CYAN);
+		this.add(b);
+		this.setLocationRelativeTo(null);
+		this.setVisible(true);
+		this.revalidate();
+		this.repaint();
+		
+		}
+		}
 
 }

@@ -52,14 +52,20 @@ public class GameController implements ActionListener,GameListener {
 	@Override
 	public void onGameOver() {
 		if(firstplayer.getCurrentHP()==0){
-			gameview.removeMain("THE 2ND PLAYER WINSS!!!");
+			gameview.setVisible(false);
+			gameview.removeAll();
+			gameview.dispose();
 			gameview.revalidate();
 			gameview.repaint();
+			new PopUpp("2nd PLAYER WINS!!",1);
 		}
 		else if(secplayer.getCurrentHP()==0){
-			gameview.removeMain("THE 1st PLAYER WINSS!!!");
+			gameview.setVisible(false);
+			gameview.removeAll();
+			gameview.dispose();
 			gameview.revalidate();
 			gameview.repaint();
+			new PopUpp("1st PLAYER WINS!!",1);
 		}
 	}
 
@@ -72,6 +78,7 @@ public class GameController implements ActionListener,GameListener {
 				g = new Game(firstplayer, secplayer);
 				model=g;
 				gameview =new GameView(this,model);
+				model.setListener(this);
 				view.removeAll();
 				view.dispose();
 			} catch (FullHandException e1) {
@@ -2042,14 +2049,14 @@ public class GameController implements ActionListener,GameListener {
 	
 	public static void main (String [] args){
 		GameController c=new GameController();
-		try {
+		/*try {
 		Game n = new Game(new Mage(), new Mage());
 			GameView e=new GameView(c,n);
 			e.removeMain("I win");
 		} catch (FullHandException | CloneNotSupportedException | IOException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
-		}
+		}*/
 		
 		
 		//JTextArea nignog=new JTextArea("niggaa is the biggest   farstcvo invjsvs pcsndv bsdubvsbiv ios ndbhs b dchsu cbiushc iush cuh s uhi cbhsb cbdb bd bu ebvibbf efi ygd yc vv");

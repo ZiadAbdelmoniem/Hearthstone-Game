@@ -36,9 +36,9 @@ public opponentPanel(GameController c,Game g){
 	this.add(deck);
 	this.revalidate();
 	this.repaint();
-	if(g.getOpponent().getCurrentHP()==0){
-		c.onGameOver();
-	}
+	//if(g.getOpponent().getCurrentHP()==0){
+		//c.onGameOver();
+	//}
 	
 }
 
