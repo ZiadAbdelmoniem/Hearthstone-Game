@@ -954,6 +954,35 @@ public class GameController implements ActionListener,GameListener {
 			
 			}
 		
+		if(e.getActionCommand().equals("hero0")){
+			if(herotousepower instanceof Priest && spelltobeused==null && minionInAttack==null){
+				try {
+					((Priest)herotousepower).useHeroPower(model.getCurrentHero());
+					gameview.refresh(this, model);
+					herotousepower=null;
+					herotobeattacked=null;
+				} catch (NotEnoughManaException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (HeroPowerAlreadyUsedException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (NotYourTurnException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (FullHandException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (FullFieldException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (CloneNotSupportedException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		}
+		
 		if(e.getActionCommand().equals("hero to be attacked")){
 			if(spelltobeused==null && herotousepower==null && minionInAttack!=null){
 				try {
@@ -989,6 +1018,32 @@ public class GameController implements ActionListener,GameListener {
 			e1.printStackTrace();
 		}
 		
+			}
+			else if(spelltobeused==null && minionInAttack==null && herotousepower instanceof Mage){
+				try {
+					((Mage)herotousepower).useHeroPower(model.getOpponent());
+					herotousepower=null;
+					herotobeattacked=null;
+					gameview.refresh(this, model);
+				} catch (NotEnoughManaException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (HeroPowerAlreadyUsedException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (NotYourTurnException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (FullHandException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (FullFieldException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (CloneNotSupportedException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		}
 		
