@@ -42,7 +42,7 @@ public abstract class Hero implements MinionListener {
 
     public Hero(String name) throws IOException, CloneNotSupportedException {
         this.name = name;
-        this.currentHP = 2;
+        this.currentHP = 30;
         this.deck = new ArrayList();
         this.field = new ArrayList(7);
         this.hand = new ArrayList(10);
