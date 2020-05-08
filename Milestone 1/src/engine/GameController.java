@@ -79,7 +79,7 @@ public class GameController implements ActionListener,GameListener {
 				view.removeAll();
 				view.dispose();
 			} catch (FullHandException e1) {
-				// TODO Auto-generated catch block
+				new PopUp("Sorry, Your Hand is Full");
 				e1.printStackTrace();
 			} catch (CloneNotSupportedException e1) {
 				// TODO Auto-generated catch block
@@ -217,19 +217,19 @@ public class GameController implements ActionListener,GameListener {
 					model.getCurrentHero().useHeroPower();
 					gameview.refresh(this, model);
 				} catch (NotEnoughManaException e1) {
-					// TODO Auto-generated catch block
+					new PopUp("Sorry, No Enough Mana");
 					e1.printStackTrace();
 				} catch (HeroPowerAlreadyUsedException e1) {
-					// TODO Auto-generated catch block
+					new PopUp("Sorry, Your Hero Power is Already Used");
 					e1.printStackTrace();
 				} catch (NotYourTurnException e1) {
-					// TODO Auto-generated catch block
+					new PopUp("Sorry, Not Your Turn");
 					e1.printStackTrace();
 				} catch (FullHandException e1) {
-					// TODO Auto-generated catch block
+					new PopUp("Sorry, Your Hand is Full");
 					e1.printStackTrace();
 				} catch (FullFieldException e1) {
-					// TODO Auto-generated catch block
+					new PopUp("Sorry, Your Field is Full");
 					e1.printStackTrace();
 				} catch (CloneNotSupportedException e1) {
 					// TODO Auto-generated catch block
@@ -241,19 +241,19 @@ public class GameController implements ActionListener,GameListener {
 					model.getCurrentHero().useHeroPower();
 					gameview.refresh(this, model);
 				} catch (NotEnoughManaException e1) {
-					// TODO Auto-generated catch block
+					new PopUp("Sorry, No Enough Mana");
 					e1.printStackTrace();
 				} catch (HeroPowerAlreadyUsedException e1) {
-					// TODO Auto-generated catch block
+					new PopUp("Sorry, Your Hero Power is Already Used");
 					e1.printStackTrace();
 				} catch (NotYourTurnException e1) {
-					// TODO Auto-generated catch block
+					new PopUp("Sorry, Not Your Turn");
 					e1.printStackTrace();
 				} catch (FullHandException e1) {
-					// TODO Auto-generated catch block
+					new PopUp("Sorry, Your Hand is Full");
 					e1.printStackTrace();
 				} catch (FullFieldException e1) {
-					// TODO Auto-generated catch block
+					new PopUp("Sorry, Your Field is Full");
 					e1.printStackTrace();
 				} catch (CloneNotSupportedException e1) {
 					// TODO Auto-generated catch block
@@ -268,19 +268,19 @@ public class GameController implements ActionListener,GameListener {
 					model.getCurrentHero().useHeroPower();
 					gameview.refresh(this, model);
 				} catch (NotEnoughManaException e1) {
-					// TODO Auto-generated catch block
+					new PopUp("Sorry, Not Your Turn");
 					e1.printStackTrace();
 				} catch (HeroPowerAlreadyUsedException e1) {
-					// TODO Auto-generated catch block
+					new PopUp("Sorry, Your Hero Power is Already Used");
 					e1.printStackTrace();
 				} catch (NotYourTurnException e1) {
-					// TODO Auto-generated catch block
+					new PopUp("Sorry, Not Your Turn");
 					e1.printStackTrace();
 				} catch (FullHandException e1) {
-					// TODO Auto-generated catch block
+					new PopUp("Sorry, Your Hand is Full");
 					e1.printStackTrace();
 				} catch (FullFieldException e1) {
-					// TODO Auto-generated catch block
+					new PopUp("Sorry, Your Field is Full");
 					e1.printStackTrace();
 				} catch (CloneNotSupportedException e1) {
 					// TODO Auto-generated catch block
@@ -300,13 +300,13 @@ public class GameController implements ActionListener,GameListener {
 					model.getCurrentHero().playMinion((Minion) card1);
 					gameview.refresh(this,model);
 				} catch (NotYourTurnException e1) {
-					// TODO Auto-generated catch block
+					new PopUp("Sorry, Not Your Turn");
 					e1.printStackTrace();
 				} catch (NotEnoughManaException e1) {
-					// TODO Auto-generated catch block
+					new PopUp("Sorry, No Enough Mana");
 					e1.printStackTrace();
 				} catch (FullFieldException e1) {
-					// TODO Auto-generated catch block
+					new PopUp("Sorry, Your Field is Full");
 					e1.printStackTrace();
 				}
 				gameview.refresh(this,model);
@@ -318,10 +318,10 @@ public class GameController implements ActionListener,GameListener {
 						model.getCurrentHero().castSpell((AOESpell)card1, model.getOpponent().getField());
 						gameview.refresh(this, model);
 					} catch (NotYourTurnException e1) {
-						// TODO Auto-generated catch block
+						new PopUp("Sorry, Not Your Turn");
 						e1.printStackTrace();
 					} catch (NotEnoughManaException e1) {
-						// TODO Auto-generated catch block
+						new PopUp("Sorry, No Enough Mana");
 						e1.printStackTrace();
 					}
 				}
@@ -330,7 +330,7 @@ public class GameController implements ActionListener,GameListener {
 						model.getCurrentHero().castSpell((FieldSpell) card1);
 						gameview.refresh(this, model);
 					} catch (NotYourTurnException e1) {
-						// TODO Auto-generated catch block
+						new PopUp("Sorry, Not Your Turn");
 						e1.printStackTrace();
 					} catch (NotEnoughManaException e1) {
 						// TODO Auto-generated catch block
@@ -366,13 +366,13 @@ public class GameController implements ActionListener,GameListener {
 					model.getCurrentHero().playMinion((Minion) card1);
 					gameview.refresh(this,model);
 				} catch (NotYourTurnException e1) {
-					// TODO Auto-generated catch block
+					new PopUp("Sorry, Not Your Turn");
 					e1.printStackTrace();
 				} catch (NotEnoughManaException e1) {
-					// TODO Auto-generated catch block
+					new PopUp("Sorry, No Enough Mana");
 					e1.printStackTrace();
 				} catch (FullFieldException e1) {
-					// TODO Auto-generated catch block
+					new PopUp("Sorry, Your Field is Full");
 					e1.printStackTrace();
 				}
 				gameview.refresh(this,model);
@@ -384,7 +384,7 @@ public class GameController implements ActionListener,GameListener {
 						model.getCurrentHero().castSpell((AOESpell)card1, model.getOpponent().getField());
 						gameview.refresh(this, model);
 					} catch (NotYourTurnException e1) {
-						// TODO Auto-generated catch block
+						new PopUp("Sorry, Not Your Turn");
 						e1.printStackTrace();
 					} catch (NotEnoughManaException e1) {
 						// TODO Auto-generated catch block
@@ -396,10 +396,10 @@ public class GameController implements ActionListener,GameListener {
 						model.getCurrentHero().castSpell((FieldSpell) card1);
 						gameview.refresh(this, model);
 					} catch (NotYourTurnException e1) {
-						// TODO Auto-generated catch block
+						new PopUp("Sorry, Not Your Turn");
 						e1.printStackTrace();
 					} catch (NotEnoughManaException e1) {
-						// TODO Auto-generated catch block
+						new PopUp("Sorry, No Enough Mana");
 						e1.printStackTrace();
 					}
 				}
@@ -431,13 +431,13 @@ public class GameController implements ActionListener,GameListener {
 					model.getCurrentHero().playMinion((Minion) card1);
 					gameview.refresh(this,model);
 				} catch (NotYourTurnException e1) {
-					// TODO Auto-generated catch block
+					new PopUp("Sorry, Not Your Turn");
 					e1.printStackTrace();
 				} catch (NotEnoughManaException e1) {
-					// TODO Auto-generated catch block
+					new PopUp("Sorry, No Enough Mana");
 					e1.printStackTrace();
 				} catch (FullFieldException e1) {
-					// TODO Auto-generated catch block
+					new PopUp("Sorry, Your Field Is Full");
 					e1.printStackTrace();
 				}
 				gameview.refresh(this,model);
@@ -449,11 +449,11 @@ public class GameController implements ActionListener,GameListener {
 						model.getCurrentHero().castSpell((AOESpell)card1, model.getOpponent().getField());
 						gameview.refresh(this, model);
 					} catch (NotYourTurnException e1) {
-						// TODO Auto-generated catch block
+						new PopUp("Sorry, Not Your Turn");
 						e1.printStackTrace();
 					} catch (NotEnoughManaException e1) {
-						// TODO Auto-generated catch block
 						e1.printStackTrace();
+						new PopUp("Sorry, No Enough Mana");
 					}
 				}
 				if(card1 instanceof FieldSpell){
@@ -461,10 +461,10 @@ public class GameController implements ActionListener,GameListener {
 						model.getCurrentHero().castSpell((FieldSpell) card1);
 						gameview.refresh(this, model);
 					} catch (NotYourTurnException e1) {
-						// TODO Auto-generated catch block
+						new PopUp("Sorry, Not Your Turn");
 						e1.printStackTrace();
 					} catch (NotEnoughManaException e1) {
-						// TODO Auto-generated catch block
+						new PopUp("Sorry, No Enough Mana");
 						e1.printStackTrace();
 					}
 				}
@@ -496,13 +496,13 @@ public class GameController implements ActionListener,GameListener {
 					model.getCurrentHero().playMinion((Minion) card1);
 					gameview.refresh(this,model);
 				} catch (NotYourTurnException e1) {
-					// TODO Auto-generated catch block
+					new PopUp("Sorry, Not Your Turn");
 					e1.printStackTrace();
 				} catch (NotEnoughManaException e1) {
-					// TODO Auto-generated catch block
+					new PopUp("Sorry, No Enough Mana");
 					e1.printStackTrace();
 				} catch (FullFieldException e1) {
-					// TODO Auto-generated catch block
+					new PopUp("Sorry, Your Field is Full");
 					e1.printStackTrace();
 				}
 				gameview.refresh(this,model);
@@ -514,10 +514,10 @@ public class GameController implements ActionListener,GameListener {
 						model.getCurrentHero().castSpell((AOESpell)card1, model.getOpponent().getField());
 						gameview.refresh(this, model);
 					} catch (NotYourTurnException e1) {
-						// TODO Auto-generated catch block
+						new PopUp("Sorry, Not Your Turn");
 						e1.printStackTrace();
 					} catch (NotEnoughManaException e1) {
-						// TODO Auto-generated catch block
+						new PopUp("Sorry, No Enough Mana");
 						e1.printStackTrace();
 					}
 				}
@@ -526,10 +526,10 @@ public class GameController implements ActionListener,GameListener {
 						model.getCurrentHero().castSpell((FieldSpell) card1);
 						gameview.refresh(this, model);
 					} catch (NotYourTurnException e1) {
-						// TODO Auto-generated catch block
+						new PopUp("Sorry, Not Your Turn");
 						e1.printStackTrace();
 					} catch (NotEnoughManaException e1) {
-						// TODO Auto-generated catch block
+						new PopUp("Sorry, No Enough Mana");
 						e1.printStackTrace();
 					}
 				}
@@ -561,13 +561,13 @@ public class GameController implements ActionListener,GameListener {
 					model.getCurrentHero().playMinion((Minion) card1);
 					gameview.refresh(this,model);
 				} catch (NotYourTurnException e1) {
-					// TODO Auto-generated catch block
+					new PopUp("Sorry, Not Your Turn");
 					e1.printStackTrace();
 				} catch (NotEnoughManaException e1) {
-					// TODO Auto-generated catch block
+					new PopUp("Sorry, No Enough Mana");
 					e1.printStackTrace();
 				} catch (FullFieldException e1) {
-					// TODO Auto-generated catch block
+					new PopUp("Sorry, Your Field is Full");
 					e1.printStackTrace();
 				}
 				gameview.refresh(this,model);
@@ -579,10 +579,10 @@ public class GameController implements ActionListener,GameListener {
 						model.getCurrentHero().castSpell((AOESpell)card1, model.getOpponent().getField());
 						gameview.refresh(this, model);
 					} catch (NotYourTurnException e1) {
-						// TODO Auto-generated catch block
+						new PopUp("Sorry, Not Your Turn");
 						e1.printStackTrace();
 					} catch (NotEnoughManaException e1) {
-						// TODO Auto-generated catch block
+						new PopUp("Sorry, No Enough Mana");
 						e1.printStackTrace();
 					}
 				}
@@ -591,10 +591,10 @@ public class GameController implements ActionListener,GameListener {
 						model.getCurrentHero().castSpell((FieldSpell) card1);
 						gameview.refresh(this, model);
 					} catch (NotYourTurnException e1) {
-						// TODO Auto-generated catch block
+						new PopUp("Sorry, Not Your Turn");
 						e1.printStackTrace();
 					} catch (NotEnoughManaException e1) {
-						// TODO Auto-generated catch block
+						new PopUp("Sorry, No Enough Mana");
 						e1.printStackTrace();
 					}
 				}
@@ -626,13 +626,13 @@ public class GameController implements ActionListener,GameListener {
 					model.getCurrentHero().playMinion((Minion) card1);
 					gameview.refresh(this,model);
 				} catch (NotYourTurnException e1) {
-					// TODO Auto-generated catch block
+					new PopUp("Sorry, Not Your Turn");
 					e1.printStackTrace();
 				} catch (NotEnoughManaException e1) {
-					// TODO Auto-generated catch block
+					new PopUp("Sorry, No Enough Mana");
 					e1.printStackTrace();
 				} catch (FullFieldException e1) {
-					// TODO Auto-generated catch block
+					new PopUp("Sorry, Your Field is Full");
 					e1.printStackTrace();
 				}
 				gameview.refresh(this,model);
@@ -644,10 +644,10 @@ public class GameController implements ActionListener,GameListener {
 						model.getCurrentHero().castSpell((AOESpell)card1, model.getOpponent().getField());
 						gameview.refresh(this, model);
 					} catch (NotYourTurnException e1) {
-						// TODO Auto-generated catch block
+						new PopUp("Sorry, Not Your Turn");
 						e1.printStackTrace();
 					} catch (NotEnoughManaException e1) {
-						// TODO Auto-generated catch block
+						new PopUp("Sorry, No Enough Mana");
 						e1.printStackTrace();
 					}
 				}
@@ -656,10 +656,10 @@ public class GameController implements ActionListener,GameListener {
 						model.getCurrentHero().castSpell((FieldSpell) card1);
 						gameview.refresh(this, model);
 					} catch (NotYourTurnException e1) {
-						// TODO Auto-generated catch block
+						new PopUp("Sorry, Not Your Turn");
 						e1.printStackTrace();
 					} catch (NotEnoughManaException e1) {
-						// TODO Auto-generated catch block
+						new PopUp("Sorry, No Enough Mana");
 						e1.printStackTrace();
 					}
 				}
@@ -692,13 +692,13 @@ public class GameController implements ActionListener,GameListener {
 					model.getCurrentHero().playMinion((Minion) card1);
 					gameview.refresh(this,model);
 				} catch (NotYourTurnException e1) {
-					// TODO Auto-generated catch block
+					new PopUp("Sorry, Not Your Turn");
 					e1.printStackTrace();
 				} catch (NotEnoughManaException e1) {
-					// TODO Auto-generated catch block
+					new PopUp("Sorry, No Enough Mana");
 					e1.printStackTrace();
 				} catch (FullFieldException e1) {
-					// TODO Auto-generated catch block
+					new PopUp("Sorry, Your Field is Full");
 					e1.printStackTrace();
 				}
 				gameview.refresh(this,model);
@@ -710,10 +710,10 @@ public class GameController implements ActionListener,GameListener {
 						model.getCurrentHero().castSpell((AOESpell)card1, model.getOpponent().getField());
 						gameview.refresh(this, model);
 					} catch (NotYourTurnException e1) {
-						// TODO Auto-generated catch block
+						new PopUp("Sorry, Not Your Turn");
 						e1.printStackTrace();
 					} catch (NotEnoughManaException e1) {
-						// TODO Auto-generated catch block
+						new PopUp("Sorry, No Enough Mana");
 						e1.printStackTrace();
 					}
 				}
@@ -722,10 +722,10 @@ public class GameController implements ActionListener,GameListener {
 						model.getCurrentHero().castSpell((FieldSpell) card1);
 						gameview.refresh(this, model);
 					} catch (NotYourTurnException e1) {
-						// TODO Auto-generated catch block
+						new PopUp("Sorry, Not Your Turn");
 						e1.printStackTrace();
 					} catch (NotEnoughManaException e1) {
-						// TODO Auto-generated catch block
+						new PopUp("Sorry, No Enough Mana");
 						e1.printStackTrace();
 					}
 				}
@@ -757,13 +757,13 @@ public class GameController implements ActionListener,GameListener {
 					model.getCurrentHero().playMinion((Minion) card1);
 					gameview.refresh(this,model);
 				} catch (NotYourTurnException e1) {
-					// TODO Auto-generated catch block
+					new PopUp("Sorry, Not Your Turn");
 					e1.printStackTrace();
 				} catch (NotEnoughManaException e1) {
-					// TODO Auto-generated catch block
+					new PopUp("Sorry, No Enough Mana");
 					e1.printStackTrace();
 				} catch (FullFieldException e1) {
-					// TODO Auto-generated catch block
+					new PopUp("Sorry, Your Field is Full");
 					e1.printStackTrace();
 				}
 				gameview.refresh(this,model);
@@ -775,10 +775,10 @@ public class GameController implements ActionListener,GameListener {
 						model.getCurrentHero().castSpell((AOESpell)card1, model.getOpponent().getField());
 						gameview.refresh(this, model);
 					} catch (NotYourTurnException e1) {
-						// TODO Auto-generated catch block
+						new PopUp("Sorry, Not Your Turn");
 						e1.printStackTrace();
 					} catch (NotEnoughManaException e1) {
-						// TODO Auto-generated catch block
+						new PopUp("Sorry, No Enough Mana");
 						e1.printStackTrace();
 					}
 				}
@@ -787,10 +787,10 @@ public class GameController implements ActionListener,GameListener {
 						model.getCurrentHero().castSpell((FieldSpell) card1);
 						gameview.refresh(this, model);
 					} catch (NotYourTurnException e1) {
-						// TODO Auto-generated catch block
+						new PopUp("Sorry, Not Your Turn");
 						e1.printStackTrace();
 					} catch (NotEnoughManaException e1) {
-						// TODO Auto-generated catch block
+						new PopUp("Sorry, No Enough Mana");
 						e1.printStackTrace();
 					}
 				}
@@ -822,13 +822,13 @@ public class GameController implements ActionListener,GameListener {
 					model.getCurrentHero().playMinion((Minion) card1);
 					gameview.refresh(this,model);
 				} catch (NotYourTurnException e1) {
-					// TODO Auto-generated catch block
+					new PopUp("Sorry, Not Your Turn");
 					e1.printStackTrace();
 				} catch (NotEnoughManaException e1) {
-					// TODO Auto-generated catch block
+					new PopUp("Sorry, No Enough Mana");
 					e1.printStackTrace();
 				} catch (FullFieldException e1) {
-					// TODO Auto-generated catch block
+					new PopUp("Sorry, Your Field is Full");
 					e1.printStackTrace();
 				}
 				gameview.refresh(this,model);
@@ -840,10 +840,10 @@ public class GameController implements ActionListener,GameListener {
 						model.getCurrentHero().castSpell((AOESpell)card1, model.getOpponent().getField());
 						gameview.refresh(this, model);
 					} catch (NotYourTurnException e1) {
-						// TODO Auto-generated catch block
+						new PopUp("Sorry, Not Your Turn");
 						e1.printStackTrace();
 					} catch (NotEnoughManaException e1) {
-						// TODO Auto-generated catch block
+						new PopUp("Sorry, No Enough Mana");
 						e1.printStackTrace();
 					}
 				}
@@ -852,10 +852,10 @@ public class GameController implements ActionListener,GameListener {
 						model.getCurrentHero().castSpell((FieldSpell) card1);
 						gameview.refresh(this, model);
 					} catch (NotYourTurnException e1) {
-						// TODO Auto-generated catch block
+						new PopUp("Sorry, Not Your Turn");
 						e1.printStackTrace();
 					} catch (NotEnoughManaException e1) {
-						// TODO Auto-generated catch block
+						new PopUp("Sorry, No Enough Mana");
 						e1.printStackTrace();
 					}
 				}
@@ -887,13 +887,13 @@ public class GameController implements ActionListener,GameListener {
 					model.getCurrentHero().playMinion((Minion) card1);
 					gameview.refresh(this,model);
 				} catch (NotYourTurnException e1) {
-					// TODO Auto-generated catch block
+					new PopUp("Sorry, Not Your Turn");
 					e1.printStackTrace();
 				} catch (NotEnoughManaException e1) {
-					// TODO Auto-generated catch block
+					new PopUp("Sorry, No Enough Mana");
 					e1.printStackTrace();
 				} catch (FullFieldException e1) {
-					// TODO Auto-generated catch block
+					new PopUp("Sorry, Your Field is Full");
 					e1.printStackTrace();
 				}
 				gameview.refresh(this,model);
@@ -905,10 +905,10 @@ public class GameController implements ActionListener,GameListener {
 						model.getCurrentHero().castSpell((AOESpell)card1, model.getOpponent().getField());
 						gameview.refresh(this, model);
 					} catch (NotYourTurnException e1) {
-						// TODO Auto-generated catch block
+						new PopUp("Sorry, Not Your Turn");
 						e1.printStackTrace();
 					} catch (NotEnoughManaException e1) {
-						// TODO Auto-generated catch block
+						new PopUp("Sorry, No Enough Mana");
 						e1.printStackTrace();
 					}
 				}
@@ -917,10 +917,10 @@ public class GameController implements ActionListener,GameListener {
 						model.getCurrentHero().castSpell((FieldSpell) card1);
 						gameview.refresh(this, model);
 					} catch (NotYourTurnException e1) {
-						// TODO Auto-generated catch block
+						new PopUp("Sorry, Not Your Turn");
 						e1.printStackTrace();
 					} catch (NotEnoughManaException e1) {
-						// TODO Auto-generated catch block
+						new PopUp("Sorry, No Enough Mana");
 						e1.printStackTrace();
 					}
 				}
@@ -952,19 +952,19 @@ public class GameController implements ActionListener,GameListener {
 					minionInAttack=null;
 					gameview.refresh(this, model);
 				} catch (CannotAttackException e1) {
-					// TODO Auto-generated catch block
+					new PopUp("Sorry,This Minion Cannot Attack");
 					e1.printStackTrace();
 				} catch (NotYourTurnException e1) {
-					// TODO Auto-generated catch block
+					new PopUp("Sorry, Not Your Turn");
 					e1.printStackTrace();
 				} catch (TauntBypassException e1) {
-					// TODO Auto-generated catch block
+					new PopUp("Sorry, You Must Attack the Taunt Minion First");
 					e1.printStackTrace();
 				} catch (NotSummonedException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				} catch (InvalidTargetException e1) {
-					// TODO Auto-generated catch block
+					new PopUp("Sorry, You Cannot Attack This Target");
 					e1.printStackTrace();
 				}
 			}
@@ -973,10 +973,10 @@ public class GameController implements ActionListener,GameListener {
 			model.getCurrentHero().castSpell((HeroTargetSpell)spelltobeused, model.getOpponent());
 			gameview.refresh(this,model);
 		} catch (NotYourTurnException e1) {
-			// TODO Auto-generated catch block
+			new PopUp("Sorry, Not Your Turn");
 			e1.printStackTrace();
 		} catch (NotEnoughManaException e1) {
-			// TODO Auto-generated catch block
+			new PopUp("Sorry, No Enough Mana");
 			e1.printStackTrace();
 		}
 		
@@ -1028,16 +1028,16 @@ public class GameController implements ActionListener,GameListener {
 					gameview.refresh(this, model);
 					minionInAttack=null;
 				} catch (CannotAttackException e1) {
-					// TODO Auto-generated catch block
+					new PopUp("Sorry,This Minion Cannot Attack");
 					e1.printStackTrace();
 				} catch (NotYourTurnException e1) {
-					// TODO Auto-generated catch block
+					new PopUp("Sorry, Not Your Turn");
 					e1.printStackTrace();
 				} catch (TauntBypassException e1) {
-					// TODO Auto-generated catch block
+					new PopUp("Sorry, You Must Attack the Taunt Minion First");
 					e1.printStackTrace();
 				} catch (InvalidTargetException e1) {
-					// TODO Auto-generated catch block
+					new PopUp("Sorry, You Cannot Attack This Target");
 					e1.printStackTrace();
 				} catch (NotSummonedException e1) {
 					// TODO Auto-generated catch block
@@ -1050,13 +1050,14 @@ public class GameController implements ActionListener,GameListener {
 				gameview.refresh(this, model);
 				spelltobeused=null;
 			} catch (NotYourTurnException e1) {
-				// TODO Auto-generated catch block
+				new PopUp("Sorry, Not Your Turn");
 				e1.printStackTrace();
 			} catch (NotEnoughManaException e1) {
-				// TODO Auto-generated catch block
+
+				new PopUp("Sorry, No Enough Mana");
 				e1.printStackTrace();
 			} catch (InvalidTargetException e1) {
-				// TODO Auto-generated catch block
+				new PopUp("Sorry, You Cannot Attack This Target");
 				e1.printStackTrace();
 			}
 		}
@@ -1066,11 +1067,11 @@ public class GameController implements ActionListener,GameListener {
 					spelltobeused=null;
 					gameview.refresh(this, model);
 				} catch (NotYourTurnException e1) {
-					// TODO Auto-generated catch block
+					new PopUp("Sorry, Not Your Turn");
 					e1.printStackTrace();
 				} catch (NotEnoughManaException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
+
+					new PopUp("Sorry, No Enough Mana");					e1.printStackTrace();
 				}
 			}
 			else if(herotousepower!=null && minionInAttack==null && spelltobeused==null && (herotousepower instanceof Mage || herotousepower instanceof Priest)){
@@ -1080,19 +1081,20 @@ public class GameController implements ActionListener,GameListener {
 					herotousepower=null;
 					gameview.refresh(this, model);
 				} catch (NotEnoughManaException e1) {
-					// TODO Auto-generated catch block
+
+					new PopUp("Sorry, No Enough Mana");
 					e1.printStackTrace();
 				} catch (HeroPowerAlreadyUsedException e1) {
-					// TODO Auto-generated catch block
+					new PopUp("Sorry, Your Hero Power is Already Used");
 					e1.printStackTrace();
 				} catch (NotYourTurnException e1) {
-					// TODO Auto-generated catch block
+					new PopUp("Sorry, Not Your Turn");
 					e1.printStackTrace();
 				} catch (FullHandException e1) {
-					// TODO Auto-generated catch block
+					new PopUp("Sorry, Your Hand is Full");
 					e1.printStackTrace();
 				} catch (FullFieldException e1) {
-					// TODO Auto-generated catch block
+					new PopUp("Sorry, Your Field is Full");
 					e1.printStackTrace();
 				} catch (CloneNotSupportedException e1) {
 					// TODO Auto-generated catch block
@@ -1105,19 +1107,20 @@ public class GameController implements ActionListener,GameListener {
 						herotousepower=null;
 						gameview.refresh(this, model);
 					} catch (NotEnoughManaException e1) {
-						// TODO Auto-generated catch block
+
+						new PopUp("Sorry, No Enough Mana");
 						e1.printStackTrace();
 					} catch (HeroPowerAlreadyUsedException e1) {
-						// TODO Auto-generated catch block
+						new PopUp("Sorry, Your Hero Power is Already Used");
 						e1.printStackTrace();
 					} catch (NotYourTurnException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					} catch (FullHandException e1) {
-						// TODO Auto-generated catch block
+						new PopUp("Sorry, Your Hand is Full");
 						e1.printStackTrace();
 					} catch (FullFieldException e1) {
-						// TODO Auto-generated catch block
+						new PopUp("Sorry, Your Field is Full");
 						e1.printStackTrace();
 					} catch (CloneNotSupportedException e1) {
 						// TODO Auto-generated catch block
@@ -1133,16 +1136,16 @@ public class GameController implements ActionListener,GameListener {
 					gameview.refresh(this, model);
 					minionInAttack=null;
 				} catch (CannotAttackException e1) {
-					// TODO Auto-generated catch block
+					new PopUp("Sorry,This Minion Cannot Attack");
 					e1.printStackTrace();
 				} catch (NotYourTurnException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				} catch (TauntBypassException e1) {
-					// TODO Auto-generated catch block
+					new PopUp("Sorry, You Must Attack the Taunt Minion First");
 					e1.printStackTrace();
 				} catch (InvalidTargetException e1) {
-					// TODO Auto-generated catch block
+					new PopUp("Sorry, You Cannot Attack This Target");
 					e1.printStackTrace();
 				} catch (NotSummonedException e1) {
 					// TODO Auto-generated catch block
@@ -1158,10 +1161,11 @@ public class GameController implements ActionListener,GameListener {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				} catch (NotEnoughManaException e1) {
-					// TODO Auto-generated catch block
+
+					new PopUp("Sorry, No Enough Mana");
 					e1.printStackTrace();
 				} catch (InvalidTargetException e1) {
-					// TODO Auto-generated catch block
+					new PopUp("Sorry, You Cannot Attack This Target");
 					e1.printStackTrace();
 				}
 			}	
@@ -1173,16 +1177,16 @@ public class GameController implements ActionListener,GameListener {
 				gameview.refresh(this, model);
 				minionInAttack=null;
 			} catch (CannotAttackException e1) {
-				// TODO Auto-generated catch block
+				new PopUp("Sorry,This Minion Cannot Attack");
 				e1.printStackTrace();
 			} catch (NotYourTurnException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			} catch (TauntBypassException e1) {
-				// TODO Auto-generated catch block
+				new PopUp("Sorry, You Must Attack the Taunt Minion First");
 				e1.printStackTrace();
 			} catch (InvalidTargetException e1) {
-				// TODO Auto-generated catch block
+				new PopUp("Sorry, You Cannot Attack This Target");
 				e1.printStackTrace();
 			} catch (NotSummonedException e1) {
 				// TODO Auto-generated catch block
@@ -1199,10 +1203,11 @@ public class GameController implements ActionListener,GameListener {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				} catch (NotEnoughManaException e1) {
-					// TODO Auto-generated catch block
+
+					new PopUp("Sorry, No Enough Mana");
 					e1.printStackTrace();
 				} catch (InvalidTargetException e1) {
-					// TODO Auto-generated catch block
+					new PopUp("Sorry, You Cannot Attack This Target");
 					e1.printStackTrace();
 				}
 			}	
@@ -1214,16 +1219,16 @@ public class GameController implements ActionListener,GameListener {
 					gameview.refresh(this, model);
 					minionInAttack=null;
 				} catch (CannotAttackException e1) {
-					// TODO Auto-generated catch block
+					new PopUp("Sorry,This Minion Cannot Attack");
 					e1.printStackTrace();
 				} catch (NotYourTurnException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				} catch (TauntBypassException e1) {
-					// TODO Auto-generated catch block
+					new PopUp("Sorry, You Must Attack the Taunt Minion First");
 					e1.printStackTrace();
 				} catch (InvalidTargetException e1) {
-					// TODO Auto-generated catch block
+					new PopUp("Sorry, You Cannot Attack This Target");
 					e1.printStackTrace();
 				} catch (NotSummonedException e1) {
 					// TODO Auto-generated catch block
@@ -1239,10 +1244,11 @@ public class GameController implements ActionListener,GameListener {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				} catch (NotEnoughManaException e1) {
-					// TODO Auto-generated catch block
+
+					new PopUp("Sorry, No Enough Mana");
 					e1.printStackTrace();
 				} catch (InvalidTargetException e1) {
-					// TODO Auto-generated catch block
+					new PopUp("Sorry, You Cannot Attack This Target");
 					e1.printStackTrace();
 				}
 			}	
@@ -1254,16 +1260,16 @@ public class GameController implements ActionListener,GameListener {
 					gameview.refresh(this, model);
 					minionInAttack=null;
 				} catch (CannotAttackException e1) {
-					// TODO Auto-generated catch block
+					new PopUp("Sorry,This Minion Cannot Attack");
 					e1.printStackTrace();
 				} catch (NotYourTurnException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				} catch (TauntBypassException e1) {
-					// TODO Auto-generated catch block
+					new PopUp("Sorry, You Must Attack the Taunt Minion First");
 					e1.printStackTrace();
 				} catch (InvalidTargetException e1) {
-					// TODO Auto-generated catch block
+					new PopUp("Sorry, You Cannot Attack This Target");
 					e1.printStackTrace();
 				} catch (NotSummonedException e1) {
 					// TODO Auto-generated catch block
@@ -1280,10 +1286,11 @@ public class GameController implements ActionListener,GameListener {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				} catch (NotEnoughManaException e1) {
-					// TODO Auto-generated catch block
+
+					new PopUp("Sorry, No Enough Mana");
 					e1.printStackTrace();
 				} catch (InvalidTargetException e1) {
-					// TODO Auto-generated catch block
+					new PopUp("Sorry, You Cannot Attack This Target");
 					e1.printStackTrace();
 				}
 			}		
@@ -1296,16 +1303,16 @@ public class GameController implements ActionListener,GameListener {
 					gameview.refresh(this, model);
 					minionInAttack=null;
 				} catch (CannotAttackException e1) {
-					// TODO Auto-generated catch block
+					new PopUp("Sorry,This Minion Cannot Attack");
 					e1.printStackTrace();
 				} catch (NotYourTurnException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				} catch (TauntBypassException e1) {
-					// TODO Auto-generated catch block
+					new PopUp("Sorry, You Must Attack the Taunt Minion First");
 					e1.printStackTrace();
 				} catch (InvalidTargetException e1) {
-					// TODO Auto-generated catch block
+					new PopUp("Sorry, You Cannot Attack This Target");
 					e1.printStackTrace();
 				} catch (NotSummonedException e1) {
 					// TODO Auto-generated catch block
@@ -1321,10 +1328,11 @@ public class GameController implements ActionListener,GameListener {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				} catch (NotEnoughManaException e1) {
-					// TODO Auto-generated catch block
+
+					new PopUp("Sorry, No Enough Mana");
 					e1.printStackTrace();
 				} catch (InvalidTargetException e1) {
-					// TODO Auto-generated catch block
+					new PopUp("Sorry, You Cannot Attack This Target");
 					e1.printStackTrace();
 				}
 			}	
@@ -1337,16 +1345,16 @@ public class GameController implements ActionListener,GameListener {
 					gameview.refresh(this, model);
 					minionInAttack=null;
 				} catch (CannotAttackException e1) {
-					// TODO Auto-generated catch block
+					new PopUp("Sorry,This Minion Cannot Attack");
 					e1.printStackTrace();
 				} catch (NotYourTurnException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				} catch (TauntBypassException e1) {
-					// TODO Auto-generated catch block
+					new PopUp("Sorry, You Must Attack the Taunt Minion First");
 					e1.printStackTrace();
 				} catch (InvalidTargetException e1) {
-					// TODO Auto-generated catch block
+					new PopUp("Sorry, You Cannot Attack This Target");
 					e1.printStackTrace();
 				} catch (NotSummonedException e1) {
 					// TODO Auto-generated catch block
@@ -1362,10 +1370,11 @@ public class GameController implements ActionListener,GameListener {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				} catch (NotEnoughManaException e1) {
-					// TODO Auto-generated catch block
+
+					new PopUp("Sorry, No Enough Mana");
 					e1.printStackTrace();
 				} catch (InvalidTargetException e1) {
-					// TODO Auto-generated catch block
+					new PopUp("Sorry, You Cannot Attack This Target");
 					e1.printStackTrace();
 				}
 			}	
@@ -1380,7 +1389,7 @@ public class GameController implements ActionListener,GameListener {
 				herotousepower=null;
 				
 			} catch (FullHandException | CloneNotSupportedException e1) {
-				// TODO Auto-generated catch block
+				new PopUp("Sorry, Your Hand is Full");
 				e1.printStackTrace();
 			}
 		}
