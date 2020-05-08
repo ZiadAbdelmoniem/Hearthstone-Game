@@ -6,6 +6,7 @@ import java.awt.GridLayout;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 import javax.swing.border.Border;
 
 import model.cards.minions.Minion;
@@ -20,11 +21,17 @@ public class oppoField extends JPanel{
 		this.setLayout(new GridLayout(1,7));
 		for(int i=0;i<g.getOpponent().getField().size();i++){
 			Minion m=g.getOpponent().getField().get(i);
-			JButton b=new JButton(m.tostring());
+			JPanel h=new JPanel();
+			h.setBorder(blackline);
+			h.setLayout(new GridLayout(2,1));
+			JTextArea d=new JTextArea(m.tostring());
+			JButton b=new JButton("DAMAGE!");
 			b.addActionListener(c);
 			b.setActionCommand("wants to attack the minion number "+i);
 			b.setBorder(blackline);
-			this.add(b);
+			h.add(d);
+			h.add(b);
+			this.add(h);
 		}
 	}
 }

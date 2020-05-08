@@ -1,11 +1,13 @@
 package engine;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.GridLayout;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 import javax.swing.border.Border;
 
 import model.cards.Card;
@@ -23,19 +25,34 @@ public class currentHand extends JPanel{
 		
 		for(int i=0;i<g.getCurrentHero().getHand().size();i++){
 			Card d=((Card)(g.getCurrentHero().getHand().get(i)));
+			JPanel k=new JPanel();
+			k.setLayout(new GridLayout(2,1));
+			k.setVisible(true);
+			k.setBorder(blackline);
 			if (d instanceof Spell){
-				JButton j=new JButton(((Spell) d).tostring()+ " click to play");
+				JTextArea r=new JTextArea(((Spell) d).tostring());
+				r.setBorder(blackline);
+				r.setLineWrap(true);
+				k.add(r);
+				JButton j=new JButton("click to play");
 				j.addActionListener(c);
 				j.setActionCommand(i+ "card in hand");
 				j.setBorder(blackline);
-				this.add(j);
+				k.add(j);
+				this.add(k);
 			}
 			else{
-				JButton j=new JButton(((Minion) d).tostring()+ " click to play");
+				JTextArea r=new JTextArea(((Minion) d).tostring());
+				r.setBorder(blackline);
+				r.setLineWrap(true);
+				k.add(r);
+				JButton j=new JButton("click to play");
 				j.addActionListener(c);
 				j.setActionCommand(i+ "card in hand");
 				j.setBorder(blackline);
-				this.add(j);
+				//j.setBounds(5, 5, 5, 5);
+				k.add(j);
+				this.add(k);
 			}
 			}
 	}

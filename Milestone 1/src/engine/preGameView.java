@@ -107,6 +107,7 @@ public class preGameView extends JFrame implements GameListener {
 		
 		this.add(main);
 		this.setLocationRelativeTo(null);
+		this.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		this.revalidate();
 		this.repaint();
 	}

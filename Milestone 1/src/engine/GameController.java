@@ -57,7 +57,7 @@ public class GameController implements ActionListener,GameListener {
 			gameview.dispose();
 			gameview.revalidate();
 			gameview.repaint();
-			new PopUpp("2nd PLAYER WINS!!",1);
+			new PopUpp("2nd PLAYER WINS!!",1,this);
 		}
 		else if(secplayer.getCurrentHP()==0){
 			gameview.setVisible(false);
@@ -65,7 +65,7 @@ public class GameController implements ActionListener,GameListener {
 			gameview.dispose();
 			gameview.revalidate();
 			gameview.repaint();
-			new PopUpp("1st PLAYER WINS!!",1);
+			new PopUpp("1st PLAYER WINS!!",1,this);
 		}
 	}
 
@@ -1046,7 +1046,7 @@ public class GameController implements ActionListener,GameListener {
 				}
 			}
 		}
-		
+		//add if I want to apply spell on my minions
 		if(e.getActionCommand().equals("Minion on field to attack number0")){
 			if(herotousepower!=null && herotousepower instanceof Priest){
 			try {
@@ -2093,6 +2093,9 @@ public class GameController implements ActionListener,GameListener {
 				new PopUpp("Sorry, Your Hand is Full");
 				e1.printStackTrace();
 			}
+		}
+		if(e.getActionCommand().equals("new game")){
+			GameController n=new GameController();
 		}
 		
 		

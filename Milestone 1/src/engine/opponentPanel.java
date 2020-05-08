@@ -7,6 +7,7 @@ import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 import javax.swing.border.Border;
 
 public class opponentPanel extends JPanel{
@@ -14,6 +15,7 @@ public class opponentPanel extends JPanel{
 	private JButton nameofhero;
 	private JLabel manano;
 	private JLabel deck;
+	private JPanel s;
 	
 public opponentPanel(GameController c,Game g){
 	super();
@@ -23,11 +25,19 @@ public opponentPanel(GameController c,Game g){
 	hp=new JLabel("hp" +Integer.toString(g.getOpponent().getCurrentHP()));
 	hp.setBorder(blackline);
 	this.add(hp);
-	nameofhero=new JButton(g.getOpponent().getName());
+	s=new JPanel();
+	s.setLayout(new GridLayout(2,1));
+	s.setBorder(blackline);
+	s.setVisible(true);
+	JTextArea q=new JTextArea(g.getOpponent().getName());
+	q.setBorder(blackline);
+	s.add(q);
+	nameofhero=new JButton("DAMAGE!");
 	nameofhero.setActionCommand("hero to be attacked");
 	nameofhero.addActionListener(c);
 	nameofhero.setBorder(blackline);
-	this.add(nameofhero);
+	s.add(nameofhero);
+	this.add(s);
 	manano=new JLabel("mana:"+Integer.toString(g.getOpponent().getCurrentManaCrystals()));
 	manano.setBorder(blackline);
 	this.add(manano);
