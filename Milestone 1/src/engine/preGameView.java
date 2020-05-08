@@ -1,5 +1,6 @@
 package engine;
 import java.awt.*;
+
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 
@@ -105,6 +106,7 @@ public class preGameView extends JFrame implements GameListener {
 		
 		
 		this.add(main);
+		this.setLocationRelativeTo(null);
 		this.revalidate();
 		this.repaint();
 	}

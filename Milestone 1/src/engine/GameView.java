@@ -1,6 +1,7 @@
 package engine;
 
 import java.awt.GridLayout;
+import java.awt.PopupMenu;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -18,6 +19,7 @@ public GameView(GameController c, Game g){
 	this.setVisible(true);
 	this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.add(main);
+		this.setLocationRelativeTo(null);
 		this.revalidate();
 		this.repaint();
 	}	
@@ -32,10 +34,10 @@ public void refresh(GameController f,Game h){
 	this.repaint();
 	
 }	
-public void removeMain(){
+public void removeMain(String s){
 	this.remove(main);
-	//JLabel text=new JLabel("the game ends");
-	//this.add(text);
+	JLabel text=new JLabel(s);
+	this.add(text);
 	this.revalidate();
 	this.repaint();
 }
@@ -46,5 +48,13 @@ public void removeMain(){
 	
 	}
 
+
+
+
+
+public static void main(String [] args){
+	new PopupMenu("Sorry, Your Hand is Full");
+
+}
 
 }
