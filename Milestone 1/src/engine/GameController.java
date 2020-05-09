@@ -2091,7 +2091,11 @@ public class GameController implements ActionListener,GameListener {
 				
 			} catch (FullHandException | CloneNotSupportedException e1) {
 				new PopUpp("Sorry, Your Hand is Full");
-				e1.printStackTrace();
+				gameview.refresh(this, model);
+				minionInAttack=null;
+				herotobeattacked=null;
+				spelltobeused=null;
+				herotousepower=null;
 			}
 		}
 		if(e.getActionCommand().equals("new game")){
