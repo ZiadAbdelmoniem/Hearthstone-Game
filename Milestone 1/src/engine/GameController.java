@@ -2090,7 +2090,8 @@ public class GameController implements ActionListener,GameListener {
 				herotousepower=null;
 				
 			} catch (FullHandException | CloneNotSupportedException e1) {
-				new PopUpp("Sorry, Your Hand is Full, a Card now will be burned");
+				FullHandException ex=(FullHandException) e1;
+				new PopUpp("Sorry, Your Hand is Full, a Card now will be burned",ex.getBurned());
 				gameview.refresh(this, model);
 				minionInAttack=null;
 				herotobeattacked=null;

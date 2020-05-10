@@ -2,11 +2,17 @@ package engine;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Font;
+import java.awt.GridLayout;
+import java.awt.TextArea;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
+
+import model.cards.Card;
 
 public class PopUpp extends JFrame{
 	
@@ -42,6 +48,28 @@ public class PopUpp extends JFrame{
 		this.repaint();
 		
 		}
+	}
+	public PopUpp(String s, Card c) {
+		super();
+		this.setLayout(new GridLayout(2,1));
+		JLabel b=new JLabel(s);
+		b.setBounds(300, 300, 300, 300);
+		b.setFont(new Font("Serif", Font.PLAIN, 22));
+		this.setBounds(400,400,400,400);
+		this.add(b);
+		this.setLocationRelativeTo(null);
+		this.setVisible(true);
+		JPanel k= new JPanel();
+		k.setVisible(true);
+		k.setLayout(new GridLayout(3,1));
+		k.add(new JLabel("Name: "+c.getName()));
+		k.add(new JLabel("Mana Cost: "+c.getManaCost()+""));
+		k.add(new JLabel("Rarity: "+c.getRarity()+""));
+		this.add(k);
+		this.revalidate();
+		this.repaint();
+		
+	}
 		}
 
-}
+
