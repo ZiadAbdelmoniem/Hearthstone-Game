@@ -13,6 +13,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import model.cards.Card;
+import model.cards.spells.Spell;
+import model.cards.minions.*;
 
 public class PopUpp extends JFrame{
 	
@@ -59,6 +61,7 @@ public class PopUpp extends JFrame{
 		this.add(b);
 		this.setLocationRelativeTo(null);
 		this.setVisible(true);
+		if(c instanceof Spell){
 		JPanel k= new JPanel();
 		k.setVisible(true);
 		k.setLayout(new GridLayout(3,1));
@@ -68,6 +71,23 @@ public class PopUpp extends JFrame{
 		this.add(k);
 		this.revalidate();
 		this.repaint();
+		}
+		else if(c instanceof Minion){
+			JPanel k= new JPanel();
+			k.setVisible(true);
+			k.setLayout(new GridLayout(8,1));
+			k.add(new JLabel("Name: "+c.getName()));
+			k.add(new JLabel("Mana Cost: "+c.getManaCost()+""));
+			k.add(new JLabel("Rarity: "+c.getRarity()+""));
+			k.add(new JLabel("Attack: "+((Minion)c).getAttack()));
+			k.add(new JLabel("HP: "+((Minion)c).getCurrentHP()));
+			k.add(new JLabel("Taunt: "+((Minion)c).isTaunt()));
+			k.add(new JLabel("Divine: "+((Minion)c).isDivine()));
+			k.add(new JLabel("Charge: "+(!((Minion)c).isSleeping())));
+			this.add(k);
+			this.revalidate();
+			this.repaint();
+		}
 		
 	}
 		}
