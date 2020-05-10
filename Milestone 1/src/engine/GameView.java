@@ -15,12 +15,12 @@ public class GameView extends JFrame implements GameListener{
 public GameView(GameController c, Game g){
 	super();
 	main=new Mains(c,g);
+	this.setLocationRelativeTo(null);
 	//this.setBounds(600, 600, 600, 600);
 	this.setExtendedState(JFrame.MAXIMIZED_BOTH);
 	this.setVisible(true);
 	this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.add(main);
-		this.setLocationRelativeTo(null);
 		this.revalidate();
 		this.repaint();
 	}	

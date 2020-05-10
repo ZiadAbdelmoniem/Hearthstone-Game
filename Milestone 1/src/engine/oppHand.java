@@ -15,7 +15,7 @@ public class oppHand extends JPanel{
 		Border blackline = BorderFactory.createLineBorder(Color.black);
 		this.setBorder(blackline);
 		for(int i=0;i<g.getOpponent().getHand().size();i++){
-			JLabel n=new JLabel("Card" + Integer.toString(i+1));
+			JLabel n=new JLabel("Opponent card in hand no. " + Integer.toString(i+1));
 			n.setBorder(blackline);
 			this.add(n);
 		}

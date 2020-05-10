@@ -5,6 +5,7 @@ import java.awt.GridLayout;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.border.Border;
@@ -18,6 +19,10 @@ public class oppoField extends JPanel{
 		super();
 		Border blackline = BorderFactory.createLineBorder(Color.black);
 		this.setBorder(blackline);
+		if(g.getOpponent().getField().isEmpty()){
+			this.add(new JLabel("Opponent's field is empty"));
+		}
+		else{
 		this.setLayout(new GridLayout(1,7));
 		for(int i=0;i<g.getOpponent().getField().size();i++){
 			Minion m=g.getOpponent().getField().get(i);
@@ -33,6 +38,7 @@ public class oppoField extends JPanel{
 			h.add(d);
 			h.add(b);
 			this.add(h);
+		}
 		}
 	}
 }

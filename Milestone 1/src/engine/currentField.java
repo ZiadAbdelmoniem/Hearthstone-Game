@@ -7,6 +7,7 @@ import java.awt.GridLayout;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.border.Border;
@@ -19,6 +20,10 @@ public class currentField extends JPanel{
 		super();
 		Border blackline = BorderFactory.createLineBorder(Color.black);
 		this.setBorder(blackline);
+		if(g.getCurrentHero().getField().isEmpty()){
+			this.add(new JLabel("Your field is empty click on minions in your hand to play them"));
+		}
+		else{
 		this.setLayout(new GridLayout(1,7));
 		for(int i=0;i<g.getCurrentHero().getField().size();i++){
 			Minion m=g.getCurrentHero().getField().get(i);
@@ -34,6 +39,7 @@ public class currentField extends JPanel{
 			pls.setVisible(true);
 			pls.setBorder(blackline);
 			this.add(pls);
+		}
 		}
 	}
 

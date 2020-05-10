@@ -1045,8 +1045,34 @@ public class GameController implements ActionListener,GameListener {
 					e1.printStackTrace();
 				}
 			}
+			else if(spelltobeused==null && minionInAttack==null && herotousepower instanceof Priest){
+				try {
+					((Priest)herotousepower).useHeroPower(model.getOpponent());
+					herotousepower=null;
+					herotobeattacked=null;
+					gameview.refresh(this, model);
+				} catch (NotEnoughManaException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (HeroPowerAlreadyUsedException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (NotYourTurnException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (FullHandException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (FullFieldException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (CloneNotSupportedException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
 		}
-		//add if I want to apply spell on my minions
+		
 		if(e.getActionCommand().equals("Minion on field to attack number0")){
 			if(herotousepower!=null && herotousepower instanceof Priest){
 			try {
@@ -1078,6 +1104,24 @@ public class GameController implements ActionListener,GameListener {
 			spelltobeused=null;
 			herotousepower=null;
 			minionInAttack=null;
+			}
+			else if(spelltobeused!=null && spelltobeused instanceof MinionTargetSpell){
+				try {
+					model.getCurrentHero().castSpell((MinionTargetSpell) spelltobeused, model.getCurrentHero().getField().get(0));
+				} catch (NotYourTurnException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (NotEnoughManaException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (InvalidTargetException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				gameview.refresh(this, model);
+				spelltobeused=null;
+				herotousepower=null;
+				minionInAttack=null;
 			}
 			else{
 			minionInAttack=model.getCurrentHero().getField().get(0);
@@ -1117,6 +1161,24 @@ public class GameController implements ActionListener,GameListener {
 				minionInAttack=null;
 				gameview.refresh(this, model);
 				}
+			else if(spelltobeused!=null && spelltobeused instanceof MinionTargetSpell){
+				try {
+					model.getCurrentHero().castSpell((MinionTargetSpell) spelltobeused, model.getCurrentHero().getField().get(1));
+				} catch (NotYourTurnException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (NotEnoughManaException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (InvalidTargetException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				gameview.refresh(this, model);
+				spelltobeused=null;
+				herotousepower=null;
+				minionInAttack=null;
+			}
 				else{
 			minionInAttack=model.getCurrentHero().getField().get(1);
 			spelltobeused=null;
@@ -1155,6 +1217,24 @@ public class GameController implements ActionListener,GameListener {
 				minionInAttack=null;
 				gameview.refresh(this, model);
 				}
+			else if(spelltobeused!=null && spelltobeused instanceof MinionTargetSpell){
+				try {
+					model.getCurrentHero().castSpell((MinionTargetSpell) spelltobeused, model.getCurrentHero().getField().get(2));
+				} catch (NotYourTurnException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (NotEnoughManaException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (InvalidTargetException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				gameview.refresh(this, model);
+				spelltobeused=null;
+				herotousepower=null;
+				minionInAttack=null;
+			}
 				else{
 			
 			minionInAttack=model.getCurrentHero().getField().get(2);
@@ -1193,6 +1273,24 @@ public class GameController implements ActionListener,GameListener {
 				herotousepower=null;
 				minionInAttack=null;
 				gameview.refresh(this,model);
+			}
+			else if(spelltobeused!=null && spelltobeused instanceof MinionTargetSpell){
+				try {
+					model.getCurrentHero().castSpell((MinionTargetSpell) spelltobeused, model.getCurrentHero().getField().get(3));
+				} catch (NotYourTurnException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (NotEnoughManaException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (InvalidTargetException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				gameview.refresh(this, model);
+				spelltobeused=null;
+				herotousepower=null;
+				minionInAttack=null;
 			}
 				else{
 			
@@ -1233,6 +1331,24 @@ public class GameController implements ActionListener,GameListener {
 				minionInAttack=null;
 				gameview.refresh(this, model);
 			}
+			else if(spelltobeused!=null && spelltobeused instanceof MinionTargetSpell){
+				try {
+					model.getCurrentHero().castSpell((MinionTargetSpell) spelltobeused, model.getCurrentHero().getField().get(4));
+				} catch (NotYourTurnException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (NotEnoughManaException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (InvalidTargetException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				gameview.refresh(this, model);
+				spelltobeused=null;
+				herotousepower=null;
+				minionInAttack=null;
+			}
 				else{
 			
 			minionInAttack=model.getCurrentHero().getField().get(4);
@@ -1272,6 +1388,24 @@ public class GameController implements ActionListener,GameListener {
 				herotousepower=null;
 				minionInAttack=null;
 				}
+			else if(spelltobeused!=null && spelltobeused instanceof MinionTargetSpell){
+				try {
+					model.getCurrentHero().castSpell((MinionTargetSpell) spelltobeused, model.getCurrentHero().getField().get(5));
+				} catch (NotYourTurnException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (NotEnoughManaException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (InvalidTargetException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				gameview.refresh(this, model);
+				spelltobeused=null;
+				herotousepower=null;
+				minionInAttack=null;
+			}
 				else{
 			
 			minionInAttack=model.getCurrentHero().getField().get(5);
@@ -1310,6 +1444,24 @@ public class GameController implements ActionListener,GameListener {
 				herotousepower=null;
 				minionInAttack=null;
 				}
+			else if(spelltobeused!=null && spelltobeused instanceof MinionTargetSpell){
+				try {
+					model.getCurrentHero().castSpell((MinionTargetSpell) spelltobeused, model.getCurrentHero().getField().get(6));
+				} catch (NotYourTurnException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (NotEnoughManaException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (InvalidTargetException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				gameview.refresh(this, model);
+				spelltobeused=null;
+				herotousepower=null;
+				minionInAttack=null;
+			}
 				else{
 			
 			minionInAttack=model.getCurrentHero().getField().get(6);
@@ -1317,7 +1469,6 @@ public class GameController implements ActionListener,GameListener {
 			herotousepower=null;
 		}
 		}
-	//hdbf	
 		
 		if(e.getActionCommand().equals("wants to attack the minion number 0")){
 			if(herotousepower==null && spelltobeused==null && minionInAttack!=null){
@@ -2091,7 +2242,7 @@ public class GameController implements ActionListener,GameListener {
 				
 			} catch (FullHandException | CloneNotSupportedException e1) {
 				FullHandException ex=(FullHandException) e1;
-				new PopUpp("Sorry, Your Hand is Full, a Card now will be burned",ex.getBurned());
+				new PopUpp("Sorry, Your Hand is Full, this Card now will be burned",ex.getBurned());
 				gameview.refresh(this, model);
 				minionInAttack=null;
 				herotobeattacked=null;
