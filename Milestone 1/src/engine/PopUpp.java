@@ -19,9 +19,9 @@ public class PopUpp extends JFrame{
 	public PopUpp(String s){
 		super();
 		JLabel b=new JLabel(s);
-		b.setBounds(300, 300, 300, 300);
+		b.setBounds(600, 600, 600, 600);
 		b.setFont(new Font("Serif", Font.PLAIN, 22));
-		this.setBounds(400,400,400,400);
+		this.setBounds(600,600,600,600);
 		this.getContentPane().setBackground(Color.ORANGE);
 		this.add(b);
 		this.setLocationRelativeTo(null);

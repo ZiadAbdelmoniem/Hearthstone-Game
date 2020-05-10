@@ -25,6 +25,7 @@ public class oppoField extends JPanel{
 			h.setBorder(blackline);
 			h.setLayout(new GridLayout(2,1));
 			JTextArea d=new JTextArea(m.tostring());
+			d.setLineWrap(true);
 			JButton b=new JButton("DAMAGE!");
 			b.addActionListener(c);
 			b.setActionCommand("wants to attack the minion number "+i);
