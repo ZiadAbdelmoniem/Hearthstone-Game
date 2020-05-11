@@ -41,6 +41,8 @@ public class GameController implements ActionListener,GameListener {
 	
 	
 	public GameController(){
+		firstplayer=null;
+		secplayer=null;
 		minionInAttack=null;
 		herotobeattacked=null;
 		spelltobeused=null;
@@ -73,6 +75,10 @@ public class GameController implements ActionListener,GameListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getActionCommand().equals("chosen the heros lets play")){
+			if(secplayer==null || firstplayer==null){
+				new PopUpp("each of the 2 players must choose their heros");
+			}
+			else{
 			Game g;
 			try {
 				g = new Game(firstplayer, secplayer);
@@ -87,6 +93,7 @@ public class GameController implements ActionListener,GameListener {
 			} catch (CloneNotSupportedException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
+			}
 			}
 		}
 		if(e.getActionCommand().equals("chose mage 1")){

@@ -53,9 +53,6 @@ public void removeMain(String s){
 
 
 
-public static void main(String [] args){
-	new PopupMenu("Sorry, Your Hand is Full");
 
-}
 
 }
