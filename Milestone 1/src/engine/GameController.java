@@ -2270,20 +2270,7 @@ public class GameController implements ActionListener,GameListener {
 	
 	public static void main (String [] args){
 		GameController c=new GameController();
-		/*try {
-		Game n = new Game(new Mage(), new Mage());
-			GameView e=new GameView(c,n);
-			e.removeMain("I win");
-		} catch (FullHandException | CloneNotSupportedException | IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}*/
 		
-		
-		//JTextArea nignog=new JTextArea("niggaa is the biggest   farstcvo invjsvs pcsndv bsdubvsbiv ios ndbhs b dchsu cbiushc iush cuh s uhi cbhsb cbdb bd bu ebvibbf efi ygd yc vv");
-		//nignog.setLineWrap(true);
-		//nn.add(nignog);
-		//nignog.setVisible(true);
 	
 	}
 }
